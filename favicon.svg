@@ -1,0 +1,5 @@
+<svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+  <path d="M20 2L36.66 12v20L20 42 3.34 32V12L20 2z" fill="#F59E0B" opacity="0.15"/>
+  <path d="M20 4L34.66 13v18L20 40 5.34 31V13L20 4z" stroke="#F59E0B" stroke-width="2" fill="none"/>
+  <text x="20" y="26" text-anchor="middle" font-family="sans-serif" font-weight="700" font-size="16" fill="#F59E0B">M</text>
+</svg>

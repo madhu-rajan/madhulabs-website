@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MadhuLabs — Useful Apps for Everyday Life</title>
+  <meta name="description" content="MadhuLabs builds practical apps for sports, productivity, finance, and more." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-inner">
+      <a href="/" class="logo">
+        <svg class="logo-icon" viewBox="0 0 40 40" width="40" height="40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 2L36.66 12v20L20 42 3.34 32V12L20 2z" fill="#F59E0B" opacity="0.15"/>
+          <path d="M20 4L34.66 13v18L20 40 5.34 31V13L20 4z" stroke="#F59E0B" stroke-width="2" fill="none"/>
+          <text x="20" y="26" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="16" fill="#F59E0B">M</text>
+        </svg>
+        <span class="logo-text">MadhuLabs</span>
+      </a>
+      <nav class="nav">
+        <a href="#apps">Apps</a>
+        <a href="#about">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <h1>Practical apps for<br/>everyday life</h1>
+      <p class="hero-sub">Building useful tools across sports, tech, productivity, and finance.</p>
+      <a href="#apps" class="btn">Explore Apps</a>
+    </div>
+  </section>
+
+  <!-- Apps -->
+  <section id="apps" class="apps">
+    <div class="container">
+      <h2>Apps</h2>
+      <div class="app-grid">
+
+        <!-- Sports -->
+        <div class="category">
+          <div class="category-label">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg>
+            Sports
+          </div>
+          <div class="card live">
+            <div class="card-badge">Live</div>
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#15803d" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M18 12a9 9 0 0 0-6-6M6 12a9 9 0 0 0 6 6"/><path d="M12 2c3 3.6 3 14.4 0 20M12 2c-3 3.6-3 14.4 0 20"/></svg>
+            </div>
+            <h3>Tennis Team Manager</h3>
+            <p>Roster, schedule, USTA standings, availability, practice, and team chat for tennis teams.</p>
+            <a href="https://tennis.madhulabs.com" class="card-link" target="_blank" rel="noopener">Open App →</a>
+          </div>
+          <div class="card coming-soon">
+            <div class="card-badge soon">Coming Soon</div>
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#6B7280" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12l2 2 4-4"/></svg>
+            </div>
+            <h3>More Sports</h3>
+            <p>Expanding to other team sports — stay tuned.</p>
+          </div>
+        </div>
+
+        <!-- Tech & Productivity -->
+        <div class="category">
+          <div class="category-label">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            Tech & Productivity
+          </div>
+          <div class="card coming-soon">
+            <div class="card-badge soon">Coming Soon</div>
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#6B7280" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+            </div>
+            <h3>Productivity Tools</h3>
+            <p>Day-to-day tools to streamline your workflow and get things done.</p>
+          </div>
+        </div>
+
+        <!-- Finance -->
+        <div class="category">
+          <div class="category-label">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            Finance & Tax
+          </div>
+          <div class="card coming-soon">
+            <div class="card-badge soon">Coming Soon</div>
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#6B7280" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+            </div>
+            <h3>Finance & Tax Tools</h3>
+            <p>Practical tools for personal finance, tax planning, and everyday money management.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="about">
+    <div class="container">
+      <h2>About MadhuLabs</h2>
+      <p>MadhuLabs is a personal project studio focused on building practical, well-crafted apps that solve real problems. What starts as a useful tool for one becomes something everyone can benefit from.</p>
+      <p>Currently building in the open — more apps and features on the way.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>&copy; 2026 MadhuLabs</span>
+    </div>
+  </footer>
+
+</body>
+</html>
