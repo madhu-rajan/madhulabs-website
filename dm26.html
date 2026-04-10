@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Divya & Mukund Ceremony - Floor Plan Options</title>
+<style>
+  :root {
+    --gold: #C4973B;
+    --gold-light: #F5ECD7;
+    --burgundy: #722F37;
+    --burgundy-light: #F2E4E6;
+    --charcoal: #2D2D2D;
+    --sage: #6B7F5E;
+    --sage-light: #E8EDE4;
+    --cream: #FDFBF7;
+    --white: #FFFFFF;
+    --border: #E0D8CC;
+    --shadow: rgba(45,45,45,0.08);
+    --blue: #2E6B8A;
+    --blue-light: #DAE8EF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    line-height: 1.7;
+  }
+
+  .header {
+    background: linear-gradient(135deg, var(--charcoal) 0%, #4A3A2A 100%);
+    color: var(--cream);
+    padding: 3rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C4973B' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.5;
+  }
+  .header h1 { font-size: 2.4rem; font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase; position: relative; }
+  .header .subtitle { font-size: 1.1rem; color: var(--gold); margin-top: 0.5rem; letter-spacing: 0.1em; position: relative; }
+  .header .event-details { margin-top: 1.5rem; font-size: 0.95rem; color: #B8AFA3; position: relative; }
+  .header .event-details span { margin: 0 1rem; }
+  .divider-ornament { color: var(--gold); font-size: 1.5rem; margin: 1rem 0; position: relative; }
+
+  .nav {
+    background: var(--white);
+    border-bottom: 2px solid var(--gold);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px var(--shadow);
+  }
+  .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: center; gap: 0; }
+  .nav a {
+    display: block; padding: 1rem 1.8rem; text-decoration: none; color: var(--charcoal);
+    font-size: 0.9rem; letter-spacing: 0.05em; text-transform: uppercase;
+    border-bottom: 3px solid transparent; transition: all 0.3s;
+  }
+  .nav a:hover, .nav a.active { color: var(--gold); border-bottom-color: var(--gold); background: var(--gold-light); }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+  .section { margin-bottom: 4rem; scroll-margin-top: 70px; }
+  .section-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
+  .section-badge {
+    display: inline-block; padding: 0.4rem 1.2rem; border-radius: 4px;
+    font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+    font-weight: 700; color: var(--white);
+  }
+  .badge-current { background: var(--burgundy); }
+  .badge-ne { background: var(--sage); }
+  .badge-ne-simple { background: var(--blue); }
+  .badge-recommended { background: var(--gold); color: var(--charcoal); font-size: 0.7rem; padding: 0.25rem 0.7rem; border-radius: 3px; }
+  .section h2 { font-size: 1.8rem; font-weight: 400; color: var(--charcoal); }
+
+  .floorplan-container {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    box-shadow: 0 4px 16px var(--shadow);
+    overflow-x: auto;
+    text-align: center;
+  }
+  .floorplan-container svg { max-width: 100%; height: auto; }
+
+  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0; }
+  @media (max-width: 768px) {
+    .info-grid { grid-template-columns: 1fr; }
+    .nav-inner { flex-wrap: wrap; }
+    .nav a { padding: 0.8rem 1rem; font-size: 0.8rem; }
+    .comparison-table { font-size: 0.85rem; }
+    .comparison-table td, .comparison-table th { padding: 0.6rem; }
+  }
+
+  .info-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 8px; padding: 1.5rem; box-shadow: 0 2px 8px var(--shadow);
+  }
+  .info-card h3 {
+    font-size: 1rem; text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: 0.8rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);
+  }
+  .info-card.pros h3 { color: var(--sage); border-bottom-color: var(--sage); }
+  .info-card.cons h3 { color: var(--burgundy); border-bottom-color: var(--burgundy); }
+  .info-card.changes h3 { color: var(--blue); border-bottom-color: var(--blue); }
+  .info-card.details h3 { color: var(--gold); border-bottom-color: var(--gold); }
+  .info-card ul { list-style: none; padding: 0; }
+  .info-card ul li { padding: 0.4rem 0; padding-left: 1.5rem; position: relative; font-size: 0.92rem; }
+  .info-card.pros ul li::before { content: '\2713'; position: absolute; left: 0; color: var(--sage); font-weight: 700; }
+  .info-card.cons ul li::before { content: '\2717'; position: absolute; left: 0; color: var(--burgundy); font-weight: 700; }
+  .info-card.changes ul li::before { content: '\2192'; position: absolute; left: 0; color: var(--blue); font-weight: 700; }
+  .info-card.details ul li::before { content: '\2022'; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+  .info-card.full { grid-column: 1 / -1; }
+
+  .key-details {
+    background: var(--white); border: 1px solid var(--border); border-radius: 8px;
+    padding: 1.5rem; margin: 1.5rem 0; box-shadow: 0 2px 8px var(--shadow);
+  }
+  .key-details table { width: 100%; border-collapse: collapse; }
+  .key-details td { padding: 0.5rem 0.8rem; border-bottom: 1px solid #F0ECE4; font-size: 0.92rem; }
+  .key-details td:first-child { font-weight: 700; color: var(--gold); width: 40%; white-space: nowrap; }
+  .key-details tr:last-child td { border-bottom: none; }
+
+  .comparison-table {
+    width: 100%; border-collapse: collapse; background: var(--white);
+    border-radius: 8px; overflow: hidden; box-shadow: 0 4px 16px var(--shadow); margin: 1.5rem 0;
+  }
+  .comparison-table th {
+    padding: 1rem; text-align: left; font-size: 0.85rem; text-transform: uppercase;
+    letter-spacing: 0.08em; border-bottom: 2px solid var(--gold);
+  }
+  .comparison-table th:nth-child(1) { background: #F9F7F3; color: var(--charcoal); }
+  .comparison-table th:nth-child(2) { background: var(--burgundy-light); color: var(--burgundy); }
+  .comparison-table th:nth-child(3) { background: var(--sage-light); color: var(--sage); }
+  .comparison-table th:nth-child(4) { background: var(--blue-light); color: var(--blue); }
+  .comparison-table td { padding: 0.8rem 1rem; border-bottom: 1px solid #F0ECE4; font-size: 0.92rem; vertical-align: top; }
+  .comparison-table tr:last-child td { border-bottom: none; }
+  .comparison-table tr:hover { background: #FDFBF7; }
+  .check { color: var(--sage); font-weight: 700; }
+  .cross { color: var(--burgundy); font-weight: 700; }
+  .partial { color: var(--gold); font-weight: 700; }
+
+  .questions-section {
+    background: var(--white); border: 2px solid var(--gold); border-radius: 8px;
+    padding: 2rem; margin: 2rem 0; box-shadow: 0 4px 16px var(--shadow);
+  }
+  .questions-section h3 { color: var(--gold); font-size: 1.2rem; margin-bottom: 1.2rem; text-transform: uppercase; letter-spacing: 0.08em; }
+  .question-item { display: flex; gap: 1rem; padding: 0.8rem 0; border-bottom: 1px solid #F0ECE4; font-size: 0.92rem; }
+  .question-item:last-child { border-bottom: none; }
+  .q-number {
+    background: var(--gold); color: var(--white); width: 28px; height: 28px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem; font-weight: 700; flex-shrink: 0; margin-top: 2px;
+  }
+  .q-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: #999; margin-top: 0.3rem; }
+
+  .sun-info {
+    background: linear-gradient(135deg, #FFF8E8 0%, #FFF3D6 100%);
+    border: 1px solid #E8D9A8; border-radius: 8px; padding: 1.5rem; margin: 1.5rem 0;
+  }
+  .sun-info h3 { color: #B8860B; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.8rem; }
+  .sun-info p { font-size: 0.92rem; margin-bottom: 0.5rem; }
+
+  .recommendation {
+    background: linear-gradient(135deg, var(--gold-light) 0%, #F0E6C8 100%);
+    border: 2px solid var(--gold); border-radius: 8px; padding: 2rem; margin: 2rem 0; text-align: center;
+  }
+  .recommendation h3 { color: var(--gold); font-size: 1.3rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+  .recommendation p { font-size: 0.95rem; max-width: 700px; margin: 0 auto; line-height: 1.8; }
+
+  .footer {
+    background: var(--charcoal); color: #8A8078; text-align: center;
+    padding: 2rem; font-size: 0.85rem; letter-spacing: 0.05em;
+  }
+  .footer strong { color: var(--gold); }
+
+  .description { font-size: 0.95rem; color: #555; margin-bottom: 1.5rem; line-height: 1.8; }
+
+  .planner-brief {
+    background: #F9F7F3; border-left: 4px solid var(--gold);
+    padding: 1.2rem 1.5rem; margin: 1.5rem 0; font-size: 0.92rem;
+    font-style: italic; color: #555; border-radius: 0 8px 8px 0;
+  }
+  .planner-brief strong { font-style: normal; color: var(--charcoal); }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <h1>Divya &amp; Mukund</h1>
+  <div class="divider-ornament">~ ~ ~</div>
+  <div class="subtitle">Ceremony Floor Plan Options</div>
+  <div class="event-details">
+    <span>December 31, 2026</span>
+    <span>|</span>
+    <span>Amaterra Winery &mdash; Terrace</span>
+    <span>|</span>
+    <span>120 Guests</span>
+  </div>
+</div>
+
+<!-- NAVIGATION -->
+<div class="nav">
+  <div class="nav-inner">
+    <a href="#current">Current Plan</a>
+    <a href="#northeast">Option A: Full NE</a>
+    <a href="#ne-simple">Option B: NE Angle</a>
+    <a href="#comparison">Comparison</a>
+    <a href="#sun">Sun &amp; Light</a>
+    <a href="#questions">Questions</a>
+    <a href="#recommendation">Recommendation</a>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ====================== CURRENT PLAN ====================== -->
+<div class="section" id="current">
+  <div class="section-header">
+    <span class="section-badge badge-current">Current</span>
+    <h2>North-Facing Plan <small style="font-size:0.6em; color:#999;">(as designed by YPB)</small></h2>
+  </div>
+
+  <p class="description">
+    The original floor plan from YPB/Prismm. The mandap sits at the south end of the terrace
+    with the vineyard view behind the couple. Guests face south. The baraat enters from the east side.
+    The couple faces <strong>north</strong> toward the guests and building.
+  </p>
+
+  <div class="floorplan-container">
+    <svg viewBox="0 0 800 560" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, serif">
+      <text x="400" y="22" text-anchor="middle" font-size="14" font-weight="700" fill="#C4973B">NORTH (SW Swede Hill Dr / Parking)</text>
+      <text x="400" y="555" text-anchor="middle" font-size="14" font-weight="700" fill="#C4973B">SOUTH (Vineyard View)</text>
+      <text x="18" y="280" text-anchor="middle" font-size="14" font-weight="700" fill="#C4973B" transform="rotate(-90,18,280)">WEST</text>
+      <text x="782" y="280" text-anchor="middle" font-size="14" font-weight="700" fill="#C4973B" transform="rotate(90,782,280)">EAST</text>
+
+      <rect x="40" y="35" width="720" height="500" rx="4" fill="none" stroke="#2D2D2D" stroke-width="2.5"/>
+
+      <!-- Welcome -->
+      <rect x="70" y="60" width="100" height="45" rx="3" fill="#F5ECD7" stroke="#C4973B" stroke-width="1.5"/>
+      <text x="120" y="80" text-anchor="middle" font-size="11" font-weight="700" fill="#2D2D2D">WELCOME</text>
+      <text x="120" y="95" text-anchor="middle" font-size="10" fill="#666">6 FT</text>
+
+      <!-- N/A & Snacks -->
+      <rect x="280" y="60" width="85" height="35" rx="3" fill="#F9F7F3" stroke="#999" stroke-width="1"/>
+      <rect x="370" y="60" width="85" height="35" rx="3" fill="#F9F7F3" stroke="#999" stroke-width="1"/>
+      <text x="280" y="56" font-size="9" fill="#666">8ft</text>
+      <text x="370" y="56" font-size="9" fill="#666">8ft</text>
+      <text x="360" y="82" text-anchor="middle" font-size="11" font-weight="700" fill="#2D2D2D">N/A &amp; SNACKS</text>
+
+      <!-- Baraat entry -->
+      <text x="680" y="72" text-anchor="middle" font-size="11" font-weight="700" fill="#722F37">BARAAT WILL</text>
+      <text x="680" y="86" text-anchor="middle" font-size="11" font-weight="700" fill="#722F37">ENTER HERE</text>
+      <defs>
+        <marker id="arrowRed" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#722F37"/></marker>
+      </defs>
+      <line x1="680" y1="92" x2="680" y2="130" stroke="#722F37" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arrowRed)"/>
+
+      <!-- Landscaping -->
+      <circle cx="130" cy="140" r="4" fill="#D4DEC9"/>
+      <circle cx="350" cy="130" r="4" fill="#D4DEC9"/>
+      <circle cx="480" cy="130" r="4" fill="#D4DEC9"/>
+      <circle cx="630" cy="140" r="4" fill="#D4DEC9"/>
+      <circle cx="130" cy="345" r="4" fill="#D4DEC9"/>
+      <circle cx="130" cy="400" r="4" fill="#D4DEC9"/>
+      <circle cx="130" cy="460" r="4" fill="#D4DEC9"/>
+      <circle cx="260" cy="490" r="4" fill="#D4DEC9"/>
+      <circle cx="600" cy="490" r="4" fill="#D4DEC9"/>
+      <circle cx="700" cy="490" r="4" fill="#D4DEC9"/>
+
+      <!-- West furniture -->
+      <rect x="80" y="175" width="130" height="150" rx="3" fill="#F9F7F3" stroke="#BBB" stroke-width="1"/>
+      <text x="145" y="230" text-anchor="middle" font-size="10" font-weight="700" fill="#555">AMATERRA</text>
+      <text x="145" y="244" text-anchor="middle" font-size="10" fill="#555">OUTDOOR</text>
+      <text x="145" y="258" text-anchor="middle" font-size="10" fill="#555">FURNITURE</text>
+      <rect x="110" y="285" width="20" height="15" rx="2" fill="#E8E3DA" stroke="#BBB" stroke-width="0.8"/>
+      <rect x="133" y="285" width="24" height="15" rx="2" fill="#E8E3DA" stroke="#BBB" stroke-width="0.8"/>
+      <rect x="160" y="285" width="20" height="15" rx="2" fill="#E8E3DA" stroke="#BBB" stroke-width="0.8"/>
+
+      <!-- Seating -->
+      <rect x="280" y="165" width="240" height="240" rx="3" fill="none" stroke="#CCC" stroke-width="1" stroke-dasharray="4,3"/>
+      <g fill="#2D2D2D" font-size="10">
+        <text x="310" y="185">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text><text x="410" y="185">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text>
+        <text x="310" y="200">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text><text x="410" y="200">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text>
+        <text x="310" y="215">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text><text x="410" y="215">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text>
+        <text x="310" y="230">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text><text x="410" y="230">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text>
+        <text x="310" y="245">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text><text x="410" y="245">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text>
+        <text x="310" y="260">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text><text x="410" y="260">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text>
+        <text x="310" y="275">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text><text x="410" y="275">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text>
+        <text x="310" y="290">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text><text x="410" y="290">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text>
+        <text x="310" y="305">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text><text x="410" y="305">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text>
+        <text x="310" y="320">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text><text x="410" y="320">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text>
+      </g>
+      <text x="560" y="220" font-size="12" font-weight="700" fill="#555">SEATING</text>
+      <text x="560" y="236" font-size="12" font-weight="700" fill="#555">FOR 120</text>
+
+      <!-- Swing -->
+      <rect x="600" y="170" width="100" height="60" rx="20" fill="#FDF8F0" stroke="#C4973B" stroke-width="1.5"/>
+      <text x="650" y="205" text-anchor="middle" font-size="11" font-weight="700" fill="#C4973B">SWING</text>
+
+      <!-- East furniture -->
+      <rect x="590" y="270" width="130" height="130" rx="3" fill="#F9F7F3" stroke="#BBB" stroke-width="1"/>
+      <text x="655" y="320" text-anchor="middle" font-size="10" font-weight="700" fill="#555">AMATERRA</text>
+      <text x="655" y="334" text-anchor="middle" font-size="10" fill="#555">OUTDOOR</text>
+      <text x="655" y="348" text-anchor="middle" font-size="10" fill="#555">FURNITURE</text>
+      <rect x="615" y="360" width="20" height="15" rx="2" fill="#E8E3DA" stroke="#BBB" stroke-width="0.8"/>
+      <rect x="638" y="360" width="24" height="15" rx="2" fill="#E8E3DA" stroke="#BBB" stroke-width="0.8"/>
+      <rect x="665" y="360" width="20" height="15" rx="2" fill="#E8E3DA" stroke="#BBB" stroke-width="0.8"/>
+
+      <!-- Mandap -->
+      <rect x="320" y="425" width="160" height="80" rx="4" fill="#F2E4E6" stroke="#722F37" stroke-width="2"/>
+      <text x="400" y="455" text-anchor="middle" font-size="13" font-weight="700" fill="#722F37">MANDAP</text>
+      <text x="400" y="472" text-anchor="middle" font-size="11" fill="#722F37">12 x 10</text>
+      <text x="400" y="492" text-anchor="middle" font-size="10" fill="#999">couple faces N &#8593;</text>
+
+      <text x="510" y="460" font-size="9" fill="#999" font-style="italic">*Event Co. furniture</text>
+      <text x="510" y="472" font-size="9" fill="#999" font-style="italic">placed on mandap</text>
+    </svg>
+  </div>
+
+  <div class="key-details">
+    <table>
+      <tr><td>Couple Faces</td><td>North &mdash; toward guests &amp; building</td></tr>
+      <tr><td>Guests Face</td><td>South &mdash; toward mandap &amp; vineyard</td></tr>
+      <tr><td>Baraat Entry</td><td>East side of terrace (from Vintner Dr direction)</td></tr>
+      <tr><td>Bride Entrance</td><td>Not marked on plan &mdash; TBD</td></tr>
+      <tr><td>Vineyard View</td><td>South &mdash; directly behind the couple / mandap</td></tr>
+      <tr><td>Mandap Size</td><td>12 ft x 10 ft &mdash; Event Co. furniture placed on mandap</td></tr>
+    </table>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-card pros">
+      <h3>Pros</h3>
+      <ul>
+        <li>Vineyard view is the direct backdrop behind the couple &mdash; beautiful photos</li>
+        <li>Simple, symmetrical layout &mdash; easy for the venue &amp; design team</li>
+        <li>Guests face the scenic south view throughout ceremony</li>
+        <li>Existing Amaterra furniture stays in place on both sides</li>
+      </ul>
+    </div>
+    <div class="info-card cons">
+      <h3>Cons</h3>
+      <ul>
+        <li>Couple faces <strong>North</strong> &mdash; not the auspicious East/NE direction per Hindu tradition</li>
+        <li>Baraat enters from the east but must approach the mandap at an angle &mdash; no straight-aisle processional</li>
+        <li>Dec 31 afternoon sun (southwest) may hit guests from the left side</li>
+        <li>Bride's entrance path is not defined on the plan</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ====================== OPTION A: FULL NE ROTATION ====================== -->
+<div class="section" id="northeast">
+  <div class="section-header">
+    <span class="section-badge badge-ne">Option A</span>
+    <h2>Full NE Rotation</h2>
+  </div>
+
+  <p class="description">
+    The mandap is repositioned to the <strong>southwest corner</strong> of the terrace.
+    The couple faces <strong>northeast</strong> &mdash; the <em>Ishanya</em> direction, considered the most
+    auspicious in Vastu Shastra. Seating is angled on a diagonal to face the mandap.
+    The baraat enters from the east and processes diagonally toward the couple.
+    This requires a <strong>significant layout change</strong>.
+  </p>
+
+  <div class="floorplan-container">
+    <svg viewBox="0 0 800 560" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, serif">
+      <text x="400" y="22" text-anchor="middle" font-size="14" font-weight="700" fill="#C4973B">NORTH (SW Swede Hill Dr / Parking)</text>
+      <text x="400" y="555" text-anchor="middle" font-size="14" font-weight="700" fill="#C4973B">SOUTH (Vineyard View)</text>
+      <text x="18" y="280" text-anchor="middle" font-size="14" font-weight="700" fill="#C4973B" transform="rotate(-90,18,280)">WEST</text>
+      <text x="782" y="280" text-anchor="middle" font-size="14" font-weight="700" fill="#C4973B" transform="rotate(90,782,280)">EAST</text>
+
+      <rect x="40" y="35" width="720" height="500" rx="4" fill="none" stroke="#2D2D2D" stroke-width="2.5"/>
+
+      <!-- Welcome -->
+      <rect x="70" y="60" width="100" height="45" rx="3" fill="#F5ECD7" stroke="#C4973B" stroke-width="1.5"/>
+      <text x="120" y="80" text-anchor="middle" font-size="11" font-weight="700" fill="#2D2D2D">WELCOME</text>
+      <text x="120" y="95" text-anchor="middle" font-size="10" fill="#666">6 FT</text>
+
+      <!-- N/A & Snacks -->
+      <rect x="280" y="60" width="85" height="35" rx="3" fill="#F9F7F3" stroke="#999" stroke-width="1"/>
+      <rect x="370" y="60" width="85" height="35" rx="3" fill="#F9F7F3" stroke="#999" stroke-width="1"/>
+      <text x="280" y="56" font-size="9" fill="#666">8ft</text>
+      <text x="370" y="56" font-size="9" fill="#666">8ft</text>
+      <text x="360" y="82" text-anchor="middle" font-size="11" font-weight="700" fill="#2D2D2D">N/A &amp; SNACKS</text>
+
+      <!-- Baraat entry -->
+      <text x="680" y="72" text-anchor="middle" font-size="11" font-weight="700" fill="#722F37">BARAAT WILL</text>
+      <text x="680" y="86" text-anchor="middle" font-size="11" font-weight="700" fill="#722F37">ENTER HERE</text>
+      <defs>
+        <marker id="arrowRed2" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#722F37"/></marker>
+      </defs>
+      <path d="M 680,95 L 680,140 Q 680,160 660,175 L 220,460" stroke="#722F37" stroke-width="2" stroke-dasharray="8,4" fill="none" marker-end="url(#arrowRed2)"/>
+      <text x="520" y="310" font-size="10" fill="#722F37" transform="rotate(-40,520,310)">baraat walks diagonally to mandap</text>
+
+      <!-- Landscaping -->
+      <circle cx="130" cy="140" r="4" fill="#D4DEC9"/>
+      <circle cx="350" cy="130" r="4" fill="#D4DEC9"/>
+      <circle cx="480" cy="130" r="4" fill="#D4DEC9"/>
+      <circle cx="700" cy="490" r="4" fill="#D4DEC9"/>
+      <circle cx="600" cy="490" r="4" fill="#D4DEC9"/>
+
+      <!-- Diagonal seating -->
+      <g transform="rotate(-40, 420, 250)">
+        <rect x="280" y="140" width="280" height="220" rx="3" fill="none" stroke="#CCC" stroke-width="1" stroke-dasharray="4,3"/>
+        <g fill="#555" font-size="9">
+          <text x="310" y="165">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;  &#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text>
+          <text x="310" y="180">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;  &#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text>
+          <text x="310" y="195">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;  &#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text>
+          <text x="310" y="210">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;  &#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text>
+          <text x="310" y="225">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;  &#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text>
+          <text x="310" y="240">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;  &#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text>
+          <text x="310" y="255">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;  &#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text>
+          <text x="310" y="270">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;  &#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text>
+          <text x="310" y="285">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;  &#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text>
+          <text x="310" y="300">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;  &#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text>
+        </g>
+      </g>
+      <text x="440" y="155" font-size="12" font-weight="700" fill="#555">SEATING FOR 120</text>
+      <text x="440" y="170" font-size="10" fill="#999">(angled rows)</text>
+
+      <!-- Swing -->
+      <rect x="620" y="195" width="100" height="60" rx="20" fill="#FDF8F0" stroke="#C4973B" stroke-width="1.5"/>
+      <text x="670" y="230" text-anchor="middle" font-size="11" font-weight="700" fill="#C4973B">SWING</text>
+
+      <!-- East furniture -->
+      <rect x="590" y="360" width="130" height="110" rx="3" fill="#F9F7F3" stroke="#BBB" stroke-width="1"/>
+      <text x="655" y="400" text-anchor="middle" font-size="10" font-weight="700" fill="#555">AMATERRA</text>
+      <text x="655" y="414" text-anchor="middle" font-size="10" fill="#555">OUTDOOR</text>
+      <text x="655" y="428" text-anchor="middle" font-size="10" fill="#555">FURNITURE</text>
+
+      <!-- Mandap SW corner -->
+      <rect x="70" y="430" width="160" height="80" rx="4" fill="#E8EDE4" stroke="#6B7F5E" stroke-width="2"/>
+      <text x="150" y="460" text-anchor="middle" font-size="13" font-weight="700" fill="#6B7F5E">MANDAP</text>
+      <text x="150" y="477" text-anchor="middle" font-size="11" fill="#6B7F5E">12 x 10</text>
+      <text x="150" y="497" text-anchor="middle" font-size="10" fill="#999">couple faces NE &#8599;</text>
+    </svg>
+  </div>
+
+  <div class="key-details">
+    <table>
+      <tr><td>Couple Faces</td><td><strong>Northeast</strong> &mdash; Ishanya direction (most auspicious per Vastu)</td></tr>
+      <tr><td>Guests Face</td><td>Southwest &mdash; toward mandap, vineyard partially behind couple</td></tr>
+      <tr><td>Baraat Entry</td><td>East side &mdash; processes diagonally SW toward mandap</td></tr>
+      <tr><td>Bride Entrance</td><td>Can enter from north (building side) and walk diagonally to mandap</td></tr>
+      <tr><td>Vineyard View</td><td>South &mdash; partially behind the couple (to their left)</td></tr>
+      <tr><td>Mandap Position</td><td>Southwest corner of terrace</td></tr>
+    </table>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-card pros">
+      <h3>Pros</h3>
+      <ul>
+        <li>Couple faces <strong>Northeast (Ishanya)</strong> &mdash; the most auspicious direction per Vastu Shastra</li>
+        <li>Vineyard view is partially behind the couple &mdash; still in the photo backdrop</li>
+        <li>Dec 31 sunset (SW) creates beautiful backlight behind the guests &mdash; golden light on the couple's faces</li>
+        <li>Diagonal layout feels intimate and unique</li>
+      </ul>
+    </div>
+    <div class="info-card cons">
+      <h3>Cons</h3>
+      <ul>
+        <li>Diagonal seating is less space-efficient &mdash; may lose some seats or require tighter row spacing</li>
+        <li>Baraat processional is diagonal, not a straight aisle &mdash; harder to choreograph</li>
+        <li>More complex layout for the venue/design team to execute</li>
+        <li>The west lounge furniture must be fully removed to accommodate mandap</li>
+      </ul>
+    </div>
+    <div class="info-card changes">
+      <h3>Changes Required</h3>
+      <ul>
+        <li>Move mandap to the <strong>southwest corner</strong> of the terrace</li>
+        <li>Rotate and angle all seating ~45 degrees to face southwest</li>
+        <li>Remove the west Amaterra outdoor furniture entirely</li>
+        <li>Keep east lounge furniture &mdash; functions as pre-ceremony / baraat staging</li>
+        <li>Reposition swing to east side (remains a photo feature)</li>
+        <li>Create a diagonal aisle from the east entry to the mandap</li>
+      </ul>
+    </div>
+    <div class="info-card details">
+      <h3>Key Considerations</h3>
+      <ul>
+        <li>Confirm with venue that the SW corner can support the 12x10 mandap footprint</li>
+        <li>Diagonal rows: consider 10 rows x 12 chairs with angled offsets</li>
+        <li>Aisle width should be 5-6 ft minimum for processions</li>
+        <li>Sound/music setup will need to account for the angled orientation</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="planner-brief">
+    <strong>Brief for YPB / Prismm:</strong> Rotate ceremony ~45 degrees. Move mandap (12x10) to the southwest corner
+    of the terrace. Angle all seating rows to face southwest toward the mandap. Create a diagonal aisle
+    from the east baraat entry to the mandap. Remove west Amaterra lounge furniture. Retain east lounge
+    for baraat staging. Swing repositions to east/southeast. Couple faces Northeast (Ishanya).
+  </div>
+</div>
+
+<!-- ====================== OPTION B: NE ANGLE (MINIMAL CHANGE) ====================== -->
+<div class="section" id="ne-simple">
+  <div class="section-header">
+    <span class="section-badge badge-ne-simple">Option B</span>
+    <h2>NE-Angled Mandap <small style="font-size:0.6em; color:#999;">(minimal change)</small></h2>
+    <span class="badge-recommended">Recommended</span>
+  </div>
+
+  <p class="description">
+    <strong>Same layout as the current plan &mdash; nothing moves.</strong> The only change is that the
+    couple's seating within the mandap is angled ~30&ndash;45 degrees so they face <strong>northeast</strong>
+    instead of due north. Guests remain in the same positions, furniture stays in place, baraat path
+    is unchanged. The vadyaar simply orients the ceremonial seating (havan kund, couple's asanas)
+    toward the NE corner within the existing 12x10 mandap footprint.
+  </p>
+
+  <div class="floorplan-container">
+    <svg viewBox="0 0 800 560" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, serif">
+      <text x="400" y="22" text-anchor="middle" font-size="14" font-weight="700" fill="#C4973B">NORTH (SW Swede Hill Dr / Parking)</text>
+      <text x="400" y="555" text-anchor="middle" font-size="14" font-weight="700" fill="#C4973B">SOUTH (Vineyard View)</text>
+      <text x="18" y="280" text-anchor="middle" font-size="14" font-weight="700" fill="#C4973B" transform="rotate(-90,18,280)">WEST</text>
+      <text x="782" y="280" text-anchor="middle" font-size="14" font-weight="700" fill="#C4973B" transform="rotate(90,782,280)">EAST</text>
+
+      <rect x="40" y="35" width="720" height="500" rx="4" fill="none" stroke="#2D2D2D" stroke-width="2.5"/>
+
+      <!-- Welcome -->
+      <rect x="70" y="60" width="100" height="45" rx="3" fill="#F5ECD7" stroke="#C4973B" stroke-width="1.5"/>
+      <text x="120" y="80" text-anchor="middle" font-size="11" font-weight="700" fill="#2D2D2D">WELCOME</text>
+      <text x="120" y="95" text-anchor="middle" font-size="10" fill="#666">6 FT</text>
+
+      <!-- N/A & Snacks -->
+      <rect x="280" y="60" width="85" height="35" rx="3" fill="#F9F7F3" stroke="#999" stroke-width="1"/>
+      <rect x="370" y="60" width="85" height="35" rx="3" fill="#F9F7F3" stroke="#999" stroke-width="1"/>
+      <text x="280" y="56" font-size="9" fill="#666">8ft</text>
+      <text x="370" y="56" font-size="9" fill="#666">8ft</text>
+      <text x="360" y="82" text-anchor="middle" font-size="11" font-weight="700" fill="#2D2D2D">N/A &amp; SNACKS</text>
+
+      <!-- Baraat entry -->
+      <text x="680" y="72" text-anchor="middle" font-size="11" font-weight="700" fill="#722F37">BARAAT WILL</text>
+      <text x="680" y="86" text-anchor="middle" font-size="11" font-weight="700" fill="#722F37">ENTER HERE</text>
+      <defs>
+        <marker id="arrowRed3" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#722F37"/></marker>
+        <marker id="arrowBlue" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#2E6B8A"/></marker>
+      </defs>
+      <line x1="680" y1="92" x2="680" y2="130" stroke="#722F37" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arrowRed3)"/>
+
+      <!-- Landscaping (same as current) -->
+      <circle cx="130" cy="140" r="4" fill="#D4DEC9"/>
+      <circle cx="350" cy="130" r="4" fill="#D4DEC9"/>
+      <circle cx="480" cy="130" r="4" fill="#D4DEC9"/>
+      <circle cx="630" cy="140" r="4" fill="#D4DEC9"/>
+      <circle cx="130" cy="345" r="4" fill="#D4DEC9"/>
+      <circle cx="130" cy="400" r="4" fill="#D4DEC9"/>
+      <circle cx="130" cy="460" r="4" fill="#D4DEC9"/>
+      <circle cx="260" cy="490" r="4" fill="#D4DEC9"/>
+      <circle cx="600" cy="490" r="4" fill="#D4DEC9"/>
+      <circle cx="700" cy="490" r="4" fill="#D4DEC9"/>
+
+      <!-- West furniture (UNCHANGED) -->
+      <rect x="80" y="175" width="130" height="150" rx="3" fill="#F9F7F3" stroke="#BBB" stroke-width="1"/>
+      <text x="145" y="230" text-anchor="middle" font-size="10" font-weight="700" fill="#555">AMATERRA</text>
+      <text x="145" y="244" text-anchor="middle" font-size="10" fill="#555">OUTDOOR</text>
+      <text x="145" y="258" text-anchor="middle" font-size="10" fill="#555">FURNITURE</text>
+      <rect x="110" y="285" width="20" height="15" rx="2" fill="#E8E3DA" stroke="#BBB" stroke-width="0.8"/>
+      <rect x="133" y="285" width="24" height="15" rx="2" fill="#E8E3DA" stroke="#BBB" stroke-width="0.8"/>
+      <rect x="160" y="285" width="20" height="15" rx="2" fill="#E8E3DA" stroke="#BBB" stroke-width="0.8"/>
+
+      <!-- Seating (UNCHANGED) -->
+      <rect x="280" y="165" width="240" height="240" rx="3" fill="none" stroke="#CCC" stroke-width="1" stroke-dasharray="4,3"/>
+      <g fill="#2D2D2D" font-size="10">
+        <text x="310" y="185">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text><text x="410" y="185">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text>
+        <text x="310" y="200">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text><text x="410" y="200">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text>
+        <text x="310" y="215">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text><text x="410" y="215">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text>
+        <text x="310" y="230">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text><text x="410" y="230">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text>
+        <text x="310" y="245">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text><text x="410" y="245">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text>
+        <text x="310" y="260">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text><text x="410" y="260">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text>
+        <text x="310" y="275">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text><text x="410" y="275">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text>
+        <text x="310" y="290">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text><text x="410" y="290">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text>
+        <text x="310" y="305">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text><text x="410" y="305">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text>
+        <text x="310" y="320">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text><text x="410" y="320">&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;&#9633;</text>
+      </g>
+      <text x="560" y="220" font-size="12" font-weight="700" fill="#555">SEATING</text>
+      <text x="560" y="236" font-size="12" font-weight="700" fill="#555">FOR 120</text>
+
+      <!-- Swing (UNCHANGED) -->
+      <rect x="600" y="170" width="100" height="60" rx="20" fill="#FDF8F0" stroke="#C4973B" stroke-width="1.5"/>
+      <text x="650" y="205" text-anchor="middle" font-size="11" font-weight="700" fill="#C4973B">SWING</text>
+
+      <!-- East furniture (UNCHANGED) -->
+      <rect x="590" y="270" width="130" height="130" rx="3" fill="#F9F7F3" stroke="#BBB" stroke-width="1"/>
+      <text x="655" y="320" text-anchor="middle" font-size="10" font-weight="700" fill="#555">AMATERRA</text>
+      <text x="655" y="334" text-anchor="middle" font-size="10" fill="#555">OUTDOOR</text>
+      <text x="655" y="348" text-anchor="middle" font-size="10" fill="#555">FURNITURE</text>
+      <rect x="615" y="360" width="20" height="15" rx="2" fill="#E8E3DA" stroke="#BBB" stroke-width="0.8"/>
+      <rect x="638" y="360" width="24" height="15" rx="2" fill="#E8E3DA" stroke="#BBB" stroke-width="0.8"/>
+      <rect x="665" y="360" width="20" height="15" rx="2" fill="#E8E3DA" stroke="#BBB" stroke-width="0.8"/>
+
+      <!-- Mandap - same position but ANGLED inside -->
+      <rect x="320" y="425" width="160" height="80" rx="4" fill="#DAE8EF" stroke="#2E6B8A" stroke-width="2"/>
+      <text x="400" y="448" text-anchor="middle" font-size="13" font-weight="700" fill="#2E6B8A">MANDAP</text>
+      <text x="400" y="465" text-anchor="middle" font-size="11" fill="#2E6B8A">12 x 10</text>
+
+      <!-- NE direction arrow inside mandap -->
+      <line x1="385" y1="490" x2="420" y2="475" stroke="#2E6B8A" stroke-width="2.5" marker-end="url(#arrowBlue)"/>
+      <text x="400" y="500" text-anchor="middle" font-size="10" font-weight="700" fill="#2E6B8A">couple faces NE &#8599;</text>
+
+      <!-- Angled seating representation inside mandap -->
+      <rect x="355" y="470" width="30" height="14" rx="2" fill="#2E6B8A" fill-opacity="0.15" stroke="#2E6B8A" stroke-width="0.8" transform="rotate(-35, 370, 477)"/>
+      <rect x="400" y="470" width="30" height="14" rx="2" fill="#2E6B8A" fill-opacity="0.15" stroke="#2E6B8A" stroke-width="0.8" transform="rotate(-35, 415, 477)"/>
+
+      <!-- Callout: THE ONLY CHANGE -->
+      <rect x="510" y="432" width="200" height="55" rx="6" fill="#2E6B8A" fill-opacity="0.08" stroke="#2E6B8A" stroke-width="1.5" stroke-dasharray="4,2"/>
+      <text x="610" y="452" text-anchor="middle" font-size="10" font-weight="700" fill="#2E6B8A">ONLY CHANGE:</text>
+      <text x="610" y="466" text-anchor="middle" font-size="9" fill="#2E6B8A">Couple &amp; havan kund angled</text>
+      <text x="610" y="478" text-anchor="middle" font-size="9" fill="#2E6B8A">NE within existing mandap</text>
+
+      <text x="510" y="460" font-size="9" fill="#999" font-style="italic"></text>
+    </svg>
+  </div>
+
+  <div class="key-details">
+    <table>
+      <tr><td>Couple Faces</td><td><strong>Northeast</strong> &mdash; Ishanya direction (auspicious), angled within mandap</td></tr>
+      <tr><td>Guests Face</td><td>South &mdash; same as current plan (unchanged)</td></tr>
+      <tr><td>Baraat Entry</td><td>East side &mdash; same as current plan (unchanged)</td></tr>
+      <tr><td>Bride Entrance</td><td>Same as current plan &mdash; TBD</td></tr>
+      <tr><td>Vineyard View</td><td>South &mdash; directly behind the couple / mandap (unchanged)</td></tr>
+      <tr><td>Mandap Position</td><td>Same location &mdash; south center of terrace (unchanged)</td></tr>
+      <tr><td>What Changes</td><td>Panditji angles the couple's seats &amp; havan kund ~30&ndash;45 degrees NE within the mandap</td></tr>
+    </table>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-card pros">
+      <h3>Pros</h3>
+      <ul>
+        <li>Couple faces <strong>Northeast (Ishanya)</strong> &mdash; meets the auspicious direction requirement</li>
+        <li><strong>Zero layout changes</strong> &mdash; all furniture, seating, and elements stay exactly where they are</li>
+        <li>Vineyard view remains the direct backdrop behind the mandap</li>
+        <li>No venue coordination needed &mdash; this is purely a vadyaar/mandap setup decision</li>
+        <li>Can be decided or adjusted on the day of the event</li>
+        <li>Full 120-seat capacity preserved</li>
+        <li>Baraat path, bride entrance, and all logistics remain as YPB designed them</li>
+      </ul>
+    </div>
+    <div class="info-card cons">
+      <h3>Cons</h3>
+      <ul>
+        <li>Couple is slightly angled relative to the audience &mdash; guests on the far left (west) side will see more of the couple's profile</li>
+        <li>Not a "true" full NE orientation since seating and overall layout still face N-S</li>
+        <li>Photographer may need to adjust angles slightly to capture both faces evenly</li>
+        <li>If vadyaar requires the <em>entire ceremony space</em> (including guest seating) to be oriented NE, this won't satisfy that</li>
+      </ul>
+    </div>
+    <div class="info-card changes">
+      <h3>Changes Required</h3>
+      <ul>
+        <li>Panditji angles couple's asanas (seats) ~30&ndash;45 degrees NE within the mandap</li>
+        <li>Havan kund (fire) positioned accordingly</li>
+        <li>Event Co. furniture on mandap arranged to support the angled orientation</li>
+        <li><strong>That's it &mdash; nothing else changes</strong></li>
+      </ul>
+    </div>
+    <div class="info-card details">
+      <h3>Key Considerations</h3>
+      <ul>
+        <li>Confirm with vadyaar that an angled couple-facing (not full room rotation) satisfies the tradition</li>
+        <li>12x10 mandap is large enough to accommodate the angled setup comfortably</li>
+        <li>Brief the photographer on the angle so they plan their positions accordingly</li>
+        <li>Videographer should set up slightly east-of-center to capture both faces</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="planner-brief">
+    <strong>Brief for YPB / Prismm:</strong> No changes to the floor plan layout. The mandap remains at the
+    south center of the terrace. All seating, furniture, and elements stay as designed. The only adjustment
+    is internal to the mandap: the vadyaar will angle the couple's seating and havan kund ~30&ndash;45 degrees
+    to face northeast (Ishanya direction) within the existing 12x10 mandap footprint. Please note this
+    on the plan as "couple faces NE" for vendor awareness.
+  </div>
+</div>
+
+<!-- ====================== COMPARISON ====================== -->
+<div class="section" id="comparison">
+  <div class="section-header">
+    <h2>Side-by-Side Comparison</h2>
+  </div>
+
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Criteria</th>
+        <th>Current (North)</th>
+        <th>Option A (Full NE)</th>
+        <th>Option B (NE Angle) &#9733;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Couple Direction</strong></td>
+        <td><span class="cross">North</span></td>
+        <td><span class="check">Northeast (Ishanya)</span></td>
+        <td><span class="check">Northeast (Ishanya)</span></td>
+      </tr>
+      <tr>
+        <td><strong>Auspiciousness</strong></td>
+        <td><span class="cross">Not traditional</span></td>
+        <td><span class="check">Fully NE &mdash; room + couple</span></td>
+        <td><span class="check">Couple faces NE within mandap</span></td>
+      </tr>
+      <tr>
+        <td><strong>Layout Changes</strong></td>
+        <td><span class="check">None (as designed)</span></td>
+        <td><span class="cross">Major &mdash; everything moves</span></td>
+        <td><span class="check">None &mdash; mandap internal only</span></td>
+      </tr>
+      <tr>
+        <td><strong>Venue Coordination</strong></td>
+        <td><span class="check">None needed</span></td>
+        <td><span class="cross">Full redesign with YPB</span></td>
+        <td><span class="check">None needed &mdash; vadyaar handles it</span></td>
+      </tr>
+      <tr>
+        <td><strong>Vineyard Backdrop</strong></td>
+        <td><span class="check">Directly behind couple</span></td>
+        <td><span class="partial">Partially behind (left side)</span></td>
+        <td><span class="check">Directly behind couple</span></td>
+      </tr>
+      <tr>
+        <td><strong>Baraat Processional</strong></td>
+        <td><span class="partial">Side approach, angled</span></td>
+        <td><span class="partial">Diagonal &mdash; needs choreography</span></td>
+        <td><span class="partial">Same as current (unchanged)</span></td>
+      </tr>
+      <tr>
+        <td><strong>Guest Sightlines</strong></td>
+        <td><span class="check">Couple faces audience directly</span></td>
+        <td><span class="check">Couple faces audience directly</span></td>
+        <td><span class="partial">Slight angle &mdash; west-side guests see more profile</span></td>
+      </tr>
+      <tr>
+        <td><strong>Seating Capacity</strong></td>
+        <td><span class="check">120 &mdash; no loss</span></td>
+        <td><span class="partial">May lose 5-10 seats (diagonal)</span></td>
+        <td><span class="check">120 &mdash; no loss</span></td>
+      </tr>
+      <tr>
+        <td><strong>Furniture Changes</strong></td>
+        <td><span class="check">None</span></td>
+        <td><span class="cross">West lounge removed entirely</span></td>
+        <td><span class="check">None</span></td>
+      </tr>
+      <tr>
+        <td><strong>Day-of Flexibility</strong></td>
+        <td><span class="check">N/A</span></td>
+        <td><span class="cross">Must be pre-planned</span></td>
+        <td><span class="check">Can adjust angle on the day</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ====================== SUN & LIGHT ====================== -->
+<div class="section" id="sun">
+  <div class="section-header">
+    <h2>Sun &amp; Lighting Analysis</h2>
+  </div>
+
+  <div class="sun-info">
+    <h3>December 31, 2026 &mdash; Portland, OR</h3>
+    <p><strong>Sunset time:</strong> ~4:35 PM PST</p>
+    <p><strong>Sunset direction:</strong> Southwest (approx. 235 degrees azimuth)</p>
+    <p><strong>Sun angle:</strong> Very low in the sky by 3:30 PM &mdash; strong golden-hour light</p>
+    <p><strong>Key takeaway:</strong> Any ceremony after 3 PM will have dramatic, low-angle light from the southwest.</p>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-card details">
+      <h3>Current Plan &amp; Option B (same layout)</h3>
+      <ul>
+        <li>Sunset is to the <strong>left of guests</strong> (southwest)</li>
+        <li>Side lighting on both couple and guests</li>
+        <li>Neither ideal nor problematic for photos</li>
+        <li>No direct glare issues for anyone</li>
+        <li>Option B's NE angle means the couple gets slightly more golden light on their faces (they're angled toward the light)</li>
+      </ul>
+    </div>
+    <div class="info-card details">
+      <h3>Option A (Full NE Rotation)</h3>
+      <ul>
+        <li>Sunset is <strong>behind the guests</strong> (they face SW)</li>
+        <li>Beautiful golden light on the couple's faces</li>
+        <li>Guests silhouetted &mdash; dramatic ceremony photos</li>
+        <li>Guests may feel warmth on their backs &mdash; comfortable</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ====================== QUESTIONS ====================== -->
+<div class="section" id="questions">
+  <div class="section-header">
+    <h2>Questions &amp; Action Items</h2>
+  </div>
+
+  <div class="questions-section">
+    <h3>For the Family / Couple / Panditji</h3>
+
+    <div class="question-item">
+      <div class="q-number">1</div>
+      <div>
+        <strong>Does the vadyaar require the entire ceremony space to face NE, or is angling the couple within the mandap sufficient?</strong>
+        <div class="q-label">This is the key decision &mdash; determines Option A vs. Option B</div>
+      </div>
+    </div>
+    <div class="question-item">
+      <div class="q-number">2</div>
+      <div>
+        <strong>What is the planned ceremony start time?</strong>
+        <div class="q-label">Sun angle at ceremony time affects lighting for photos</div>
+      </div>
+    </div>
+    <div class="question-item">
+      <div class="q-number">3</div>
+      <div>
+        <strong>Where will the bride enter from, and is there a specific processional order?</strong>
+        <div class="q-label">Bride's entrance path needs to be defined &mdash; not currently on the floor plan</div>
+      </div>
+    </div>
+    <div class="question-item">
+      <div class="q-number">4</div>
+      <div>
+        <strong>Are there any AV / sound / music placement requirements (speakers, mics, musicians)?</strong>
+        <div class="q-label">Not shown on any version of the floor plan &mdash; need to plan for amplification</div>
+      </div>
+    </div>
+    <div class="question-item">
+      <div class="q-number">5</div>
+      <div>
+        <strong>Is ADA/accessibility seating needed, and where should reserved seating be placed?</strong>
+        <div class="q-label">Should be planned for any layout &mdash; front row, aisle-adjacent</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="questions-section">
+    <h3>Only if Option A (Full NE Rotation) is chosen</h3>
+
+    <div class="question-item">
+      <div class="q-number">6</div>
+      <div>
+        <strong>Can the west Amaterra outdoor furniture be relocated or removed for the ceremony?</strong>
+        <div class="q-label">Mandap needs the SW corner space</div>
+      </div>
+    </div>
+    <div class="question-item">
+      <div class="q-number">7</div>
+      <div>
+        <strong>Can the SW corner of the terrace support the 12x10 mandap footprint?</strong>
+        <div class="q-label">Confirm dimensions and any obstructions in that corner</div>
+      </div>
+    </div>
+    <div class="question-item">
+      <div class="q-number">8</div>
+      <div>
+        <strong>Is YPB/Prismm able to redesign the full diagonal layout?</strong>
+        <div class="q-label">Significantly more complex than the current plan &mdash; confirm feasibility and timeline</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====================== RECOMMENDATION ====================== -->
+<div class="section" id="recommendation">
+  <div class="section-header">
+    <h2>Recommendation</h2>
+  </div>
+
+  <div class="recommendation">
+    <h3>&#9733; Option B &mdash; NE-Angled Mandap (Minimal Change)</h3>
+    <p>
+      Option B is the clear winner for practicality. It achieves the auspicious NE-facing direction
+      for the couple with <strong>zero changes to the floor plan</strong>. The vineyard backdrop is
+      preserved, all 120 seats remain, furniture stays in place, and there is no venue coordination
+      or redesign required. The vadyaar simply angles the ceremonial setup within the existing mandap.
+    </p>
+    <p style="margin-top: 1rem;">
+      The only trade-off is that guests on the far west side will see slightly more of the couple's profile
+      rather than a direct face-on view. This is a minor visual difference that most guests won't notice,
+      and the photographer can easily adjust for it.
+    </p>
+    <p style="margin-top: 1rem;">
+      <strong>Option A</strong> is the right choice only if the vadyaar specifically requires the
+      <em>entire ceremony space</em> (guests, aisle, and all) to be oriented NE &mdash; not just the
+      couple. Confirm this with the vadyaar before committing to the major layout change.
+    </p>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-card details">
+      <h3>Next Steps</h3>
+      <ul>
+        <li>Confirm with vadyaar: is NE-angled couple within the mandap sufficient, or does the full room need to rotate?</li>
+        <li>If Option B: inform YPB of the minor annotation change (couple faces NE)</li>
+        <li>If Option A: begin redesign discussion with YPB immediately</li>
+        <li>Lock in ceremony start time</li>
+        <li>Define bride's entrance path and processional order</li>
+        <li>Brief photographer and videographer on couple's angle</li>
+      </ul>
+    </div>
+    <div class="info-card details">
+      <h3>Timeline</h3>
+      <ul>
+        <li>Wedding date: December 31, 2026</li>
+        <li>~8+ months to finalize &mdash; plenty of time</li>
+        <li>Option B requires no advance planning &mdash; can confirm day-of</li>
+        <li>Option A floor plan changes should be confirmed with venue 3-4 months out</li>
+        <li>Final walkthrough with all vendors at least 2 weeks prior</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<!-- FOOTER -->
+<div class="footer">
+  <p><strong>Divya &amp; Mukund</strong> &mdash; Ceremony Floor Plan Review</p>
+  <p>Amaterra Winery &bull; December 31, 2026 &bull; Ref: 26-0529</p>
+  <p style="margin-top: 0.5rem; font-size: 0.8rem;">Prepared April 2026 &bull; Original plan by YPB Weddings / Prismm</p>
+</div>
+
+<script>
+  const sections = document.querySelectorAll('.section');
+  const navLinks = document.querySelectorAll('.nav a');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => link.classList.remove('active'));
+        const id = entry.target.getAttribute('id');
+        const activeLink = document.querySelector(`.nav a[href="#${id}"]`);
+        if (activeLink) activeLink.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-80px 0px -70% 0px' });
+  sections.forEach(section => observer.observe(section));
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+
+</body>
+</html>
