@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>A Father&rsquo;s Speech &middot; Mukund &amp; Divya</title>
-  <meta name="description" content="A father's speech for Mukund's wedding." />
+  <title>A Parents&rsquo; Speech &middot; Mukund &amp; Divya</title>
+  <meta name="description" content="A parents' speech for Mukund's wedding." />
   <meta name="robots" content="noindex, nofollow, noarchive" />
   <meta name="googlebot" content="noindex, nofollow, noarchive" />
   <link rel="icon" type="image/svg+xml" href="https://madhulabs.com/favicon.svg" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
   <style>
     :root {
@@ -21,6 +21,9 @@
       --accent: #B89968;
       --line: #D9CFBF;
       --notice-bg: #F2EADA;
+      --akhila: #9C7B4B;
+      --madhu: #2A2520;
+      --both: #B89968;
     }
 
     * { box-sizing: border-box; }
@@ -36,7 +39,7 @@
     }
 
     .page {
-      max-width: 680px;
+      max-width: 720px;
       margin: 0 auto;
       padding: 0 0 80px;
     }
@@ -103,37 +106,81 @@
     }
     .divider svg { display: block; }
 
-    .speech {
+    .script {
       padding: 0 24px;
       font-size: 17px;
       color: var(--ink);
     }
 
-    .speech p {
-      margin: 0 0 1.4em;
+    .line {
+      margin: 0 0 18px;
     }
 
-    .speech p:first-child::first-letter {
+    .line.continuation {
+      margin-top: -10px;
+      padding-left: 0;
+    }
+
+    .speaker {
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 4px;
+      padding: 2px 10px;
+      border-radius: 2px;
+    }
+
+    .line.madhu .speaker {
+      color: var(--ink);
+      background: rgba(184, 153, 104, 0.12);
+    }
+
+    .line.akhila .speaker {
+      color: var(--akhila);
+      background: rgba(156, 123, 75, 0.12);
+    }
+
+    .line.both .speaker {
+      color: #fff;
+      background: var(--accent);
+    }
+
+    .line.both {
+      text-align: center;
+      margin: 26px 0;
+    }
+
+    .line.both .dialogue {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      font-weight: 500;
-      font-size: 3.4em;
-      float: left;
-      line-height: 0.9;
-      margin: 6px 10px 0 0;
-      color: var(--accent);
+      font-style: italic;
+      font-size: 1.2em;
+      color: var(--ink);
     }
 
-    .speech em {
+    .dialogue {
+      margin: 0;
+      padding-left: 0;
+    }
+
+    em {
       font-style: italic;
       color: var(--ink);
     }
 
-    .speech-divider {
+    .section-break {
+      border: none;
       text-align: center;
+      margin: 36px 0;
+      height: 14px;
+    }
+    .section-break::before {
+      content: "\00B7  \00B7  \00B7";
       color: var(--accent);
       letter-spacing: 0.5em;
-      margin: 2.5em 0;
-      font-size: 14px;
+      font-size: 18px;
     }
 
     .footer {
@@ -154,13 +201,17 @@
 
     @media (min-width: 768px) {
       .intro { padding-top: 88px; }
-      .speech { font-size: 18px; }
+      .script { font-size: 18px; }
     }
 
     @media print {
       .private-notice, .footer { display: none; }
       body { background: white; }
-      .speech p:first-child::first-letter { color: var(--ink); }
+      .line.akhila .speaker, .line.madhu .speaker, .line.both .speaker {
+        background: transparent;
+        border: 1px solid #ccc;
+        color: #000;
+      }
     }
   </style>
 </head>
@@ -172,8 +223,8 @@
 
     <section class="intro">
       <p class="eyebrow">Mukund &amp; Divya &middot; May 29, 2026</p>
-      <h1 class="title">A Father&rsquo;s Speech</h1>
-      <p class="subtitle">From the desk of Madhu</p>
+      <h1 class="title">A Parents&rsquo; Speech</h1>
+      <p class="subtitle">Madhu &amp; Akhila</p>
     </section>
 
     <div class="divider" aria-hidden="true">
@@ -182,110 +233,81 @@
       </svg>
     </div>
 
-    <article class="speech">
-
-      <p>Good evening, everyone. For those who don&rsquo;t know me, I&rsquo;m Madhu &mdash; Mukund&rsquo;s dad. And tonight, after 26 years of trying, Akhila and I finally get to embarrass him in front of every single person he knows. Thank you all for making that possible.</p>
-
-      <p>Let me start with some numbers, because Mukund has been a numbers guy since the very beginning. He was born on May 1st, 2000, at 1:23 AM. One, two, three. The boy showed up in numerical order. He&rsquo;s been precise about everything since.</p>
-
-      <p>Akhila and I named him Mukund &mdash; one of the names of Lord Krishna. Small piece of family history we want to put on the record tonight: my entire contribution to naming our firstborn child was the requirement that his name start with M. Why M? Because I am Madhu. M for Madhu. That was the whole reasoning. My full creative input as a father was to make sure my son shared the first letter of my own name. Akhila then did all of the actual work and narrowed it down to two options &mdash; Mukund or Milind. I picked Mukund. I would like to formally take credit for that 50/50 coin flip in front of all of you, because I am fairly certain I do not get credit for many other things in this marriage. The name means <em>&ldquo;the one who grants liberation.&rdquo;</em> Now, in the original story, Lord Krishna was born at midnight in the middle of a massive storm &mdash; thunder, lightning, his father carrying him across a flooded river, a giant cosmic serpent holding its hood over the basket like an umbrella, the river itself parting to let them through. Very dramatic. Very cinematic.</p>
-
-      <p>Our version was a little less theatrical. No storm. No snake. No river parting. Just one very small baby with a giant head &mdash; taken after me again, naturally &mdash; arriving and immediately announcing himself to the world at the top of his lungs, as if to say, &ldquo;Excuse me &mdash; why did you bring me out here? I was perfectly happy inside Amma. It was warm. It was quiet. Send me back, please.&rdquo; But he has spent every year since living up to the <em>liberation</em> part of the name &mdash; mostly by trying to liberate himself from us.</p>
-
-      <p>By 11 months, he was already walking and talking, and most of what he was doing was running away from us. We had a little bike with training wheels. We&rsquo;d take him out to teach him how to ride. He&rsquo;d pedal for two minutes, look back, see I was a few feet behind him &mdash; and just drop the bike and dart. No goodbye. No thank you. Just freedom.</p>
-
-      <p>And yet &mdash; this same fiercely independent child, when we dropped him at his very first Baby and Me class, refused to let Akhila out of his sight. He cried so much the teacher ended up holding him on her lap for the entire class. So that&rsquo;s our son: fully independent, as long as Amma is in the room.</p>
-
-      <p>He was an engineer from day one. Curious about everything. And by &ldquo;hands on,&rdquo; I mean if his tiny fingers found anything on the floor, it went straight into his mouth. That&rsquo;s a different kind of hands-on than what got him into Meta, but the spirit was the same.</p>
-
-      <p>He loved Bob the Builder. He had the hat, the costume, the tools &mdash; he would disappear for hours and come back having built something. Give him Legos and you would not see him until dinner.</p>
-
-      <div class="speech-divider">&middot; &middot; &middot;</div>
-
-      <p>Now &mdash; a word about his curiosity, which has occasionally been expensive.</p>
-
-      <p>When Mukund was about 7, we were visiting Bangalore. He used to love watching me shave. One morning, I heard crying from the bathroom. I walked in and found my son standing there with my razor, blood running down both cheeks. He looked at me and said, &ldquo;Appa, you make it look so clean. How come it doesn&rsquo;t bleed for you?&rdquo; That was my first hint that this boy was going to take things apart to figure out how they work.</p>
-
-      <p>Around the same time, he came to me holding his Game Boy. &ldquo;Appa, it&rsquo;s not working.&rdquo; I asked what happened. He said, &ldquo;It felt dirty. So I put water on it to clean it.&rdquo; That was the end of the Game Boy. But the start of a beautiful engineering career.</p>
-
-      <p>And what a career it has been. The boy who once tried to clean his Game Boy with tap water now works as a software engineer at Meta. Facebook, Instagram, WhatsApp, Threads &mdash; the entire empire. So the same kid who short-circuited his own Game Boy is now writing code that runs on three billion phones. We want everyone to take a moment to appreciate how far technology has come.</p>
-
-      <p>Having an engineer at Meta in the family has its perks. We get free tech support &mdash; eventually, whenever he picks up. And it has its costs. Akhila has a strict &ldquo;no phones at dinner&rdquo; policy. Mukund is professionally undermining it. Every notification on my phone, every ad in my Instagram feed, every reel I cannot stop watching &mdash; somewhere in the chain, my own son is responsible.</p>
-
-      <p>His ultimate boss, of course, is a man who has worn the same gray t-shirt every day for fifteen years. Mukund &mdash; buddy &mdash; please do not bring that home. Divya did not sign up for that.</p>
-
-      <p>And speaking of Divya &mdash; let us appreciate this combination for a moment. Divya is a doctor. She literally saves lives. Mukund is an engineer at Meta. He literally keeps people on their phones for hours. Divya treats the patients. Mukund builds the apps that send them there. It is the most beautifully balanced marriage in modern medicine.</p>
-
-      <p>And to be fair, we should have seen it coming. We named the boy after Lord Krishna &mdash; the original cosmic strategist. Of course he ended up running the algorithm.</p>
-
-      <div class="speech-divider">&middot; &middot; &middot;</div>
-
-      <p>Mukund is also a perfect demonstration of how genetics work. He got Akhila&rsquo;s eyes &mdash; beautiful. He got her cleanliness, her meticulousness, her fastidious nature. From me, he inherited my big fat nose and my terrible short-term memory. So Akhila clearly won that round. My one contribution to this entire project remains: the letter M.</p>
-
-      <p>His cousin Rhea calls him &ldquo;Mr. Strictman&rdquo; &mdash; because he keeps his emotions tucked up his sleeve and likes to handle everything himself. Two stories.</p>
-
-      <p>Years ago, we were on a road trip, and our Audi started flashing the low oil warning in the middle of nowhere. I&rsquo;m fumbling with the engine trying to figure out where the oil even goes &mdash; Audis have a strange way of doing this &mdash; and before I could finish the sentence, Mukund had already figured it out. He stood there politely, while I pretended I had it under control.</p>
-
-      <p>Another time, in high school, he was backing the Acura out of a friend&rsquo;s driveway and hit a parked car across the street. Real damage. Most kids would call their dad in tears. Not Mukund. He spent the next few hours researching repair shops, estimates, the whole plan. Then he called me and said, &ldquo;Appa, this happened &mdash; but I&rsquo;ve already figured everything out for you.&rdquo; Mukund &mdash; buddy &mdash; sometimes it&rsquo;s okay to call Appa first and then figure things out.</p>
-
-      <p>A quick word about his first love. Basketball. When he was little, someone asked him what he wanted to be when he grew up. &ldquo;A basketball player.&rdquo; That was the dream. Unfortunately, our family contributed many things to Mukund &mdash; but height was not one of them. So he pivoted to tennis, made the team, and the rest is history. Sometimes life redesigns your robot for you.</p>
-
-      <div class="speech-divider">&middot; &middot; &middot;</div>
-
-      <p>But here is the thing about our family &mdash; we have always been an outdoors family. One of the best parts of living in Portland is the mountains, the trails, the long weekend hikes. Akhila and I have lost count of the trips, the hikes, the adventures the four of us have done together over the years.</p>
-
-      <p>But there is one day I will never forget. Mukund &mdash; when you, Medini, and I scaled Mount St. Helens. That was one of the proudest days of my life. We trained for months. We did Mount Defiance. We did every brutal hike we could find around Oregon and Washington. We built ourselves up to it. And on the day, the three of us made it to the top together. I will carry that day with me forever. And buddy &mdash; we still have Mount Adams on the list. I have not forgotten.</p>
-
-      <p>Now here is the funny part. When you were younger, you hated running. Absolutely hated it. Basketball, tennis, anything with a ball &mdash; fine. But running? Forget it.</p>
-
-      <p>And yet &mdash; just recently &mdash; you went and ran a half marathon. Thirteen point one miles. So Mukund &mdash; I am formally claiming this one. Yes, Amma gave you the eyes, the patience, the meticulousness, and ninety percent of the rest. But the endurance? The running? The half marathon? That, my son, is from me. Add it to the letter M.</p>
-
-      <div class="speech-divider">&middot; &middot; &middot;</div>
-
-      <p>Before we close, Akhila and I want to thank a few very important people who have made this day what it is.</p>
-
-      <p>First, to Medini &mdash; Mukund&rsquo;s sister, our daughter. From day one she has been Mukund&rsquo;s closest friend, his confidant, and his co-conspirator. The two of them have been plotting against Akhila and me, swapping secrets, and hiding things from us for as long as I can remember. Jokes aside, Medini is the voice of reason in our family &mdash; which, of course, she gets from me. I am claiming full credit for that one too. Thank you, Medini, for being everything you are to your brother.</p>
-
-      <p>To Anithu &mdash; Akhila&rsquo;s sister, my sister-in-law &mdash; thank you for your love and support, for always being there for Mukund, and for making the trip all the way from Bangalore. And Anithu, we loved your song.</p>
-
-      <p>To Veena, my sister &mdash; thank you for reminding us every day what love and support look like. Not just for me, but for Akhila too. We love you.</p>
-
-      <p>To Ravi, my brother-in-law &mdash; thank you for always being there, for cracking the joke when one is needed, and for keeping things light. I have not forgotten the time you got me completely drunk. We will discuss the details privately. Thank you, Ravi.</p>
-
-      <p>To Rhea &mdash; my favorite niece, and a sharp software engineer in her own right &mdash; thank you for making it here with everything you have going on between work and travel. We are so glad you came.</p>
-
-      <p>To Chintu &mdash; my favorite nephew and a budding entrepreneur &mdash; you are going to do wonders. We cannot wait to watch.</p>
-
-      <p>To my cousins Smitha and Ramya, who came with their kids &mdash; thank you for being here. We missed Venkatesh, Vikram, and Vardhan today and would have loved to have them with us as well.</p>
-
-      <p>To Srinidhi and Jyotsna &mdash; we missed you. Sorry the circumstances did not allow you to make it.</p>
-
-      <p>To Mythreyi &mdash; we missed you too. We hope your surgery went well, and we are sending love your way.</p>
-
-      <p>To all of our uncles and aunts back in India, and to all of Akhila&rsquo;s cousins, uncles, and aunts in India &mdash; thank you for your blessings and your well wishes. We feel them across the ocean.</p>
-
-      <p>To Omesh &mdash; my friend from the CG CoreEL days, here today with your son &mdash; thank you for coming. I cannot forget the days we spent together in Pune.</p>
-
-      <p>To all of my close friends in India who have sent their wishes &mdash; thank you. You are with us in spirit.</p>
-
-      <p>And last but absolutely not least &mdash; Venkatesh, my closest cousin, who is more like a brother to me than a cousin. He is there for me and for our family for everything. He could not be here today due to visa restrictions. Venkatesh &mdash; you are missed today more than anyone. We love you.</p>
-
-      <p>And finally &mdash; to all of our Portland friends and family who are here, there are too many of you to name individually, but thank you for being a part of our lives. We could not have done any of this without you.</p>
-
-      <div class="speech-divider">&middot; &middot; &middot;</div>
-
-      <p>And finally &mdash; before we raise a glass &mdash; I have to thank the most important person in this room for me. Akhila. My wife, my partner, and my best friend for thirty years.</p>
-
-      <p>I have spent this entire speech taking credit for the letter M and giving you credit for everything else, and honestly, that math is about right. You gave Mukund your eyes, your patience, your meticulousness, your discipline, and your kindness. You built this family. You raised these two extraordinary kids. You have put up with my big fat nose and my terrible short-term memory for three decades &mdash; and somehow you are still here, smiling, next to me.</p>
-
-      <p>Mukund and Divya &mdash; exactly thirty years ago, Akhila and I started our own version of what you are starting today. If your marriage is half as good as the one Akhila has built with me, you are going to be very, very lucky.</p>
-
-      <p>Akhila &mdash; thank you. I love you.</p>
-
-      <p>Now &mdash; Mukund &mdash; we love you. Divya &mdash; welcome to the chaos. You got the eyes, the meticulousness, the engineer&rsquo;s brain, and a husband who will figure out how to fix the car before he tells you it is broken. You are going to be just fine.</p>
-
-      <p>To Mukund and Divya &mdash; cheers.</p>
-
+    <article class="script">
+<div class="line akhila"><span class="speaker">AKHILA</span><p class="dialogue">Good evening, <em>Namaskara</em>, and <em>Vanakkam</em> everyone. Thank you all for being here and for surrounding Mukund and Divya with so much love on this beautiful day. Your presence means the world to us.</p></div>
+<div class="line madhu"><span class="speaker">MADHU</span><p class="dialogue">And thank you for showing up for what, after 26 years of trying, is finally my chance to embarrass Mukund in front of every single person he knows. Akhilu and I have been waiting a long time for this.</p></div>
+<div class="line madhu continuation"><p class="dialogue">Let me start with some numbers. Mukund was born on May 1st, 2000, at 1:23 AM. One, two, three. The boy showed up in numerical order. He has been precise about everything since.</p></div>
+<div class="line madhu continuation"><p class="dialogue">Akhilu and I named him Mukund — one of the names of Lord Krishna. Small bit of family history I want on the record tonight: my entire contribution to naming our firstborn was the requirement that his name start with M — because I am Madhu. That was the whole reasoning. Akhilu then did the actual work and narrowed it down to two options — Mukund or Milind. I picked Mukund. I would like to formally take credit for that 50/50 coin flip in front of all of you, because I am fairly certain I do not get credit for many other things in this marriage.</p></div>
+<div class="line akhila"><span class="speaker">AKHILA</span><p class="dialogue">I'll give you that one, Chinnu.</p></div>
+<div class="line madhu"><span class="speaker">MADHU</span><p class="dialogue">Thank you, Chinnu.</p></div>
+<div class="line madhu continuation"><p class="dialogue">The name <em>Mukund</em> means <em>"the one who grants liberation."</em> In the original story, Lord Krishna's birth was a midnight cosmic drama — storm, serpent, the river itself parting to let his father carry him through.</p></div>
+<div class="line madhu continuation"><p class="dialogue">Our version was less theatrical. Just one very small baby with a giant head — taken after me, naturally — announcing himself to the world at the top of his lungs, as if to say, <em>"Excuse me, why did you bring me out here? I was perfectly happy inside Amma. Send me back, please."</em></p></div>
+<div class="line madhu continuation"><p class="dialogue">But he has spent every year since living up to the <em>liberation</em> part of the name — mostly by trying to liberate himself from us.</p></div>
+<hr class="section-break" aria-hidden="true" />
+<div class="line akhila"><span class="speaker">AKHILA</span><p class="dialogue">Even as a little boy, Mukund stood out for his curiosity, his resilience, and his patience. The very first toy he reached for was a Lego block — which, honestly, explained a lot. He loved building things, organizing things, fixing things. A real-life Bob the Builder with a sparkle in his eyes.</p></div>
+<div class="line madhu"><span class="speaker">MADHU</span><p class="dialogue">And Chinnu — you remember what he did at the state Lego championship.</p></div>
+<div class="line akhila"><span class="speaker">AKHILA</span><p class="dialogue">Oh, that I remember.</p></div>
+<div class="line madhu"><span class="speaker">MADHU</span><p class="dialogue">Mukund led his FLL Lego team to win the Oregon state championship — beating 120 other teams. And he did it by redesigning their robot from scratch with a four-wheel drive design no team had attempted before.</p></div>
+<div class="line akhila"><span class="speaker">AKHILA</span><p class="dialogue">That was the moment we realized he was not just <em>playing</em> with Legos. He was engineering.</p></div>
+<hr class="section-break" aria-hidden="true" />
+<div class="line akhila"><span class="speaker">AKHILA</span><p class="dialogue">And he was independent from day one. Madhu had it especially bad —</p></div>
+<div class="line madhu"><span class="speaker">MADHU</span><p class="dialogue">Tell them, Chinnu.</p></div>
+<div class="line akhila"><span class="speaker">AKHILA</span><p class="dialogue">We had a little bike with training wheels, and the moment Mukund realized Madhu was not holding on anymore, he just dropped the bike and ran. No goodbye. No thank you. Just freedom.</p></div>
+<div class="line akhila continuation"><p class="dialogue">But that same fiercely independent little boy, on his very first day of preschool, cried so hard and held on to me so tightly that the teacher had to carry him on her lap for the entire class. That is our Mukund — fiercely independent, and deeply attached to the people he loves.</p></div>
+<div class="line akhila continuation"><p class="dialogue">And from the day Medini was born four years later, the two of them were inseparable. Best friends, teammates, and occasionally partners in crime. They still are.</p></div>
+<hr class="section-break" aria-hidden="true" />
+<div class="line akhila"><span class="speaker">AKHILA</span><p class="dialogue">There were many funny stories along the way.</p></div>
+<div class="line madhu"><span class="speaker">MADHU</span><p class="dialogue">Many.</p></div>
+<div class="line akhila"><span class="speaker">AKHILA</span><p class="dialogue">There was the time he ate an entire container of sweet homeopathy pills, and when we asked what happened, he innocently said, <em>"Amma, I didn't do anything. I just swallowed all of them."</em></p></div>
+<div class="line madhu"><span class="speaker">MADHU</span><p class="dialogue">And there was the shaving incident in Bangalore. Mukund was about 7. He used to love watching me shave —</p></div>
+<div class="line akhila"><span class="speaker">AKHILA</span><p class="dialogue">One morning, we heard crying from the bathroom. We rushed in. He was standing there with Madhu's razor, with a cut on his lip. And he looked up at us, with the most innocent face, and said —</p></div>
+<div class="line both"><span class="speaker">BOTH</span><p class="dialogue"><em>"A mosquito bit me!"</em></p></div>
+<div class="line akhila"><span class="speaker">AKHILA</span><p class="dialogue">And then there was the Game Boy. He came to me holding it. <em>"Amma, it is not working."</em> I asked what happened. He said, <em>"It felt dirty. So I put water on it to clean it."</em></p></div>
+<div class="line madhu"><span class="speaker">MADHU</span><p class="dialogue">That was the end of the Game Boy. But the start of a beautiful engineering career.</p></div>
+<div class="line akhila"><span class="speaker">AKHILA</span><p class="dialogue">Take it from here, Chinnu.</p></div>
+<div class="line madhu"><span class="speaker">MADHU</span><p class="dialogue">Happily. The boy who once washed his own Game Boy to <em>clean it</em> now works as a software engineer at Meta — Facebook, Instagram, WhatsApp, the entire empire. The same kid who short-circuited his own Game Boy is now writing code that runs on three billion phones. Okay — slight exaggeration. But you get the idea.</p></div>
+<div class="line madhu continuation"><p class="dialogue">Now — to be fair — we are also a family that always, <em>always</em> eats dinner together. That is Akhilu. She has held that line for years. We even had a stretch where every night at the table, the four of us would each share the <em>highlight</em> of our day and the <em>lowlight</em> of our day. That part — I would like to point out — was my idea.</p></div>
+<div class="line akhila"><span class="speaker">AKHILA</span><p class="dialogue">I'll give you that one too, Chinnu.</p></div>
+<div class="line madhu"><span class="speaker">MADHU</span><p class="dialogue">Thank you. So between Akhilu's family-dinner rule and my highlight-lowlight protocol, you would think we had it covered. But now our son works at Meta — and he is professionally undermining all of it, one notification at a time.</p></div>
+<div class="line akhila"><span class="speaker">AKHILA</span><p class="dialogue">Every notification.</p></div>
+<div class="line madhu"><span class="speaker">MADHU</span><p class="dialogue">And speaking of Divya for a moment — let us appreciate this combination. Divya is a doctor. She literally saves lives. Mukund is an engineer at Meta. He literally keeps people on their phones for hours. Divya treats the patients. Mukund builds the apps that send them there. It is the most beautifully balanced marriage in modern medicine.</p></div>
+<hr class="section-break" aria-hidden="true" />
+<div class="line madhu"><span class="speaker">MADHU</span><p class="dialogue">Mukund is also a perfect demonstration of how genetics work. He got Akhilu's eyes — beautiful. He got her cleanliness, her meticulousness, her fastidious nature. From me, he inherited my big fat nose and my terrible short-term memory. So Akhila clearly won that round. My one contribution to this entire project remains: the letter M.</p></div>
+<hr class="section-break" aria-hidden="true" />
+<div class="line madhu"><span class="speaker">MADHU</span><p class="dialogue">Our family has always been an outdoors family. One of the best parts of living in Portland is the mountains and the trails. Akhilu and I have lost count of the hikes and the trips the four of us have done together over the years.</p></div>
+<div class="line madhu continuation"><p class="dialogue">But there is one day I will never forget. Mukund — when you, Medini, and I scaled Mount St. Helens together. We trained for months — every brutal hike we could find around Oregon and Washington. And on the day, the three of us made it to the top together. I will carry that day with me forever. And buddy — we still have Mount Adams on the list.</p></div>
+<div class="line madhu continuation"><p class="dialogue">Now here is the funny part. When you were younger, you hated running. Absolutely hated it. Basketball, tennis, anything with a ball — fine. But running? Forget it. And yet — just recently — you ran a half marathon. Thirteen point one miles. So Mukund — I am formally claiming this one. Amma gave you the eyes, the patience, the meticulousness, and ninety percent of the rest. But the endurance? The running? That, my son, is from me. Add it to the letter M.</p></div>
+<hr class="section-break" aria-hidden="true" />
+<div class="line akhila"><span class="speaker">AKHILA</span><p class="dialogue">Some memories stay with a mother forever. I will always remember the night Mukund called me at 11 PM, when he was a teenager preparing for a speech competition after a difficult day. He simply said, <em>"Amma, I just wanted to talk."</em> And then there were our quiet walks together in the beautiful Pacific Northwest, just the two of us — moments I will treasure for the rest of my life.</p></div>
+<div class="line akhila continuation"><p class="dialogue">From Portland to Chicago to Seattle, Mukund has carried himself with quiet strength and grace through every transition. Watching him face those harsh Chicago winters thousands of miles away was not easy. But he built friendships, he thrived, and he has grown into the thoughtful, grounded man we are so proud of today. And through all of it — he has remained a devoted foodie. Nothing has made me happier than sending him his favorite meals.</p></div>
+<hr class="section-break" aria-hidden="true" />
+<div class="line akhila"><span class="speaker">AKHILA</span><p class="dialogue">Divya — today we welcome you with open hearts into our family. Into our circle of warmth, love, laughter, and deep care for one another. You bring so much joy to Mukund's life, and it is easy to see why he cherishes you so deeply.</p></div>
+<div class="line akhila continuation"><p class="dialogue">Mukund and Divya — marriage will bring beautiful seasons and difficult ones. It is not about chasing perfection. It is about kindness. Patience. Forgiveness. Respect. And choosing each other — over and over again.</p></div>
+<div class="line akhila continuation"><p class="dialogue">May you always remain each other's safest place.</p></div>
+<hr class="section-break" aria-hidden="true" />
+<div class="line madhu"><span class="speaker">MADHU</span><p class="dialogue">Before we close, Akhila and I want to thank a few very important people who have made this day what it is.</p></div>
+<div class="line akhila"><span class="speaker">AKHILA</span><p class="dialogue">First, to my beloved sister Anitha — I would be lost without you. Thank you for being my rock, for traveling all the way from Bangalore, and for that beautiful song.</p></div>
+<div class="line akhila continuation"><p class="dialogue">To my lovely sister-in-law Veena — I appreciate you more than words can ever express.</p></div>
+<div class="line akhila continuation"><p class="dialogue">To my lifelong anchors Arathi and Malini; our dear friends Vasanthi and Vasu in Bengaluru; Padmashree and Seshu here in Portland; HariLakshmi, Ruchi, and Shanmu; and to Madhu's cousins Savitha, Kavitha, and Soumya — your love and support have meant the world to us.</p></div>
+<div class="line madhu"><span class="speaker">MADHU</span><p class="dialogue">And from my side — to Ravi, my brother-in-law — thank you for keeping things light, and for the one time you got me completely drunk. We will discuss the details privately.</p></div>
+<div class="line madhu continuation"><p class="dialogue">To Rhea, my favorite niece and a sharp software engineer; Chintu, my favorite nephew and a budding entrepreneur; and my cousins Smitha and Ramya and their kids — thank you for making the trip. Chintu, you are going to do wonders.</p></div>
+<div class="line madhu continuation"><p class="dialogue">We missed Venkatesh, Vikram, Vardhan, Srinidhi, and Jyotsna today. And Mythreyi, we hope your surgery went well — sending love your way.</p></div>
+<div class="line madhu continuation"><p class="dialogue">To Omesh, my friend from the CG CoreEL days in Pune, here today with your son — thank you for coming.</p></div>
+<div class="line madhu continuation"><p class="dialogue">And to Venkatesh, my closest cousin — more like a brother than a cousin. He could not be here due to visa restrictions. Venkatesh — you are missed today more than anyone.</p></div>
+<div class="line both"><span class="speaker">BOTH</span><p class="dialogue">To all of our family back in India, and to all of our friends here in Portland who are too many to name — thank you for being part of our lives. Your blessings and love have carried us here.</p></div>
+<hr class="section-break" aria-hidden="true" />
+<div class="line akhila"><span class="speaker">AKHILA</span><p class="dialogue">And to my beloved daughter Medini — you warm my heart every day by always being there for me, without judgment. Thank you, kanna.</p></div>
+<div class="line akhila continuation"><p class="dialogue">To my beloved husband of thirty years, Madhu — thank you for being my best and forever friend.</p></div>
+<div class="line madhu"><span class="speaker">MADHU</span><p class="dialogue">Akhilu — I have spent this entire speech taking credit for the letter M and giving you credit for everything else, and honestly, that math is about right. You gave Mukund your eyes, your patience, your meticulousness, your discipline, and your kindness. You raised these two extraordinary kids. You have put up with my big fat nose and my terrible short-term memory for thirty years — and somehow you are still here, smiling, next to me.</p></div>
+<div class="line madhu continuation"><p class="dialogue">Mukund and Divya — exactly thirty years ago, Akhilu and I started our own version of what you are starting today. If your marriage is half as good as the one she has built with me, you are going to be very, very lucky.</p></div>
+<div class="line madhu continuation"><p class="dialogue">Akhilu — I love you.</p></div>
+<hr class="section-break" aria-hidden="true" />
+<div class="line akhila"><span class="speaker">AKHILA</span><p class="dialogue">Today is not only the union of Mukund and Divya, but the coming together of two families and two traditions — Kannada and Tamil — joined by shared values of love, faith, generosity, and community.</p></div>
+<div class="line akhila continuation"><p class="dialogue">Unwavering faith in God has always been the bedrock of our lives. And as you begin this new chapter together, we pray that same faith continues to guide and strengthen you both. May you always know that a higher power walks beside you.</p></div>
+<div class="line akhila continuation"><p class="dialogue">May your home be filled with peace, health, prosperity, and love. And may your life together always be rich in laughter, shared dreams, and deep companionship.</p></div>
+<hr class="section-break" aria-hidden="true" />
+<div class="line madhu"><span class="speaker">MADHU</span><p class="dialogue">Mukund — we love you. Divya — welcome to the chaos. You got the eyes, the meticulousness, the engineer's brain, and a husband who will figure out how to fix the car before he tells you it is broken. You are going to be just fine.</p></div>
+<div class="line both"><span class="speaker">BOTH</span><p class="dialogue">To Mukund and Divya — cheers.</p></div>
     </article>
 
     <p class="footer">
