@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Iceland Trip — Final Action Plan</title>
+
+<meta name="description" content="Iceland Trip — Final Action Plan: three day-by-day itineraries, eclipse prep, costs, and an interactive route map." />
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<style>
+
+
+
+  :root { --bg: #0f172a; --surface: #1e293b; --border: #334155; --text: #e2e8f0; --muted: #94a3b8; --accent: #38bdf8; --green: #4ade80; --amber: #fbbf24; --red: #f87171; --blue: #60a5fa; --purple: #c084fc; --orange: #fb923c; }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; padding: 24px; max-width: 1060px; margin: 0 auto; }
+
+  h1 { font-size: 28px; margin-bottom: 4px; color: #fff; }
+
+  h2 { font-size: 20px; margin: 36px 0 12px; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+
+  h3 { font-size: 16px; margin: 20px 0 8px; color: #fff; }
+
+  p, li { font-size: 14px; color: var(--text); }
+
+  .subtitle { color: var(--muted); font-size: 14px; margin-bottom: 20px; }
+
+  table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 13px; }
+
+  th { background: var(--surface); color: var(--muted); text-align: left; padding: 8px 12px; font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; border-bottom: 2px solid var(--border); }
+
+  td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+
+  tr:hover { background: rgba(56,189,248,0.04); }
+
+  .day-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; margin: 16px 0; overflow: hidden; }
+
+  .day-header { padding: 12px 16px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+
+  .day-header h3 { margin: 0; font-size: 15px; }
+
+  .day-body { padding: 0; }
+
+  .day-body table { margin: 0; }
+
+  .day-body td:first-child { width: 90px; white-space: nowrap; color: var(--accent); font-weight: 500; font-size: 12px; }
+
+  .day-body td:nth-child(2) { width: 30px; text-align: center; }
+
+  .day-body td:nth-child(4) { width: 120px; text-align: right; color: var(--muted); font-size: 12px; white-space: nowrap; }
+
+  .day-stats { display: flex; gap: 16px; padding: 10px 16px; border-top: 1px solid var(--border); background: rgba(15,23,42,0.5); font-size: 12px; color: var(--muted); flex-wrap: wrap; }
+
+  .day-stats span { display: flex; align-items: center; gap: 4px; }
+
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+
+  .badge-green { background: rgba(74,222,128,0.15); color: var(--green); }
+
+  .badge-amber { background: rgba(251,191,36,0.15); color: var(--amber); }
+
+  .badge-blue { background: rgba(96,165,250,0.15); color: var(--blue); }
+
+  .badge-red { background: rgba(248,113,113,0.15); color: var(--red); }
+
+  .badge-purple { background: rgba(192,132,252,0.15); color: var(--purple); }
+
+  .badge-orange { background: rgba(251,146,60,0.15); color: var(--orange); }
+
+  .drive { color: var(--amber); font-size: 12px; }
+
+  .activity { color: var(--green); font-size: 12px; }
+
+  .meal { color: var(--purple); font-size: 12px; }
+
+  .flight-icon { color: var(--blue); }
+
+  .dist { color: var(--muted); font-size: 11px; }
+
+  .eclipse-header { background: rgba(96,165,250,0.12) !important; }
+
+  .jokulsarlon-header { background: rgba(74,222,128,0.12) !important; }
+
+  .callout { border-left: 3px solid; border-radius: 6px; padding: 12px 16px; margin: 12px 0; background: var(--surface); font-size: 13px; }
+
+  .callout-info { border-color: var(--blue); }
+
+  .callout-warn { border-color: var(--amber); }
+
+  .callout-success { border-color: var(--green); }
+
+  .callout-title { font-weight: 600; font-size: 13px; margin-bottom: 4px; }
+
+  .callout-info .callout-title { color: var(--blue); }
+
+  .callout-warn .callout-title { color: var(--amber); }
+
+  .callout-success .callout-title { color: var(--green); }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+
+  .checklist { list-style: none; padding: 0; }
+
+  .checklist li { padding: 6px 0; font-size: 14px; }
+
+  .checklist li::before { content: '\2610 '; color: var(--muted); }
+
+  .checklist li.done::before { content: '\2611 '; color: var(--green); }
+
+  .checklist li.done { color: var(--muted); text-decoration: line-through; }
+
+  .legend { display: flex; gap: 20px; padding: 12px 0; font-size: 12px; flex-wrap: wrap; }
+
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+  .tab-container { display: flex; gap: 0; margin-top: 24px; }
+
+  .tab { padding: 10px 24px; font-weight: 700; font-size: 14px; cursor: pointer; border: 1px solid var(--border); border-bottom: none; border-radius: 8px 8px 0 0; background: var(--surface); color: var(--muted); user-select: none; }
+
+  .tab.active { color: #fff; }
+
+  .tab.active-a { background: rgba(251,146,60,0.15); color: var(--orange); border-color: rgba(251,146,60,0.3); }
+
+  .tab.active-b { background: rgba(74,222,128,0.15); color: var(--green); border-color: rgba(74,222,128,0.3); }
+
+  .tab.active-c { background: rgba(56,189,248,0.15); color: var(--accent); border-color: rgba(56,189,248,0.3); }
+
+  .tab-content { display: none; border: 1px solid var(--border); border-radius: 0 8px 8px 8px; padding: 0; }
+
+  .tab-content.active { display: block; }
+
+  .plan-label { display: inline-block; padding: 4px 14px; border-radius: 4px; font-weight: 700; font-size: 12px; letter-spacing: 0.5px; }
+
+  .plan-a-label { background: rgba(251,146,60,0.2); color: var(--orange); border: 1px solid rgba(251,146,60,0.3); }
+
+  .plan-b-label { background: rgba(74,222,128,0.2); color: var(--green); border: 1px solid rgba(74,222,128,0.3); }
+
+  .plan-c-label { background: rgba(56,189,248,0.2); color: var(--accent); border: 1px solid rgba(56,189,248,0.3); }
+
+  .compare-table td:nth-child(1) { font-weight: 600; width: 200px; }
+
+  a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted rgba(56,189,248,0.4); }
+
+  a:hover { color: #7dd3fc; border-bottom-color: #7dd3fc; }
+
+  .desc { font-size: 11px; color: var(--muted); font-weight: 400; display: block; margin-top: 2px; font-style: italic; }
+
+  @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
+
+  @media (max-width: 900px) { .three-col { grid-template-columns: 1fr; } }
+
+  .map-wrapper { position: relative; height: 600px; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); margin: 16px 0; }
+
+  #trip-map { width: 100%; height: 100%; }
+
+  .map-panel { position: absolute; top: 10px; right: 10px; z-index: 1000; background: rgba(15,23,42,0.94); border: 1px solid #334155; border-radius: 8px; padding: 14px 16px; max-width: 300px; max-height: 560px; overflow-y: auto; font-size: 13px; color: #e2e8f0; backdrop-filter: blur(8px); }
+
+  .map-panel h3 { font-size: 14px; margin-bottom: 4px; color: #38bdf8; }
+
+  .map-panel-sub { font-size: 11px; color: #94a3b8; margin-bottom: 10px; }
+
+  .map-toggle { display: flex; gap: 0; margin-bottom: 10px; }
+
+  .map-toggle-btn { flex: 1; padding: 7px; text-align: center; font-weight: 700; font-size: 11px; cursor: pointer; border: 1px solid #334155; background: #1e293b; color: #94a3b8; transition: all 0.2s; }
+
+  .map-toggle-btn:first-child { border-radius: 6px 0 0 6px; }
+
+  .map-toggle-btn:last-child { border-radius: 0 6px 6px 0; }
+
+  .map-toggle-btn.active-a { background: rgba(251,146,60,0.2); color: #fb923c; border-color: rgba(251,146,60,0.4); }
+
+  .map-toggle-btn.active-b { background: rgba(74,222,128,0.2); color: #4ade80; border-color: rgba(74,222,128,0.4); }
+
+  .map-toggle-btn.active-c { background: rgba(56,189,248,0.2); color: #38bdf8; border-color: rgba(56,189,248,0.4); }
+
+  .mleg-row { display: flex; align-items: center; gap: 8px; padding: 4px 6px; cursor: pointer; border-radius: 4px; }
+
+  .mleg-row:hover { background: rgba(56,189,248,0.1); }
+
+  .mleg-row.diff { border-left: 2px solid; padding-left: 8px; }
+
+  .mleg-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; border: 2px solid rgba(255,255,255,0.3); }
+
+  .mleg-label { font-size: 11px; flex: 1; }
+
+  .mleg-dist { font-size: 10px; color: #94a3b8; white-space: nowrap; }
+
+  .mleg-divider { border-top: 1px solid #334155; margin: 4px 0; }
+
+  .mleg-section { font-size: 10px; color: #64748b; text-transform: uppercase; letter-spacing: 1px; padding: 4px 6px; font-weight: 600; }
+
+  .mleg-total { padding: 6px 6px; font-size: 11px; color: #94a3b8; border-top: 1px solid #334155; margin-top: 4px; }
+
+  .map-popup .leaflet-popup-content-wrapper { background: #1e293b; color: #e2e8f0; border: 1px solid #334155; border-radius: 8px; }
+
+  .map-popup .leaflet-popup-tip { background: #1e293b; }
+
+  .map-popup .leaflet-popup-content { margin: 10px 14px; font-size: 13px; line-height: 1.5; }
+
+  .mp-day { color: #38bdf8; font-size: 11px; font-weight: 600; text-transform: uppercase; }
+
+  .mp-title { font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+
+  .mp-detail { color: #94a3b8; font-size: 12px; }
+
+
+
+</style>
+
+</head>
+
+<body>
+
+ 
+
+<h1>Iceland Trip: Final Action Plan</h1>
+
+<p class="subtitle">10 Days — Aug 10-19, 2026 &nbsp;|&nbsp; Updated June 4, 2026 &nbsp;|&nbsp; Three Plans Compared</p>
+
+ 
+
+<!-- ============ PLAN COMPARISON ============ -->
+
+ 
+
+<h2>Pick Your Plan</h2>
+
+ 
+
+<div class="three-col">
+
+  <div style="border:1px solid rgba(251,146,60,0.3);border-radius:8px;padding:16px;background:rgba(251,146,60,0.05)">
+
+    <span class="plan-label plan-a-label">PLAN A — Ring Road + North</span>
+
+    <p style="margin-top:8px;font-size:13px"><strong>"See everything"</strong> — Includes Akureyri, whale watching, Godafoss, Myvatn, Dettifoss, then Ring Road east to Jokulsarlon</p>
+
+    <div style="margin-top:12px">
+
+      <div style="font-size:24px;font-weight:700;color:var(--orange)">~2,360 km</div>
+
+      <div style="font-size:12px;color:var(--muted)">~30h driving in Iceland</div>
+
+    </div>
+
+    <div style="margin-top:8px;font-size:12px;color:var(--amber)">3 heavy days in a row (Days 6-8)</div>
+
+  </div>
+
+  <div style="border:1px solid rgba(74,222,128,0.3);border-radius:8px;padding:16px;background:rgba(74,222,128,0.05)">
+
+    <span class="plan-label plan-b-label">PLAN B — South Coast Focus</span>
+
+    <p style="margin-top:8px;font-size:13px"><strong>"Relaxed + Jokulsarlon"</strong> — Skips north, drives south coast to Jokulsarlon with extra time at each stop</p>
+
+    <div style="margin-top:12px">
+
+      <div style="font-size:24px;font-weight:700;color:var(--green)">~1,550 km</div>
+
+      <div style="font-size:12px;color:var(--muted)">~21h driving in Iceland</div>
+
+    </div>
+
+    <div style="margin-top:8px;font-size:12px;color:var(--green)">No heavy days. Max 4.5h driving in any day</div>
+
+  </div>
+
+  <div style="border:1px solid rgba(56,189,248,0.4);border-radius:8px;padding:16px;background:rgba(56,189,248,0.06)">
+
+    <span class="plan-label plan-c-label">PLAN C — Glacier + Lower Loop &#10052;</span>
+
+    <p style="margin-top:8px;font-size:13px"><strong>"Glacier + see more"</strong> — Plan B's relaxed pace plus a guided glacier hike on Vatnajokull, Stokksnes, Fjallsarlon &amp; the Reykjanes Peninsula</p>
+
+    <div style="margin-top:12px">
+
+      <div style="font-size:24px;font-weight:700;color:var(--accent)">~1,830 km</div>
+
+      <div style="font-size:12px;color:var(--muted)">~27h driving in Iceland</div>
+
+    </div>
+
+    <div style="margin-top:8px;font-size:12px;color:var(--green)">Walk on Europe's largest glacier. No heavy days. &#11088; Recommended</div>
+
+  </div>
+
+</div>
+
+
+
+<h3 style="margin-top:24px">Side-by-Side Comparison</h3>
+
+<table class="compare-table">
+
+  <tr><th>Aspect</th><th style="color:var(--orange)">Plan A — Ring Road</th><th style="color:var(--green)">Plan B — South Coast</th><th style="color:var(--accent)">Plan C — Glacier</th></tr>
+
+  <tr><td>Total driving (Iceland)</td><td>~2,360 km / 30h</td><td>~1,550 km / 21h</td><td>~1,830 km / 27h</td></tr>
+  <tr><td>Heaviest single day</td><td style="color:var(--red)">542 km / 6h</td><td style="color:var(--green)">380 km / 4.5h</td><td style="color:var(--amber)">450 km / 5.5h</td></tr>
+  <tr><td>Heavy days in a row</td><td style="color:var(--red)">3 days (Days 6-8)</td><td style="color:var(--green)">0</td><td style="color:var(--green)">0</td></tr>
+  <tr><td><a href=https://guidetoiceland.is/best-of-iceland/the-top-whale-watching-tours-in-iceland target="_blank">Whale watching</a><span class="desc">Spot humpbacks, minkes &amp; dolphins from a boat</span></td><td><a href=https://www.whalewatchingakureyri.is/ target="_blank">Akureyri</a> (best in Iceland)</td><td><a href=https://elding.is/ target="_blank">Reykjavik harbor</a> (Day 10)</td><td>Optional (Reykjavik, Day 9)</td></tr>
+  <tr><td><a href=https://guidetoiceland.is/travel-iceland/drive/godafoss target="_blank">Godafoss</a><span class="desc">Thundering 12m-wide horseshoe waterfall — "Waterfall of the Gods"</span></td><td>Yes (Day 7)</td><td style="color:var(--red)">No</td><td style="color:var(--red)">No</td></tr>
+  <tr><td><a href=https://guidetoiceland.is/travel-iceland/drive/dimmuborgir target="_blank">Myvatn</a> / <a href=https://guidetoiceland.is/travel-iceland/drive/dimmuborgir target="_blank">Dimmuborgir</a><span class="desc">Volcanic lake area + eerie "Dark Castles" lava pillars</span></td><td>Yes (Day 7)</td><td style="color:var(--red)">No</td><td style="color:var(--red)">No</td></tr>
+  <tr><td><a href=https://guidetoiceland.is/travel-iceland/drive/dettifoss target="_blank">Dettifoss</a><span class="desc">Europe's most powerful waterfall — raw glacial force, Prometheus film location</span></td><td>Yes (Day 7)</td><td style="color:var(--red)">No</td><td style="color:var(--red)">No</td></tr>
+  <tr><td><a href=https://icelagoon.is/ target="_blank">Jokulsarlon</a><span class="desc">Glacier lagoon filled with floating blue icebergs calved from Breidamerkurjokull</span></td><td>2.5h (morning rush)</td><td style="color:var(--green)">4-5h (full afternoon + morning)</td><td style="color:var(--green)">Afternoon + Fjallsarlon (Day 7)</td></tr>
+  <tr><td><a href=https://guidetoiceland.is/travel-iceland/drive/skaftafell target="_blank">Skaftafell / Svartifoss</a><span class="desc">1.5h hike to "Black Falls" — waterfall framed by dramatic hexagonal basalt columns</span></td><td style="color:var(--red)">No (driving past)</td><td>Yes (Day 7, full visit)</td><td style="color:var(--green)">Yes + glacier hike (Day 7)</td></tr>
+  <tr><td><a href=https://guidetoiceland.is/travel-iceland/drive/fjadrargljufur target="_blank">Fjadrargljufur Canyon</a><span class="desc">100m-deep moss-covered gorge with a stunning rim walk — Justin Bieber music video spot</span></td><td style="color:var(--red)">No</td><td>Yes (Day 6)</td><td>Yes (Day 6)</td></tr>
+  <tr><td><a href=https://guidetoiceland.is/travel-iceland/drive/reynisfjara target="_blank">Reynisfjara Beach</a><span class="desc">Jet-black sand beach with basalt columns &amp; dramatic Reynisdrangar sea stacks</span></td><td>Yes (30 min rush)</td><td>Yes (relaxed, 1h)</td><td>Yes (relaxed, 45 min)</td></tr>
+  <tr><td><a href=https://www.keahotels.is/en/hotel-kea target="_blank">Hotel Kea</a> (Akureyri)<span class="desc">Stylish 4-star in the "Capital of the North" — great dining &amp; harbor views</span></td><td>Book 1 night (Aug 15)</td><td>Not needed</td><td>Not needed</td></tr>
+  <tr><td><a href=https://fosshotelglacierlagoon.com/ target="_blank">Fosshotel Glacier Lagoon</a><span class="desc">4-star with private hot tubs, glacier views — nearest hotel to Jokulsarlon</span></td><td>1 night (booked)</td><td>2 nights (extend)</td><td>1 night (Aug 16)</td></tr>
+  <tr><td>Extra hotel needed</td><td>None</td><td><a href=https://www.booking.com/searchresults.html?ss=Kirkjubaejarklaustur target="_blank">1 night near Vik</a> (Aug 15)</td><td><a href=https://www.booking.com/searchresults.html?ss=Kirkjubaejarklaustur target="_blank">1 night Klaustur</a> (Aug 15)</td></tr>
+  <tr><td>Overall vibe</td><td style="color:var(--amber)">Sprint — see maximum</td><td style="color:var(--green)">Relaxed — enjoy everything</td><td style="color:var(--green)">Relaxed + glacier adventure</td></tr>
+  <tr><td><a href=https://www.mountainguides.is/day-tours/glacier-hiking/ target="_blank">Glacier hike on Vatnajokull</a><span class="desc">Crampons on Europe's largest glacier — guided walk among crevasses &amp; ice ridges</span></td><td style="color:var(--red)">No</td><td style="color:var(--red)">No</td><td style="color:var(--green)">Yes (Day 7)</td></tr>
+  <tr><td><a href=https://guidetoiceland.is/travel-iceland/drive/vestrahorn-and-stokksnes target="_blank">Stokksnes / Vestrahorn</a><span class="desc">Iceland's most iconic photo spot — jagged peaks mirrored on black-sand flats</span></td><td style="color:var(--red)">No</td><td style="color:var(--red)">No</td><td style="color:var(--green)">Yes (Day 8)</td></tr>
+  <tr><td><a href=https://guidetoiceland.is/travel-iceland/drive/the-reykjanes-peninsula target="_blank">Reykjanes Peninsula</a><span class="desc">Bridge Between Continents, geothermal fields &amp; lava coast right by KEF</span></td><td style="color:var(--red)">No</td><td style="color:var(--red)">No</td><td style="color:var(--green)">Yes (Day 10)</td></tr>
+
+</table>
+
+<div class="callout callout-success" style="margin-top:12px">
+  <div class="callout-title">&#10052; Plan C — Glacier + Lower Loop (Recommended)</div>
+  A third option (see the <strong>Plan C</strong> tab below) keeps Plan B's relaxed pace but adds a <strong>guided glacier hike on Vatnajokull</strong>, plus Stokksnes/Vestrahorn, Fjallsarlon, Dyrholaey, Thingvellir and the Reykjanes Peninsula — covering more of Iceland without any heavy driving days. ~1,830 km / ~27h total.
+</div>
+
+
+
+<!-- ============ ECLIPSE PREP ============ -->
+
+ 
+
+<h2>&#127761; Eclipse Preparation — Aug 12, 5:46 PM</h2>
+
+ 
+
+<div class="two-col">
+
+<div>
+
+<h3 style="font-size:13px;color:var(--blue);margin-top:0">Camera Gear Checklist</h3>
+
+<ul class="checklist">
+
+  <li>Nikon D7000 body + spare battery (×3-4)</li>
+  <li>Nikkor 28-300mm — primary eclipse lens (450mm equiv)</li>
+  <li>Nikkor 18-200mm — wide landscape shot (totality over Búðakirkja)</li>
+  <li><a href=https://www.amazon.com/s?k=Baader+AstroSolar+5.0+ND target="_blank">Baader AstroSolar 5.0 film</a> — cut to fit 28-300mm, rubber-band mount</li>
+  <li><a href=https://www.amazon.com/s?k=eclipse+glasses+ISO+12312-2 target="_blank">Eclipse glasses</a> ×4 (ISO 12312-2 certified)</li>
+  <li>Remote shutter (Nikon MC-DC2) or use 2-sec timer</li>
+  <li>Sturdy tripod + 2nd small tripod or GorillaPod</li>
+  <li>Extra SD cards (shoot RAW/NEF — brackets eat space)</li>
+  <li>Lens cloth (sea spray at Budir!)</li>
+
+</ul>
+
+</div>
+
+<div>
+
+<h3 style="font-size:13px;color:var(--blue);margin-top:0">Camera Settings Quick Ref</h3>
+
+<table style="font-size:12px">
+
+  <tr><th>Phase</th><th>ISO</th><th>f/</th><th>Shutter</th><th>Filter</th></tr>
+
+  <tr><td>Partial</td><td>200</td><td>f/8</td><td>1/500</td><td style="color:var(--green)">ON</td></tr>
+  <tr><td>Diamond ring</td><td>200</td><td>f/8</td><td>1/1000</td><td style="color:var(--red)">OFF</td></tr>
+  <tr><td>Totality (inner)</td><td>200</td><td>f/8</td><td>1/1000</td><td style="color:var(--red)">OFF</td></tr>
+  <tr><td>Totality (mid)</td><td>400</td><td>f/6.3</td><td>1/60</td><td style="color:var(--red)">OFF</td></tr>
+  <tr><td>Totality (outer)</td><td>400</td><td>f/6.3</td><td>1/4</td><td style="color:var(--red)">OFF</td></tr>
+  <tr><td>Earthshine</td><td>800</td><td>f/6.3</td><td>1s</td><td style="color:var(--red)">OFF</td></tr>
+  <tr><td>Wide landscape</td><td>800</td><td>f/4</td><td>1-2s</td><td style="color:var(--red)">OFF</td></tr>
+
+</table>
+
+<div style="font-size:11px;color:var(--muted);margin-top:6px">Use Mirror Lock-Up (Mup). Disable VR on tripod. Disable Auto-ISO. D7000 bracket: 3 frames, 2 EV steps.</div>
+
+</div>
+
+</div>
+
+ 
+
+<div class="callout callout-info" style="margin-top:12px">
+
+  <div class="callout-title">Eclipse Day Tips</div>
+
+  <strong>Scout Day 2:</strong> Walk around Búðakirkja on arrival (Aug 11) and find your exact tripod position. Sun at 5:46 PM will be ~25° altitude in the SW sky. Use <a href=https://www.photopills.com/ target="_blank">PhotoPills</a> app to confirm framing.<br>
+
+  <strong>Weather backup:</strong> If clouds roll in, drive to <a href=https://guidetoiceland.is/travel-iceland/drive/stykkisholmur target="_blank">Stykkishólmur</a> (~45 min east) or Borgarnes (~1.5h south). Keep the car ready and monitor weather apps.<br>
+
+  <strong>Totality is 1m 30s.</strong> Shoot brackets for 30 seconds, then put the camera down and LOOK.
+
+</div>
+
+ 
+
+<div class="callout callout-warn" style="margin-top:8px">
+
+  <div class="callout-title">Before You Leave Home — Buy These</div>
+
+  <a href=https://www.amazon.com/s?k=Baader+AstroSolar+5.0+ND target="_blank">Baader AstroSolar film sheet</a> (~$25) &nbsp;|&nbsp;
+
+  <a href=https://www.amazon.com/s?k=eclipse+glasses+ISO+12312-2 target="_blank">Eclipse glasses ×4</a> (~$10) &nbsp;|&nbsp;
+
+  <a href=https://www.amazon.com/s?k=Nikon+MC-DC2+remote+shutter target="_blank">Nikon MC-DC2 remote</a> (~$20) &nbsp;|&nbsp;
+
+  Extra Nikon EN-EL15 batteries &nbsp;|&nbsp;
+
+  Extra SD cards (64GB+)
+
+</div>
+
+ 
+
+<!-- ============ COMMON DAYS 1-5 ============ -->
+
+ 
+
+<h2>Days 1-5: Same in Both Plans</h2>
+
+ 
+
+<div class="legend">
+
+  <div class="legend-item"><div class="legend-dot" style="background:var(--amber)"></div> Drive</div>
+
+  <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> Activity</div>
+
+  <div class="legend-item"><div class="legend-dot" style="background:var(--purple)"></div> Meal</div>
+
+  <div class="legend-item"><div class="legend-dot" style="background:var(--blue)"></div> Flight</div>
+
+  <div class="legend-item"><div class="legend-dot" style="background:var(--muted)"></div> Distance</div>
+
+</div>
+
+ 
+
+<div class="day-card">
+
+  <div class="day-header"><h3>Day 1 — Sun, Aug 10 &nbsp; <span style="color:var(--muted);font-weight:400">Portland → Seattle → Fly to Iceland</span></h3><span class="badge badge-blue">Travel</span></div>
+
+  <div class="day-body"><table>
+
+    <tr><td>6:30 AM</td><td class="drive">&#128663;</td><td>Leave Portland. Drive I-5 north to Seattle (3h)</td><td class="dist">280 km / 174 mi</td></tr>
+    <tr><td>9:30 AM</td><td>&#127359;</td><td>Arrive <a href=https://www.wallypark.com/seattle-airport-parking target="_blank">WallyPark SEA</a>. Shuttle to terminal</td><td></td></tr>
+    <tr><td>11:51 AM</td><td class="flight-icon">&#9992;</td><td><strong>Depart SEA</strong> — <a href=https://www.icelandair.com/ target="_blank">Icelandair</a> via Minneapolis</td><td class="dist">6,400 km flight</td></tr>
+    <tr><td>Evening</td><td>&#128564;</td><td>In-flight. Lie-flat Saga Premium. Sleep!</td><td></td></tr>
+
+  </table></div>
+
+  <div class="day-stats"><span>&#128663; 280 km (3h)</span><span>&#9992; 11h 44m flight</span><span>&#127961; In-flight</span></div>
+
+</div>
+
+<div class="day-card">
+
+  <div class="day-header"><h3>Day 2 — Mon, Aug 11 &nbsp; <span style="color:var(--muted);font-weight:400">Arrive → Snaefellsnes Peninsula</span></h3><span class="badge badge-green">Easy</span></div>
+
+  <div class="day-body"><table>
+
+    <tr><td>6:35 AM</td><td class="flight-icon">&#9992;</td><td><strong>Arrive KEF.</strong> Pick up <a href=https://www.lotuscarrental.is/ target="_blank">Toyota Land Cruiser</a></td><td></td></tr>
+    <tr><td>7:30 AM</td><td class="drive">&#128663;</td><td>Drive north toward Borgarnes (1h 30m)</td><td class="dist">117 km / 73 mi</td></tr>
+    <tr><td>9:00 AM</td><td class="meal">&#9749;</td><td><strong>Borgarnes</strong> — Coffee + bakery. <strong>Fill gas tank + buy snacks/water at Krónan</strong> (45 min)</td><td></td></tr>
+    <tr><td>9:30 AM</td><td class="drive">&#128663;</td><td>Route 54 onto Snaefellsnes (45 min)</td><td class="dist">50 km / 31 mi</td></tr>
+    <tr><td>10:15 AM</td><td class="activity">&#127748;</td><td><a href=https://guidetoiceland.is/travel-iceland/drive/gerduberg-cliffs target="_blank"><strong>Gerduberg Cliffs</strong></a> — Basalt columns (20 min)</td><td></td></tr>
+    <tr><td>10:35 AM</td><td class="drive">&#128663;</td><td>Continue west (30 min)</td><td class="dist">25 km / 16 mi</td></tr>
+    <tr><td>11:05 AM</td><td class="activity">&#129438;</td><td><a href=https://guidetoiceland.is/travel-iceland/drive/ytri-tunga target="_blank"><strong>Ytri Tunga Beach</strong></a> — Seal colony! (30 min)</td><td></td></tr>
+    <tr><td>11:55 AM</td><td>&#127968;</td><td><strong>Arrive <a href=https://www.hotelbudir.is/ target="_blank">Hotel Budir</a>.</strong> Black Church. Rest</td><td class="dist">15 km / 9 mi</td></tr>
+    <tr><td>4:00 PM</td><td>&#127247;</td><td><strong>Scout eclipse position.</strong> Walk around Búðakirkja, find tripod spot. Sun will be SW at ~25° altitude at 5:46 PM tomorrow. Use PhotoPills app to confirm.</td><td></td></tr>
+    <tr><td>6:00 PM</td><td class="meal">&#127860;</td><td>Dinner at Hotel Budir</td><td></td></tr>
+
+  </table></div>
+
+  <div class="day-stats"><span>&#128663; 207 km / 129 mi (3h)</span><span>&#127748; 3 stops</span><span>&#127247; Scout eclipse spot</span><span>&#127961; Hotel Budir</span></div>
+
+</div>
+
+<div class="day-card">
+
+  <div class="day-header eclipse-header"><h3>Day 3 — Tue, Aug 12 &nbsp; <span style="color:var(--blue);font-weight:400">&#127761; TOTAL SOLAR ECLIPSE</span></h3><span class="badge badge-blue">Eclipse!</span></div>
+
+  <div class="day-body"><table>
+
+    <tr><td>9:15 AM</td><td class="activity">&#127748;</td><td><a href=https://guidetoiceland.is/travel-iceland/drive/arnarstapi target="_blank"><strong>Arnarstapi</strong></a> — Coastal cliffs, stone arch (45 min)</td><td class="dist">12 km</td></tr>
+    <tr><td>10:10 AM</td><td class="activity">&#9968;</td><td><a href=https://guidetoiceland.is/travel-iceland/drive/raudfeldsgja target="_blank"><strong>Raudfeldsgja Gorge</strong></a> — Walk into canyon (30 min)</td><td class="dist">5 km</td></tr>
+    <tr><td>11:00 AM</td><td class="activity">&#127748;</td><td><a href=https://guidetoiceland.is/travel-iceland/drive/saxholl target="_blank"><strong>Saxholl Crater</strong></a> — Hike to rim (30 min)</td><td class="dist">16 km</td></tr>
+    <tr><td>11:45 AM</td><td class="activity">&#127754;</td><td><a href=https://guidetoiceland.is/travel-iceland/drive/djupalonssandur target="_blank"><strong>Djupalonssandur</strong></a> — Black beach (30 min)</td><td class="dist">8 km</td></tr>
+    <tr><td>12:45 PM</td><td class="meal">&#127860;</td><td><strong>Lunch in Olafsvik</strong> (1h)</td><td class="dist">30 km</td></tr>
+    <tr><td>2:00 PM</td><td class="activity">&#127748;</td><td><a href=https://guidetoiceland.is/travel-iceland/drive/kirkjufell target="_blank"><strong>Kirkjufell</strong></a> — Most photographed mountain (45 min)</td><td class="dist">8 km</td></tr>
+    <tr><td>3:30 PM</td><td>&#127968;</td><td>Return to Budir. Rest before eclipse</td><td class="dist">58 km</td></tr>
+    <tr><td>4:00 PM</td><td>&#127247;</td><td><strong>Set up cameras.</strong> Tripod at Búðakirkja. 28-300mm on main tripod, 18-200mm wide on GorillaPod. Solar filter ON. Test shots.</td><td></td></tr>
+    <tr><td>4:30 PM</td><td>&#127761;</td><td><strong>Partial eclipse begins.</strong> Shoot partials with solar filter. Monitor weather — drive to Stykkishólmur if cloudy.</td><td></td></tr>
+    <tr><td style="color:var(--blue);font-weight:700">5:46 PM</td><td>&#127761;</td><td><strong style="color:var(--blue)">TOTALITY — 1m 30s!</strong> Filter OFF. Bracket 1/1000→1s. Shoot 30 sec, then LOOK UP.</td><td></td></tr>
+    <tr><td>7:00 PM</td><td class="meal">&#127860;</td><td>Dinner at Hotel Budir</td><td></td></tr>
+
+  </table></div>
+
+  <div class="day-stats"><span>&#128663; 137 km / 85 mi (2.5h loop)</span><span>&#127748; 6 sights</span><span>&#127761; Eclipse 5:46 PM</span><span>&#127961; Hotel Budir</span></div>
+
+</div>
+
+<div class="day-card">
+
+  <div class="day-header"><h3>Day 4 — Wed, Aug 13 &nbsp; <span style="color:var(--muted);font-weight:400">Golden Circle → Hotel Ranga</span></h3><span class="badge badge-amber">Full day</span></div>
+
+  <div class="day-body"><table>
+
+    <tr><td>9:00 AM</td><td class="drive">&#128663;</td><td>Depart Budir → south toward Golden Circle (3h)</td><td class="dist">230 km / 143 mi</td></tr>
+    <tr><td>12:00 PM</td><td class="meal">&#127860;</td><td><a href=https://www.fridheimar.is/en target="_blank"><strong>Fridheimar</strong></a> — Lunch in tomato greenhouse (1h)</td><td></td></tr>
+    <tr><td>1:15 PM</td><td class="activity">&#127748;</td><td><a href=https://guidetoiceland.is/travel-iceland/drive/geysir target="_blank"><strong>Strokkur Geysir</strong></a> — Erupts every 6-10 min (30 min)</td><td class="dist">10 km</td></tr>
+    <tr><td>1:55 PM</td><td class="activity">&#127748;</td><td><a href=https://guidetoiceland.is/travel-iceland/drive/gullfoss target="_blank"><strong>Gullfoss</strong></a> — "Golden Falls" (45 min)</td><td class="dist">10 km</td></tr>
+    <tr><td>3:25 PM</td><td class="activity">&#127748;</td><td><a href=https://guidetoiceland.is/travel-iceland/drive/kerid target="_blank"><strong>Kerid Crater</strong></a> — Blue lake in red crater (20 min)</td><td class="dist">55 km</td></tr>
+    <tr><td>4:30 PM</td><td>&#127968;</td><td><strong>Arrive <a href=https://www.hotelranga.is/ target="_blank">Hotel Ranga</a></strong></td><td class="dist">60 km</td></tr>
+    <tr><td>7:00 PM</td><td class="meal">&#127860;</td><td>Dinner at Hotel Ranga</td><td></td></tr>
+    <tr><td>10:00 PM</td><td class="activity">&#127776;</td><td>Stargazing at Ranga observatory</td><td></td></tr>
+
+  </table></div>
+
+  <div class="day-stats"><span>&#128663; 365 km / 227 mi (5h)</span><span>&#127748; 4 stops</span><span>&#127961; Hotel Ranga</span></div>
+
+</div>
+
+<div class="day-card">
+
+  <div class="day-header"><h3>Day 5 — Thu, Aug 14 &nbsp; <span style="color:var(--muted);font-weight:400">Thorsmork Superjeep + Katla Ice Cave</span></h3><span class="badge badge-green">Adventure</span></div>
+
+  <div class="day-body"><table>
+
+    <tr><td>8:00 AM</td><td class="activity">&#9968;</td><td><a href=https://www.mountainguides.is/day-tours/super-jeep-tours/thorsmork/ target="_blank"><strong>Thorsmork Superjeep</strong></a> — 6h private tour. River crossings, glacier views</td><td class="dist">Guided</td></tr>
+    <tr><td>2:00 PM</td><td>&#127968;</td><td>Return to Hotel Ranga. Rest</td><td></td></tr>
+    <tr><td>3:00 PM</td><td class="activity">&#10052;</td><td><a href=https://www.katlatrack.is/ target="_blank"><strong>Katla Ice Cave</strong></a> — Private guided tour (~3h)</td><td class="dist">Guided</td></tr>
+    <tr><td>7:30 PM</td><td class="meal">&#127860;</td><td>Dinner at Hotel Ranga</td><td></td></tr>
+
+  </table></div>
+
+  <div class="day-stats"><span>&#128663; 0 km (guided)</span><span>&#9968; Thorsmork (6h) + Katla (3h)</span><span>&#127961; Hotel Ranga</span></div>
+
+</div>
+
+ 
+
+<!-- ============ TABBED PLANS FOR DAYS 6-10 ============ -->
+
+ 
+
+<h2>Days 6-10: Choose Your Plan</h2>
+
+ 
+
+<div class="tab-container">
+
+  <div class="tab active active-a" id="tab-a" onclick="showPlan('a')">Plan A — Ring Road + North</div>
+
+  <div class="tab" id="tab-b" onclick="showPlan('b')">Plan B — South Coast</div>
+
+  <div class="tab" id="tab-c" onclick="showPlan('c')">Plan C — Glacier + Lower Loop</div>
+
+</div>
+
+ 
+
+<!-- ============ PLAN A ============ -->
+
+<div class="tab-content active" id="plan-a">
+
+ 
+
+<div style="padding:16px">
+
+<span class="plan-label plan-a-label">PLAN A — Ring Road + North Iceland</span>
+
+<p style="margin-top:8px;font-size:13px;color:var(--muted)">Whale watching, Godafoss, Myvatn, Dettifoss, then Ring Road east to Jokulsarlon. 3 heavy driving days.</p>
+
+</div>
+
+ 
+
+<div class="day-card" style="margin:0 16px 16px">
+
+  <div class="day-header"><h3>Day 6 — Fri, Aug 15 &nbsp; <span style="color:var(--muted);font-weight:400">Waterfalls → Drive North → Whale Watching</span></h3><span class="badge badge-red">Heavy</span></div>
+
+  <div class="day-body"><table>
+
+    <tr><td>8:00 AM</td><td class="drive">&#128663;</td><td>Depart Ranga east</td><td class="dist">30 km</td></tr>
+    <tr><td>8:25 AM</td><td class="activity">&#127748;</td><td><a href=https://guidetoiceland.is/travel-iceland/drive/seljalandsfoss target="_blank"><strong>Seljalandsfoss</strong></a> — Walk BEHIND the waterfall! (45 min)</td><td></td></tr>
+    <tr><td>9:10 AM</td><td class="drive">&#128663;</td><td>Drive to Skogafoss</td><td class="dist">30 km</td></tr>
+    <tr><td>9:35 AM</td><td class="activity">&#127748;</td><td><a href=https://guidetoiceland.is/travel-iceland/drive/skogafoss target="_blank"><strong>Skogafoss</strong></a> — Climb 370 steps to top (45 min)</td><td></td></tr>
+    <tr><td>10:20 AM</td><td class="drive">&#128663;</td><td>Drive Route 1 north toward Akureyri</td><td class="dist">280 km</td></tr>
+    <tr><td>12:30 PM</td><td class="meal">&#127860;</td><td>Lunch en route — Blonduos (30 min)</td><td></td></tr>
+    <tr><td>3:30 PM</td><td>&#127968;</td><td><strong>Arrive <a href=https://www.keahotels.is/en/hotel-kea target="_blank">Hotel Kea</a>, Akureyri</strong>. Check in, freshen up</td><td class="dist">130 km</td></tr>
+    <tr><td>5:00 PM</td><td class="activity">&#128011;</td><td><a href=https://www.whalewatchingakureyri.is/ target="_blank"><strong>Whale Watching — Classic</strong></a> — Humpbacks in Eyjafjordur (3h)</td><td></td></tr>
+    <tr><td>8:00 PM</td><td class="meal">&#127860;</td><td>Dinner in Akureyri (<a href=https://www.rub23.is/ target="_blank">Rub23</a> or <a href=https://www.strikid.is/ target="_blank">Strikid</a>)</td><td></td></tr>
+
+  </table></div>
+
+  <div class="day-stats"><span>&#128663; 470 km / 292 mi (5.5h)</span><span>&#127748; Seljalandsfoss, Skogafoss</span><span>&#128011; Whale watch 3h</span><span>&#127961; Hotel Kea</span></div>
+
+</div>
+
+<div class="day-card" style="margin:0 16px 16px">
+
+  <div class="day-header" style="background:rgba(251,191,36,0.08)"><h3>Day 7 — Sat, Aug 16 &nbsp; <span style="color:var(--amber);font-weight:400">Myvatn + Dettifoss → Ring Road East</span></h3><span class="badge badge-red">Heavy</span></div>
+
+  <div class="day-body"><table>
+
+    <tr><td>8:00 AM</td><td class="drive">&#128663;</td><td>Depart Akureyri east</td><td class="dist">35 km</td></tr>
+    <tr><td>8:30 AM</td><td class="activity">&#127748;</td><td><a href=https://guidetoiceland.is/travel-iceland/drive/godafoss target="_blank"><strong>Godafoss</strong></a> — "Waterfall of the Gods" (30 min)</td><td></td></tr>
+    <tr><td>9:30 AM</td><td class="activity">&#127748;</td><td><a href=https://guidetoiceland.is/travel-iceland/drive/dimmuborgir target="_blank"><strong>Dimmuborgir</strong></a> — "Dark Castles" lava formations (45 min)</td><td class="dist">55 km</td></tr>
+    <tr><td>10:15 AM</td><td class="activity">&#127748;</td><td><a href=https://guidetoiceland.is/travel-iceland/drive/grjotagja target="_blank"><strong>Grjotagja Cave</strong></a> — GoT hot spring (15 min)</td><td class="dist">2 km</td></tr>
+    <tr><td>11:15 AM</td><td class="activity">&#127748;</td><td><a href=https://guidetoiceland.is/travel-iceland/drive/dettifoss target="_blank"><strong>Dettifoss</strong></a> — Europe's most powerful waterfall! (45 min)</td><td class="dist">55 km</td></tr>
+    <tr><td>1:30 PM</td><td class="meal">&#127860;</td><td>Lunch in Egilsstadir (30 min)</td><td class="dist">130 km</td></tr>
+    <tr><td>4:30 PM</td><td>&#127968;</td><td><strong>Arrive <a href=https://fosshotelglacierlagoon.com/ target="_blank">Fosshotel Glacier Lagoon</a>.</strong> Private hot tub!</td><td class="dist">265 km</td></tr>
+    <tr><td>7:00 PM</td><td class="meal">&#127860;</td><td>Dinner at Fosshotel</td><td></td></tr>
+
+  </table></div>
+
+  <div class="day-stats"><span>&#128663; 542 km / 337 mi (6h)</span><span>&#127748; Godafoss, Myvatn, Dettifoss</span><span>&#9832; Private hot tub</span><span>&#127961; Fosshotel</span></div>
+
+</div>
+
+<div class="day-card" style="margin:0 16px 16px">
+
+  <div class="day-header jokulsarlon-header"><h3>Day 8 — Sun, Aug 17 &nbsp; <span style="color:var(--green);font-weight:400">&#10052; JOKULSARLON → South Coast → Retreat</span></h3><span class="badge badge-red">Heavy</span></div>
+
+  <div class="day-body"><table>
+
+    <tr><td>7:45 AM</td><td class="drive">&#128663;</td><td>Check out. Drive to Jokulsarlon</td><td class="dist">30 km</td></tr>
+    <tr><td>8:50 AM</td><td>&#127915;</td><td>Check in at boat dock (30 min before departure)</td><td></td></tr>
+    <tr><td>9:20 AM</td><td class="activity">&#10052;</td><td><a href=https://icelagoon.is/ target="_blank"><strong>Jokulsarlon — Zodiac boat tour</strong></a> (1h 15m)</td><td></td></tr>
+    <tr><td>10:35 AM</td><td class="activity">&#128142;</td><td><a href=https://guidetoiceland.is/travel-iceland/drive/diamond-beach target="_blank"><strong>Diamond Beach</strong></a> — Ice on black sand (45 min)</td><td class="dist">1 km</td></tr>
+    <tr><td>11:20 AM</td><td class="drive">&#128663;</td><td>Depart west along south coast</td><td class="dist">240 km</td></tr>
+    <tr><td>1:15 PM</td><td class="activity">&#127748;</td><td><a href=https://guidetoiceland.is/travel-iceland/drive/reynisfjara target="_blank"><strong>Reynisfjara</strong></a> — Black sand beach, basalt columns (30 min)</td><td></td></tr>
+    <tr><td>1:45 PM</td><td class="meal">&#127860;</td><td>Lunch in Vik (30 min)</td><td class="dist">5 km</td></tr>
+    <tr><td>4:45 PM</td><td>&#127968;</td><td><strong>Arrive <a href=https://www.bluelagoon.com/accommodation/retreat-hotel target="_blank">Blue Lagoon Retreat</a></strong></td><td class="dist">190 km</td></tr>
+    <tr><td>5:00 PM</td><td class="activity">&#9832;</td><td>Retreat Spa — recover from 3 heavy days!</td><td></td></tr>
+    <tr><td>7:30 PM</td><td class="meal">&#127860;</td><td><a href=https://www.bluelagoon.com/restaurant/moss target="_blank"><strong>Moss Restaurant dinner</strong></a> — Anniversary tasting menu</td><td></td></tr>
+
+  </table></div>
+
+  <div class="day-stats"><span>&#128663; 466 km / 290 mi (5.5h)</span><span>&#10052; Jokulsarlon 2.5h</span><span>&#127748; Reynisfjara</span><span>&#127860; Moss dinner</span><span>&#127961; The Retreat</span></div>
+
+</div>
+
+<div class="day-card" style="margin:0 16px 16px">
+
+  <div class="day-header"><h3>Day 9 — Mon, Aug 18 &nbsp; <span style="color:var(--muted);font-weight:400">Full Spa Day — Recovery</span></h3><span class="badge badge-purple">Relaxed</span></div>
+
+  <div class="day-body"><table>
+
+    <tr><td>9:00 AM</td><td class="meal">&#127860;</td><td>Leisurely breakfast</td><td></td></tr>
+    <tr><td>10:00 AM</td><td class="activity">&#9832;</td><td>Retreat Spa — lagoon, steam rooms</td><td></td></tr>
+    <tr><td>12:30 PM</td><td class="meal">&#127860;</td><td><a href=https://www.bluelagoon.com/restaurant/lava target="_blank"><strong>Lava Restaurant lunch</strong></a></td><td></td></tr>
+    <tr><td>2:00 PM</td><td class="activity">&#9832;</td><td>More spa — lava cove, in-water bar</td><td></td></tr>
+    <tr><td>7:00 PM</td><td class="activity">&#9832;</td><td>Evening dip</td><td></td></tr>
+
+  </table></div>
+
+  <div class="day-stats"><span>&#128663; 0 km</span><span>&#9832; All-day spa</span><span>&#127961; The Retreat</span></div>
+
+</div>
+
+<div class="day-card" style="margin:0 16px 16px">
+
+  <div class="day-header"><h3>Day 10 — Tue, Aug 19 &nbsp; <span style="color:var(--muted);font-weight:400">Thingvellir → Reykjavik → Fly Home</span></h3><span class="badge badge-blue">Departure</span></div>
+
+  <div class="day-body"><table>
+
+    <tr><td>9:15 AM</td><td class="drive">&#128663;</td><td>Check out. Drive to Thingvellir (1h)</td><td class="dist">75 km</td></tr>
+    <tr><td>10:15 AM</td><td class="activity">&#127748;</td><td><a href=https://www.thingvellir.is/en/ target="_blank"><strong>Thingvellir</strong></a> — Tectonic rift, Oxararfoss, Parliament (1h 15m)</td><td></td></tr>
+    <tr><td>11:30 AM</td><td class="drive">&#128663;</td><td>Drive to Reykjavik (45 min)</td><td class="dist">50 km</td></tr>
+    <tr><td>12:15 PM</td><td class="meal">&#127860;</td><td>Lunch in Reykjavik (45 min)</td><td></td></tr>
+    <tr><td>1:00 PM</td><td class="activity">&#127961;</td><td><a href=https://www.hallgrimskirkja.is/en target="_blank"><strong>Hallgrimskirkja</strong></a>, <a href=https://www.harpa.is/en target="_blank">Laugavegur, Harpa</a> (1h 45m)</td><td></td></tr>
+    <tr><td>3:00 PM</td><td class="drive">&#128663;</td><td>Drive to KEF. Drop car at <a href=https://www.lotuscarrental.is/ target="_blank">Lotus</a></td><td class="dist">50 km</td></tr>
+    <tr><td>7:45 PM</td><td class="flight-icon">&#9992;</td><td><strong>Depart KEF</strong> — <a href=https://www.icelandair.com/ target="_blank">Icelandair</a> FI683 → Seattle</td><td class="dist">7,100 km</td></tr>
+    <tr><td>8:40 PM</td><td class="flight-icon">&#9992;</td><td>Arrive SEA → drive to Portland</td><td class="dist">280 km</td></tr>
+
+  </table></div>
+
+  <div class="day-stats"><span>&#128663; 175 km (2.5h) + 280 km (SEA→PDX)</span><span>&#127748; Thingvellir</span><span>&#127961; Reykjavik</span><span>&#9992; 7h 55m flight</span></div>
+
+</div>
+
+ 
+
+<div style="padding:0 16px 16px">
+
+<h3 style="color:var(--orange)">Plan A — Distance Summary</h3>
+
+<table>
+
+  <tr><th>Day</th><th>Route</th><th>Distance</th><th>Time</th><th>Pace</th></tr>
+
+  <tr><td>1</td><td>Portland → Seattle + flight</td><td>280 km</td><td>3h</td><td><span class="badge badge-green">Easy</span></td></tr>
+  <tr><td>2</td><td>KEF → Snaefellsnes</td><td>207 km</td><td>3h</td><td><span class="badge badge-green">Easy</span></td></tr>
+  <tr><td>3</td><td>Snaefellsnes loop</td><td>137 km</td><td>2.5h</td><td><span class="badge badge-green">Easy</span></td></tr>
+  <tr><td>4</td><td>Budir → Golden Circle → Ranga</td><td>365 km</td><td>5h</td><td><span class="badge badge-amber">Full</span></td></tr>
+  <tr><td>5</td><td>Guided tours</td><td>0 km</td><td>0h</td><td><span class="badge badge-green">Relaxed</span></td></tr>
+  <tr><td>6</td><td>Ranga → Waterfalls → Akureyri</td><td>470 km</td><td>5.5h</td><td><span class="badge badge-red">Heavy</span></td></tr>
+  <tr><td>7</td><td>Akureyri → Myvatn → Dettifoss → Fosshotel</td><td>542 km</td><td>6h</td><td><span class="badge badge-red">Heavy</span></td></tr>
+  <tr><td>8</td><td>Fosshotel → Jokulsarlon → Retreat</td><td>466 km</td><td>5.5h</td><td><span class="badge badge-red">Heavy</span></td></tr>
+  <tr><td>9</td><td>Spa day</td><td>0 km</td><td>0h</td><td><span class="badge badge-green">Relaxed</span></td></tr>
+  <tr><td>10</td><td>Retreat → Thingvellir → Reykjavik → KEF</td><td>175 km</td><td>2.5h</td><td><span class="badge badge-green">Easy</span></td></tr>
+  <tr style="font-weight:700;background:var(--surface)"><td colspan="2">TOTAL (Iceland)</td><td>~2,360 km</td><td>~30h</td><td></td></tr>
+
+</table>
+
+</div>
+
+ 
+
+</div><!-- end plan-a -->
+
+ 
+
+<!-- ============ PLAN B ============ -->
+
+<div class="tab-content" id="plan-b">
+
+ 
+
+<div style="padding:16px">
+
+<span class="plan-label plan-b-label">PLAN B — South Coast Focus (Relaxed)</span>
+
+<p style="margin-top:8px;font-size:13px;color:var(--muted)">Skip north Iceland. Drive south coast to Jokulsarlon with time to breathe. Max 4.5h driving any day.</p>
+
+</div>
+
+ 
+
+<div class="day-card" style="margin:0 16px 16px">
+
+  <div class="day-header"><h3>Day 6 — Fri, Aug 15 &nbsp; <span style="color:var(--muted);font-weight:400">Waterfalls → Reynisfjara → Vik</span></h3><span class="badge badge-green">Easy</span></div>
+
+  <div class="day-body"><table>
+
+    <tr><td>8:00 AM</td><td class="meal">&#127860;</td><td>Breakfast at Hotel Ranga</td><td></td></tr>
+    <tr><td>9:00 AM</td><td class="drive">&#128663;</td><td>Depart Ranga east</td><td class="dist">30 km</td></tr>
+    <tr><td>9:25 AM</td><td class="activity">&#127748;</td><td><a href=https://guidetoiceland.is/travel-iceland/drive/seljalandsfoss target="_blank"><strong>Seljalandsfoss</strong></a> — Walk BEHIND the 60m waterfall! (45 min)</td><td></td></tr>
+    <tr><td>10:10 AM</td><td class="drive">&#128663;</td><td>Drive to Skogafoss</td><td class="dist">30 km</td></tr>
+    <tr><td>10:35 AM</td><td class="activity">&#127748;</td><td><a href=https://guidetoiceland.is/travel-iceland/drive/skogafoss target="_blank"><strong>Skogafoss</strong></a> — Climb 370 steps. Walk along Fimmvorduhals trail top (1h)</td><td></td></tr>
+    <tr><td>11:35 AM</td><td class="drive">&#128663;</td><td>Continue east to Vik area</td><td class="dist">35 km</td></tr>
+    <tr><td>12:00 PM</td><td class="activity">&#127748;</td><td><a href=https://guidetoiceland.is/travel-iceland/drive/reynisfjara target="_blank"><strong>Reynisfjara Black Sand Beach</strong></a> — Basalt columns, sea stacks (1h)</td><td></td></tr>
+    <tr><td>1:00 PM</td><td class="meal">&#127860;</td><td><strong>Lunch in Vik</strong> — Suður Vik or Black Crust Pizzeria (45 min)</td><td class="dist">5 km</td></tr>
+    <tr><td>1:45 PM</td><td class="drive">&#128663;</td><td>Drive east toward Kirkjubaejarklaustur</td><td class="dist">75 km</td></tr>
+    <tr><td>2:45 PM</td><td class="activity">&#127748;</td><td><a href=https://guidetoiceland.is/travel-iceland/drive/fjadrargljufur target="_blank"><strong>Fjadrargljufur Canyon</strong></a> — Stunning moss-covered gorge. Walk the rim (45 min)</td><td></td></tr>
+    <tr><td>3:30 PM</td><td class="drive">&#128663;</td><td>Continue to hotel</td><td class="dist">20 km</td></tr>
+    <tr><td>4:00 PM</td><td>&#127968;</td><td><strong>Arrive Kirkjubaejarklaustur hotel.</strong> Rest, explore town</td><td></td></tr>
+    <tr><td>7:00 PM</td><td class="meal">&#127860;</td><td>Dinner at hotel or Systrakaffi restaurant</td><td></td></tr>
+
+  </table></div>
+
+  <div class="day-stats"><span>&#128663; 195 km / 121 mi (3h)</span><span>&#127748; Seljalandsfoss, Skogafoss, Reynisfjara, Fjadrargljufur</span><span>&#127961; Kirkjubaejarklaustur hotel</span></div>
+
+</div>
+
+<div class="day-card" style="margin:0 16px 16px">
+
+  <div class="day-header"><h3>Day 7 — Sat, Aug 16 &nbsp; <span style="color:var(--muted);font-weight:400">Skaftafell → Fosshotel → Jokulsarlon Afternoon</span></h3><span class="badge badge-green">Easy</span></div>
+
+  <div class="day-body"><table>
+
+    <tr><td>8:00 AM</td><td class="meal">&#127860;</td><td>Breakfast. Check out</td><td></td></tr>
+    <tr><td>9:00 AM</td><td class="drive">&#128663;</td><td>Drive east to Skaftafell</td><td class="dist">70 km</td></tr>
+    <tr><td>10:00 AM</td><td class="activity">&#127748;</td><td><a href=https://guidetoiceland.is/travel-iceland/drive/skaftafell target="_blank"><strong>Skaftafell / Svartifoss</strong></a> — Hike to "Black Falls" with basalt columns (1.5h)</td><td></td></tr>
+    <tr><td>11:30 AM</td><td class="drive">&#128663;</td><td>Drive to Fosshotel Glacier Lagoon</td><td class="dist">50 km</td></tr>
+    <tr><td>12:00 PM</td><td>&#127968;</td><td><strong>Arrive <a href=https://fosshotelglacierlagoon.com/ target="_blank">Fosshotel</a>.</strong> Drop bags (early arrival request)</td><td></td></tr>
+    <tr><td>12:30 PM</td><td class="meal">&#127860;</td><td>Lunch at Fosshotel restaurant</td><td></td></tr>
+    <tr><td>1:00 PM</td><td class="drive">&#128663;</td><td>Drive to Jokulsarlon</td><td class="dist">30 km</td></tr>
+    <tr><td>1:20 PM</td><td>&#127915;</td><td>Check in at boat dock (30 min before departure)</td><td></td></tr>
+    <tr><td>1:50 PM</td><td class="activity">&#10052;</td><td><a href=https://icelagoon.is/ target="_blank"><strong>Jokulsarlon Glacier Lagoon — Zodiac boat tour</strong></a> (1h 15m)</td><td></td></tr>
+    <tr><td>3:05 PM</td><td class="activity">&#128142;</td><td><a href=https://guidetoiceland.is/travel-iceland/drive/diamond-beach target="_blank"><strong>Diamond Beach</strong></a> — Ice on black sand. Golden hour light (1h)</td><td></td></tr>
+    <tr><td>4:05 PM</td><td class="activity">&#127748;</td><td>Walk along the lagoon shore. Photos of icebergs (1h)</td><td></td></tr>
+    <tr><td>5:05 PM</td><td class="drive">&#128663;</td><td>Drive back to Fosshotel</td><td class="dist">30 km</td></tr>
+    <tr><td>6:00 PM</td><td class="activity">&#9832;</td><td>Private outdoor hot tub — glacier views!</td><td></td></tr>
+    <tr><td>7:30 PM</td><td class="meal">&#127860;</td><td>Dinner at Fosshotel</td><td></td></tr>
+
+  </table></div>
+
+  <div class="day-stats"><span>&#128663; 180 km / 112 mi (2.5h)</span><span>&#127748; Svartifoss</span><span>&#10052; Jokulsarlon 3.5h!</span><span>&#9832; Hot tub</span><span>&#127961; Fosshotel</span></div>
+
+</div>
+
+<div class="day-card" style="margin:0 16px 16px">
+
+  <div class="day-header jokulsarlon-header"><h3>Day 8 — Sun, Aug 17 &nbsp; <span style="color:var(--green);font-weight:400">Morning Jokulsarlon → Drive to Retreat</span></h3><span class="badge badge-amber">Moderate</span></div>
+
+  <div class="day-body"><table>
+
+    <tr><td>7:00 AM</td><td class="meal">&#127860;</td><td>Breakfast at Fosshotel (included)</td><td></td></tr>
+    <tr><td>8:00 AM</td><td class="drive">&#128663;</td><td>Check out. Optional: return to Jokulsarlon for morning light</td><td class="dist">30 km</td></tr>
+    <tr><td>8:30 AM</td><td class="activity">&#10052;</td><td><strong>Jokulsarlon morning</strong> — Quieter, beautiful light on icebergs (1h)</td><td></td></tr>
+    <tr><td>9:30 AM</td><td class="drive">&#128663;</td><td>Depart west. South coast drive</td><td class="dist">350 km</td></tr>
+    <tr><td>11:30 AM</td><td class="meal">&#127860;</td><td>Lunch stop in Vik (30 min)</td><td></td></tr>
+    <tr><td>2:00 PM</td><td>&#127968;</td><td><strong>Arrive <a href=https://www.bluelagoon.com/accommodation/retreat-hotel target="_blank">Blue Lagoon Retreat</a></strong></td><td></td></tr>
+    <tr><td>2:30 PM</td><td class="activity">&#9832;</td><td>Retreat Spa — afternoon soak</td><td></td></tr>
+    <tr><td>5:00 PM</td><td>&#127968;</td><td>Rest in suite</td><td></td></tr>
+    <tr><td>7:30 PM</td><td class="meal">&#127860;</td><td><a href=https://www.bluelagoon.com/restaurant/moss target="_blank"><strong>Moss Restaurant dinner</strong></a> — Anniversary tasting menu</td><td></td></tr>
+    <tr><td>10:00 PM</td><td class="activity">&#9832;</td><td>Evening spa</td><td></td></tr>
+
+  </table></div>
+
+  <div class="day-stats"><span>&#128663; 380 km / 236 mi (4.5h)</span><span>&#10052; Optional Jokulsarlon morning</span><span>&#127860; Moss dinner</span><span>&#127961; The Retreat</span></div>
+
+</div>
+
+<div class="day-card" style="margin:0 16px 16px">
+
+  <div class="day-header"><h3>Day 9 — Mon, Aug 18 &nbsp; <span style="color:var(--muted);font-weight:400">Spa + Thingvellir + Reykjavik</span></h3><span class="badge badge-green">Easy</span></div>
+
+  <div class="day-body"><table>
+
+    <tr><td>8:00 AM</td><td class="meal">&#127860;</td><td>Breakfast at the Retreat</td><td></td></tr>
+    <tr><td>9:00 AM</td><td class="activity">&#9832;</td><td>Morning spa session (1.5h)</td><td></td></tr>
+    <tr><td>10:30 AM</td><td class="meal">&#127860;</td><td><a href=https://www.bluelagoon.com/restaurant/lava target="_blank"><strong>Lava Restaurant</strong></a> — Brunch overlooking lava field</td><td></td></tr>
+    <tr><td>12:00 PM</td><td>&#127968;</td><td>Check out. Load car</td><td></td></tr>
+    <tr><td>12:15 PM</td><td class="drive">&#128663;</td><td>Drive to Thingvellir (1h)</td><td class="dist">75 km</td></tr>
+    <tr><td>1:15 PM</td><td class="activity">&#127748;</td><td><a href=https://www.thingvellir.is/en/ target="_blank"><strong>Thingvellir</strong></a> — Tectonic rift, Oxararfoss, Parliament site (1h 15m)</td><td></td></tr>
+    <tr><td>2:30 PM</td><td class="drive">&#128663;</td><td>Drive to Reykjavik (45 min)</td><td class="dist">50 km</td></tr>
+    <tr><td>3:15 PM</td><td>&#127968;</td><td>Check into Reykjavik hotel. Freshen up</td><td></td></tr>
+    <tr><td>4:00 PM</td><td class="activity">&#127961;</td><td><a href=https://www.hallgrimskirkja.is/en target="_blank"><strong>Hallgrimskirkja</strong></a> — Tower for panoramic views (30 min)</td><td></td></tr>
+    <tr><td>4:30 PM</td><td class="activity">&#127961;</td><td><strong>Laugavegur</strong> — Shopping, souvenirs (1h)</td><td></td></tr>
+    <tr><td>5:30 PM</td><td class="activity">&#127961;</td><td><strong>Old Harbor + <a href=https://www.harpa.is/en target="_blank">Harpa</a></strong> (30 min)</td><td></td></tr>
+    <tr><td>7:30 PM</td><td class="meal">&#127860;</td><td>Dinner at top Reykjavik restaurant</td><td></td></tr>
+
+  </table></div>
+
+  <div class="day-stats"><span>&#128663; 125 km (2h)</span><span>&#9832; Morning spa</span><span>&#127748; Thingvellir</span><span>&#127961; Reykjavik afternoon</span><span>&#127961; Reykjavik hotel</span></div>
+
+</div>
+
+<div class="day-card" style="margin:0 16px 16px">
+
+  <div class="day-header"><h3>Day 10 — Tue, Aug 19 &nbsp; <span style="color:var(--muted);font-weight:400">Whale Watching → Reykjavik → Fly Home</span></h3><span class="badge badge-blue">Departure</span></div>
+
+  <div class="day-body"><table>
+
+    <tr><td>8:00 AM</td><td class="meal">&#127860;</td><td>Breakfast at hotel</td><td></td></tr>
+    <tr><td>9:00 AM</td><td class="activity">&#128011;</td><td><a href=https://elding.is/ target="_blank"><strong>Whale Watching from Reykjavik</strong></a> — Old Harbor departure (3h)</td><td></td></tr>
+    <tr><td>12:00 PM</td><td class="meal">&#127860;</td><td>Lunch at <a href=https://www.grandimatholl.is/ target="_blank">Grandi Matholl food hall</a></td><td></td></tr>
+    <tr><td>1:00 PM</td><td class="activity">&#127961;</td><td>Sun Voyager sculpture + harbor walk (30 min)</td><td></td></tr>
+    <tr><td>1:30 PM</td><td>&#127968;</td><td>Check out. Last-minute shopping</td><td></td></tr>
+    <tr><td>3:00 PM</td><td class="drive">&#128663;</td><td>Drive to KEF. Drop car at <a href=https://www.lotuscarrental.is/ target="_blank">Lotus</a></td><td class="dist">50 km</td></tr>
+    <tr><td>7:45 PM</td><td class="flight-icon">&#9992;</td><td><strong>Depart KEF</strong> — <a href=https://www.icelandair.com/ target="_blank">Icelandair</a> FI683 → Seattle</td><td class="dist">7,100 km</td></tr>
+    <tr><td>8:40 PM</td><td class="flight-icon">&#9992;</td><td>Arrive SEA → drive to Portland</td><td class="dist">280 km</td></tr>
+
+  </table></div>
+
+  <div class="day-stats"><span>&#128663; 50 km (45 min) + 280 km (SEA→PDX)</span><span>&#128011; Whale watch 3h</span><span>&#127961; Reykjavik morning</span><span>&#9992; 7h 55m flight</span></div>
+
+</div>
+
+ 
+
+<div style="padding:0 16px 16px">
+
+<h3 style="color:var(--green)">Plan B — Distance Summary</h3>
+
+<table>
+
+  <tr><th>Day</th><th>Route</th><th>Distance</th><th>Time</th><th>Pace</th></tr>
+
+  <tr><td>1</td><td>Portland → Seattle + flight</td><td>280 km</td><td>3h</td><td><span class="badge badge-green">Easy</span></td></tr>
+  <tr><td>2</td><td>KEF → Snaefellsnes</td><td>207 km</td><td>3h</td><td><span class="badge badge-green">Easy</span></td></tr>
+  <tr><td>3</td><td>Snaefellsnes loop</td><td>137 km</td><td>2.5h</td><td><span class="badge badge-green">Easy</span></td></tr>
+  <tr><td>4</td><td>Budir → Golden Circle → Ranga</td><td>365 km</td><td>5h</td><td><span class="badge badge-amber">Full</span></td></tr>
+  <tr><td>5</td><td>Guided tours</td><td>0 km</td><td>0h</td><td><span class="badge badge-green">Relaxed</span></td></tr>
+  <tr><td>6</td><td>Ranga → Waterfalls → Reynisfjara → Vik</td><td>195 km</td><td>3h</td><td><span class="badge badge-green">Easy</span></td></tr>
+  <tr><td>7</td><td>Klaustur → Skaftafell → Fosshotel → Jokulsarlon</td><td>180 km</td><td>2.5h</td><td><span class="badge badge-green">Easy</span></td></tr>
+  <tr><td>8</td><td>Jokulsarlon → South Coast → Retreat</td><td>380 km</td><td>4.5h</td><td><span class="badge badge-amber">Moderate</span></td></tr>
+  <tr><td>9</td><td>Retreat → Thingvellir → Reykjavik</td><td>125 km</td><td>2h</td><td><span class="badge badge-green">Easy</span></td></tr>
+  <tr><td>10</td><td>Reykjavik → KEF</td><td>50 km</td><td>45m</td><td><span class="badge badge-green">Easy</span></td></tr>
+  <tr style="font-weight:700;background:var(--surface)"><td colspan="2">TOTAL (Iceland)</td><td>~1,550 km</td><td>~21h</td><td></td></tr>
+
+</table>
+
+</div>
+
+
+
+</div><!-- end plan-b -->
+
+
+
+<!-- ============ PLAN C ============ -->
+<div class="tab-content" id="plan-c">
+
+<div style="padding:16px">
+<span class="plan-label plan-c-label">PLAN C — Glacier + Lower Loop (Recommended)</span>
+<p style="margin-top:8px;font-size:13px;color:var(--muted)">Walk on Vatnajokull — Europe's largest glacier — plus Stokksnes, Fjallsarlon, Dyrholaey, Thingvellir &amp; the Reykjanes Peninsula. The best of the lower loop with no death-march drives (max 5.5h any day).</p>
+</div>
+
+<div class="day-card" style="margin:0 16px 16px">
+
+  <div class="day-header"><h3>Day 6 — Fri, Aug 15 &nbsp; <span style="color:var(--muted);font-weight:400">Waterfalls → Dyrholaey → Reynisfjara → Klaustur</span></h3><span class="badge badge-green">Easy</span></div>
+
+  <div class="day-body"><table>
+
+    <tr><td>8:00 AM</td><td class="meal">&#127860;</td><td>Breakfast at Hotel Ranga</td><td></td></tr>
+    <tr><td>9:00 AM</td><td class="drive">&#128663;</td><td>Depart Ranga east</td><td class="dist">30 km</td></tr>
+    <tr><td>9:25 AM</td><td class="activity">&#127748;</td><td><a href=https://guidetoiceland.is/travel-iceland/drive/seljalandsfoss target="_blank"><strong>Seljalandsfoss</strong></a> — Walk behind it + find hidden <strong>Gljufrabui</strong> next door (1h)</td><td></td></tr>
+    <tr><td>10:30 AM</td><td class="drive">&#128663;</td><td>Drive to Skogafoss</td><td class="dist">30 km</td></tr>
+    <tr><td>10:55 AM</td><td class="activity">&#127748;</td><td><a href=https://guidetoiceland.is/travel-iceland/drive/skogafoss target="_blank"><strong>Skogafoss</strong></a> — Climb 370 steps to the top (45 min)</td><td></td></tr>
+    <tr><td>11:45 AM</td><td class="drive">&#128663;</td><td>Drive toward Dyrholaey</td><td class="dist">35 km</td></tr>
+    <tr><td>12:15 PM</td><td class="activity">&#127748;</td><td><a href=https://guidetoiceland.is/travel-iceland/drive/dyrholaey target="_blank"><strong>Dyrholaey</strong></a> — Sea arch, puffins, black-coast viewpoint (45 min)</td><td></td></tr>
+    <tr><td>1:00 PM</td><td class="meal">&#127860;</td><td><strong>Lunch in Vik</strong> — Sudur Vik or Black Crust Pizzeria (45 min)</td><td class="dist">15 km</td></tr>
+    <tr><td>1:45 PM</td><td class="activity">&#127748;</td><td><a href=https://guidetoiceland.is/travel-iceland/drive/reynisfjara target="_blank"><strong>Reynisfjara</strong></a> — Black sand, basalt columns. <strong>Stay back from sneaker waves!</strong> (45 min)</td><td></td></tr>
+    <tr><td>2:45 PM</td><td class="drive">&#128663;</td><td>Drive east toward Kirkjubaejarklaustur</td><td class="dist">70 km</td></tr>
+    <tr><td>3:45 PM</td><td class="activity">&#127748;</td><td><a href=https://guidetoiceland.is/travel-iceland/drive/fjadrargljufur target="_blank"><strong>Fjadrargljufur Canyon</strong></a> — Moss-covered gorge rim walk (45 min)</td><td></td></tr>
+    <tr><td>4:45 PM</td><td>&#127968;</td><td><strong>Arrive Kirkjubaejarklaustur hotel.</strong> Rest, explore town</td><td class="dist">20 km</td></tr>
+    <tr><td>7:00 PM</td><td class="meal">&#127860;</td><td>Dinner at Systrakaffi</td><td></td></tr>
+
+  </table></div>
+
+  <div class="day-stats"><span>&#128663; 210 km / 130 mi (3h)</span><span>&#127748; Seljalandsfoss, Skogafoss, Dyrholaey, Reynisfjara, Fjadrargljufur</span><span>&#127961; Kirkjubaejarklaustur</span></div>
+
+</div>
+
+<div class="day-card" style="margin:0 16px 16px">
+
+  <div class="day-header jokulsarlon-header"><h3>Day 7 — Sat, Aug 16 &nbsp; <span style="color:var(--green);font-weight:400">&#10052; GLACIER HIKE → Fjallsarlon → Jokulsarlon</span></h3><span class="badge badge-green">Glacier</span></div>
+
+  <div class="day-body"><table>
+
+    <tr><td>8:00 AM</td><td class="meal">&#127860;</td><td>Breakfast at hotel. Check out</td><td></td></tr>
+    <tr><td>9:00 AM</td><td class="drive">&#128663;</td><td><strong>Drive to <a href=https://guidetoiceland.is/travel-iceland/drive/skaftafell target="_blank">Skaftafell</a></strong> (Vatnajokull National Park)</td><td class="dist">70 km</td></tr>
+    <tr><td>10:00 AM</td><td class="activity">&#127748;</td><td><strong>Svinafellsjokull viewpoint</strong> — crevassed glacier tongue (Interstellar / Game of Thrones) (20 min)</td><td></td></tr>
+    <tr><td>10:30 AM</td><td class="activity">&#10052;</td><td><a href=https://www.mountainguides.is/day-tours/glacier-hiking/ target="_blank"><strong>GUIDED GLACIER HIKE on Falljokull</strong></a> — Crampons on Vatnajokull, Europe's largest glacier (3.5h)</td><td class="dist">Guided</td></tr>
+    <tr><td>2:00 PM</td><td class="drive">&#128663;</td><td><strong>Drive to <a href=https://fosshotelglacierlagoon.com/ target="_blank">Fosshotel</a>.</strong> Drop bags, late lunch</td><td class="dist">50 km</td></tr>
+    <tr><td>3:15 PM</td><td class="activity">&#10052;</td><td><strong>Fjallsarlon</strong> — Quieter glacier lagoon, fewer crowds (45 min)</td><td class="dist">20 km</td></tr>
+    <tr><td>4:15 PM</td><td class="activity">&#10052;</td><td><a href=https://icelagoon.is/ target="_blank"><strong>Jokulsarlon</strong></a> — Zodiac boat tour among the icebergs (1h 15m)</td><td class="dist">10 km</td></tr>
+    <tr><td>5:30 PM</td><td class="activity">&#128142;</td><td><a href=https://guidetoiceland.is/travel-iceland/drive/diamond-beach target="_blank"><strong>Diamond Beach</strong></a> — Ice on black sand, golden hour (45 min)</td><td class="dist">1 km</td></tr>
+    <tr><td>6:30 PM</td><td class="activity">&#9832;</td><td>Private outdoor hot tub — glacier views!</td><td></td></tr>
+    <tr><td>7:30 PM</td><td class="meal">&#127860;</td><td>Dinner at Fosshotel</td><td></td></tr>
+
+  </table></div>
+
+  <div class="day-stats"><span>&#128663; 200 km / 124 mi (3h)</span><span>&#10052; Glacier hike on Vatnajokull (3.5h!)</span><span>&#10052; Fjallsarlon + Jokulsarlon</span><span>&#127961; Fosshotel</span></div>
+
+</div>
+
+<div class="day-card" style="margin:0 16px 16px">
+
+  <div class="day-header"><h3>Day 8 — Sun, Aug 17 &nbsp; <span style="color:var(--muted);font-weight:400">Stokksnes / Vestrahorn → Blue Lagoon Retreat</span></h3><span class="badge badge-amber">Moderate</span></div>
+
+  <div class="day-body"><table>
+
+    <tr><td>7:30 AM</td><td class="meal">&#127860;</td><td>Early breakfast at Fosshotel</td><td></td></tr>
+    <tr><td>8:15 AM</td><td class="drive">&#128663;</td><td>Drive east toward Hofn / Stokksnes</td><td class="dist">55 km</td></tr>
+    <tr><td>9:15 AM</td><td class="activity">&#127748;</td><td><strong>Stokksnes / Vestrahorn</strong> — Iceland's most iconic photo spot: jagged peaks over black-sand flats (1h)</td><td></td></tr>
+    <tr><td>10:15 AM</td><td class="meal">&#127860;</td><td><strong>Hofn</strong> — Langoustine lunch (Iceland's lobster capital) (1h)</td><td class="dist">15 km</td></tr>
+    <tr><td>11:30 AM</td><td class="drive">&#128663;</td><td><strong>Long south-coast drive west</strong> toward Reykjanes. <em>Optional: skip Stokksnes for a calmer ~4.5h day</em></td><td class="dist">380 km</td></tr>
+    <tr><td>4:30 PM</td><td>&#127968;</td><td><strong>Arrive <a href=https://www.bluelagoon.com/accommodation/retreat-hotel target="_blank">Blue Lagoon Retreat</a></strong></td><td></td></tr>
+    <tr><td>5:00 PM</td><td class="activity">&#9832;</td><td>Retreat Spa — unwind after the drive</td><td></td></tr>
+    <tr><td>7:30 PM</td><td class="meal">&#127860;</td><td><a href=https://www.bluelagoon.com/restaurant/moss target="_blank"><strong>Moss Restaurant</strong></a> — Anniversary tasting menu</td><td></td></tr>
+
+  </table></div>
+
+  <div class="day-stats"><span>&#128663; 450 km / 280 mi (5.5h)</span><span>&#127748; Stokksnes / Vestrahorn</span><span>&#127860; Hofn langoustine + Moss dinner</span><span>&#127961; The Retreat</span></div>
+
+</div>
+
+<div class="day-card" style="margin:0 16px 16px">
+
+  <div class="day-header"><h3>Day 9 — Mon, Aug 18 &nbsp; <span style="color:var(--muted);font-weight:400">Spa morning → Thingvellir → Reykjavik</span></h3><span class="badge badge-amber">Full day</span></div>
+
+  <div class="day-body"><table>
+
+    <tr><td>8:00 AM</td><td class="meal">&#127860;</td><td>Breakfast at the Retreat</td><td></td></tr>
+    <tr><td>9:00 AM</td><td class="activity">&#9832;</td><td><strong>Morning spa</strong> + <a href=https://www.bluelagoon.com/restaurant/lava target="_blank">Lava Restaurant</a> brunch</td><td></td></tr>
+    <tr><td>11:00 AM</td><td class="drive">&#128663;</td><td>Drive to Thingvellir (1h 15m)</td><td class="dist">85 km</td></tr>
+    <tr><td>12:15 PM</td><td class="activity">&#127748;</td><td><a href=https://www.thingvellir.is/en/ target="_blank"><strong>Thingvellir</strong></a> — Walk between tectonic plates, Oxararfoss, Parliament site (1h 15m)</td><td></td></tr>
+    <tr><td>1:45 PM</td><td class="drive">&#128663;</td><td>Drive to Reykjavik (45 min)</td><td class="dist">50 km</td></tr>
+    <tr><td>2:30 PM</td><td class="activity">&#127961;</td><td><a href=https://www.hallgrimskirkja.is/en target="_blank"><strong>Hallgrimskirkja</strong></a> tower + Laugavegur shopping (1h 30m)</td><td></td></tr>
+    <tr><td>4:00 PM</td><td class="activity">&#127961;</td><td>Old Harbor + <a href=https://www.harpa.is/en target="_blank">Harpa</a> + Sun Voyager (1h)</td><td></td></tr>
+    <tr><td>7:00 PM</td><td class="meal">&#127860;</td><td>Dinner at a top Reykjavik restaurant</td><td></td></tr>
+    <tr><td>9:00 PM</td><td class="drive">&#128663;</td><td>Drive back to the Retreat (45 min)</td><td class="dist">50 km</td></tr>
+
+  </table></div>
+
+  <div class="day-stats"><span>&#128663; 185 km (3h)</span><span>&#9832; Morning spa</span><span>&#127748; Thingvellir</span><span>&#127961; Reykjavik</span><span>&#127961; The Retreat</span></div>
+
+</div>
+
+<div class="day-card" style="margin:0 16px 16px">
+
+  <div class="day-header"><h3>Day 10 — Tue, Aug 19 &nbsp; <span style="color:var(--muted);font-weight:400">Reykjanes Peninsula → Fly Home</span></h3><span class="badge badge-blue">Departure</span></div>
+
+  <div class="day-body"><table>
+
+    <tr><td>8:00 AM</td><td class="meal">&#127860;</td><td>Breakfast. Check out</td><td></td></tr>
+    <tr><td>9:00 AM</td><td class="activity">&#127748;</td><td><strong>Bridge Between Continents</strong> — Stand between the N. American &amp; Eurasian plates (30 min)</td><td class="dist">20 km</td></tr>
+    <tr><td>9:45 AM</td><td class="activity">&#127748;</td><td><strong>Gunnuhver</strong> geothermal field + Reykjanesviti lighthouse (45 min)</td><td class="dist">10 km</td></tr>
+    <tr><td>10:45 AM</td><td class="activity">&#127748;</td><td><strong>Brimketill</strong> lava rock pool by the sea (20 min)</td><td class="dist">10 km</td></tr>
+    <tr><td>11:30 AM</td><td class="meal">&#127860;</td><td>Lunch in Grindavik / near KEF (45 min)</td><td class="dist">15 km</td></tr>
+    <tr><td>12:30 PM</td><td class="activity">&#127761;</td><td><em>Reykjanes is volcano country — check <a href=https://safetravel.is target="_blank">safetravel.is</a> for any eruption viewing or road closures</em></td><td></td></tr>
+    <tr><td>3:00 PM</td><td class="drive">&#128663;</td><td>Drive to KEF. Drop car at <a href=https://www.lotuscarrental.is/ target="_blank">Lotus</a></td><td class="dist">20 km</td></tr>
+    <tr><td>7:45 PM</td><td class="flight-icon">&#9992;</td><td><strong>Depart KEF</strong> — <a href=https://www.icelandair.com/ target="_blank">Icelandair</a> FI683 → Seattle</td><td class="dist">7,100 km</td></tr>
+    <tr><td>8:40 PM</td><td class="flight-icon">&#9992;</td><td>Arrive SEA → drive to Portland</td><td class="dist">280 km</td></tr>
+
+  </table></div>
+
+  <div class="day-stats"><span>&#128663; 80 km (1.5h) + 280 km (SEA→PDX)</span><span>&#127748; Reykjanes Peninsula</span><span>&#9992; 7h 55m flight</span></div>
+
+</div>
+
+<div style="padding:0 16px 16px">
+
+<h3 style="color:var(--accent)">Plan C — Distance Summary</h3>
+
+<table>
+
+  <tr><th>Day</th><th>Route</th><th>Distance</th><th>Time</th><th>Pace</th></tr>
+
+  <tr><td>1</td><td>Portland → Seattle + flight</td><td>280 km</td><td>3h</td><td><span class="badge badge-green">Easy</span></td></tr>
+  <tr><td>2</td><td>KEF → Snaefellsnes</td><td>207 km</td><td>3h</td><td><span class="badge badge-green">Easy</span></td></tr>
+  <tr><td>3</td><td>Snaefellsnes loop</td><td>137 km</td><td>2.5h</td><td><span class="badge badge-green">Easy</span></td></tr>
+  <tr><td>4</td><td>Budir → Golden Circle → Ranga</td><td>365 km</td><td>5h</td><td><span class="badge badge-amber">Full</span></td></tr>
+  <tr><td>5</td><td>Guided tours</td><td>0 km</td><td>0h</td><td><span class="badge badge-green">Relaxed</span></td></tr>
+  <tr><td>6</td><td>Ranga → South Coast → Klaustur</td><td>210 km</td><td>3h</td><td><span class="badge badge-green">Easy</span></td></tr>
+  <tr><td>7</td><td>Klaustur → Glacier hike → Jokulsarlon</td><td>200 km</td><td>3h</td><td><span class="badge badge-green">Glacier</span></td></tr>
+  <tr><td>8</td><td>Fosshotel → Stokksnes → Retreat</td><td>450 km</td><td>5.5h</td><td><span class="badge badge-amber">Moderate</span></td></tr>
+  <tr><td>9</td><td>Retreat → Thingvellir → Reykjavik</td><td>185 km</td><td>3h</td><td><span class="badge badge-amber">Full</span></td></tr>
+  <tr><td>10</td><td>Reykjanes → KEF</td><td>80 km</td><td>1.5h</td><td><span class="badge badge-green">Easy</span></td></tr>
+  <tr style="font-weight:700;background:var(--surface)"><td colspan="2">TOTAL (Iceland)</td><td>~1,830 km</td><td>~27h</td><td></td></tr>
+
+</table>
+
+</div>
+
+</div><!-- end plan-c -->
+
+
+
+<!-- ============ ACTION ITEMS ============ -->
+
+ 
+
+<h2>What You Need To Do — Per Plan</h2>
+
+ 
+
+<div class="three-col">
+
+<div>
+
+<h3 style="color:var(--orange)">Plan A — Ring Road + North</h3>
+<h3 style="font-size:13px;color:var(--green);margin-top:16px">KEEP (already booked)</h3>
+<ul class="checklist">
+  <li class="done"><a href=https://www.icelandair.com/ target="_blank">Icelandair</a> flights — $10,009</li>
+  <li class="done"><a href=https://www.hotelbudir.is/ target="_blank">Hotel Budir</a> — Aug 11-12 (2 nights)</li>
+  <li class="done"><a href=https://www.hotelranga.is/ target="_blank">Hotel Ranga</a> — Aug 13-14 (2 nights)</li>
+  <li class="done"><a href=https://fosshotelglacierlagoon.com/ target="_blank">Fosshotel Glacier Lagoon</a> — Aug 16 (1 night)</li>
+  <li class="done"><a href=https://www.bluelagoon.com/accommodation/retreat-hotel target="_blank">Blue Lagoon Retreat</a> — Aug 17-18 (2 nights)</li>
+  <li class="done">Thorsmork, Katla, Whale Watch, <a href=https://www.fridheimar.is/en target="_blank">Fridheimar</a></li>
+</ul>
+<h3 style="font-size:13px;color:var(--amber);margin-top:12px">CHANGE</h3>
+<ul class="checklist">
+  <li class="done"><strong><a href=https://www.lotuscarrental.is/ target="_blank">Lotus Car Rental</a>:</strong> Extended to 9 days &#10003;</li>
+  <li class="done"><strong><a href=https://www.wallypark.com/seattle-airport-parking target="_blank">WallyPark</a>:</strong> Rebooked 10 days · Ticket #8610984 · $353.11 &#10003;</li>
+</ul>
+<h3 style="font-size:13px;color:var(--blue);margin-top:12px">BOOK NEW</h3>
+<ul class="checklist">
+  <li class="done"><strong><a href=https://icelagoon.is/ target="_blank">Jokulsarlon Zodiac tour</a></strong> — Aug 17, 9:20 AM · Conf: JOK-00026489 · 33,200 ISK (~$240) &#10003;</li>
+  <li><strong><a href=https://www.keahotels.is/en/hotel-kea target="_blank">Hotel Kea (Akureyri)</a></strong> — 1 night, Aug 15 (not yet booked)</li>
+  <li class="done"><strong><a href=https://www.whalewatchingakureyri.is/ target="_blank">Akureyri Classic Whale Watching</a></strong> — Aug 15, 5:00 PM · Conf: AKS-93513317 · 29,000 ISK (~$210) &#10003;</li>
+</ul>
+
+
+</div>
+
+<div>
+
+<h3 style="color:var(--green)">Plan B — South Coast</h3>
+<h3 style="font-size:13px;color:var(--green);margin-top:16px">KEEP (already booked)</h3>
+<ul class="checklist">
+  <li class="done"><a href=https://www.icelandair.com/ target="_blank">Icelandair</a> flights — $10,009</li>
+  <li class="done"><a href=https://www.hotelbudir.is/ target="_blank">Hotel Budir</a> — Aug 11-12 (2 nights)</li>
+  <li class="done"><a href=https://www.hotelranga.is/ target="_blank">Hotel Ranga</a> — Aug 13-14 (2 nights)</li>
+  <li class="done"><a href=https://fosshotelglacierlagoon.com/ target="_blank">Fosshotel Glacier Lagoon</a> — Aug 16 (1 night)</li>
+  <li class="done"><a href=https://www.bluelagoon.com/accommodation/retreat-hotel target="_blank">Blue Lagoon Retreat</a> — Aug 17-18 (2 nights)</li>
+  <li class="done">Thorsmork, Katla, <a href=https://www.fridheimar.is/en target="_blank">Fridheimar</a></li>
+</ul>
+<h3 style="font-size:13px;color:var(--amber);margin-top:12px">CHANGE</h3>
+<ul class="checklist">
+  <li class="done"><strong><a href=https://www.lotuscarrental.is/ target="_blank">Lotus Car Rental</a>:</strong> Extended to 9 days &#10003;</li>
+  <li class="done"><strong><a href=https://www.wallypark.com/seattle-airport-parking target="_blank">WallyPark</a>:</strong> Rebooked 10 days · Ticket #8610984 · $353.11 &#10003;</li>
+</ul>
+<h3 style="font-size:13px;color:var(--blue);margin-top:12px">BOOK NEW</h3>
+<ul class="checklist">
+  <li><strong><a href=https://www.booking.com/searchresults.html?ss=Kirkjubaejarklaustur target="_blank">Kirkjubaejarklaustur hotel</a></strong> — Aug 15 (1 night)</li>
+  <li class="done"><strong><a href=https://icelagoon.is/ target="_blank">Jokulsarlon Zodiac tour</a></strong> — Aug 16, 1:50 PM · Conf: JOK-00026489 · 33,200 ISK (~$240) &#10003;</li>
+  <li><strong><a href=https://www.booking.com/searchresults.html?ss=Reykjavik target="_blank">Reykjavik hotel</a></strong> — Aug 18 (1 night)</li>
+  <li><strong><a href=https://elding.is/ target="_blank">Reykjavik whale watching</a></strong> — Aug 19, 9 AM</li>
+</ul>
+<h3 style="font-size:13px;color:var(--red);margin-top:12px">CANCEL</h3>
+<ul class="checklist">
+  <li><strong><a href=https://www.whalewatchingakureyri.is/ target="_blank">Whale Watching (Akureyri)</a></strong> — Cancel (if booked)</li>
+</ul>
+
+
+</div>
+
+<div>
+
+<h3 style="color:var(--accent)">Plan C — Glacier + Lower Loop</h3>
+<h3 style="font-size:13px;color:var(--green);margin-top:16px">KEEP (already booked)</h3>
+<ul class="checklist">
+  <li class="done"><a href=https://www.icelandair.com/ target="_blank">Icelandair</a> flights — $10,009</li>
+  <li class="done"><a href=https://www.hotelbudir.is/ target="_blank">Hotel Budir</a> — Aug 11-12 (2 nights)</li>
+  <li class="done"><a href=https://www.hotelranga.is/ target="_blank">Hotel Ranga</a> — Aug 13-14 (2 nights)</li>
+  <li class="done"><a href=https://fosshotelglacierlagoon.com/ target="_blank">Fosshotel Glacier Lagoon</a> — Aug 16 (1 night)</li>
+  <li class="done"><a href=https://www.bluelagoon.com/accommodation/retreat-hotel target="_blank">Blue Lagoon Retreat</a> — Aug 17-18 (2 nights)</li>
+  <li class="done">Thorsmork, Katla, <a href=https://www.fridheimar.is/en target="_blank">Fridheimar</a></li>
+</ul>
+<h3 style="font-size:13px;color:var(--amber);margin-top:12px">CHANGE</h3>
+<ul class="checklist">
+  <li class="done"><strong><a href=https://www.lotuscarrental.is/ target="_blank">Lotus Car Rental</a>:</strong> Extended to 9 days &#10003;</li>
+  <li class="done"><strong><a href=https://www.wallypark.com/seattle-airport-parking target="_blank">WallyPark</a>:</strong> Rebooked 10 days · Ticket #8610984 · $353.11 &#10003;</li>
+</ul>
+<h3 style="font-size:13px;color:var(--blue);margin-top:12px">BOOK NEW</h3>
+<ul class="checklist">
+  <li><strong><a href=https://www.booking.com/searchresults.html?ss=Kirkjubaejarklaustur target="_blank">Kirkjubaejarklaustur hotel</a></strong> — Aug 15 (1 night)</li>
+  <li><strong><a href=https://www.mountainguides.is/day-tours/glacier-hiking/ target="_blank">Skaftafell glacier hike</a></strong> — Aug 16, guided (~3.5h). Book ahead — fills in August!</li>
+  <li class="done"><strong><a href=https://icelagoon.is/ target="_blank">Jokulsarlon Zodiac tour</a></strong> — Aug 16 · Conf: JOK-00026489 · 33,200 ISK (~$240) &#10003;</li>
+</ul>
+<h3 style="font-size:13px;color:var(--red);margin-top:12px">CANCEL</h3>
+<ul class="checklist">
+  <li><strong><a href=https://www.whalewatchingakureyri.is/ target="_blank">Whale Watching (Akureyri)</a></strong> — Cancel (if booked; not used in Plan C)</li>
+</ul>
+
+
+</div>
+
+</div>
+
+ 
+
+<!-- ============ FINANCIAL ============ -->
+
+ 
+
+<h2>Financial Comparison</h2>
+
+ 
+
+<table>
+
+  <tr><th>Item</th><th style="color:var(--orange)">Plan A</th><th style="color:var(--green)">Plan B</th><th style="color:var(--accent)">Plan C</th></tr>
+
+  <tr><td>Icelandair flights</td><td>$10,009</td><td>$10,009</td><td>$10,009</td></tr>
+  <tr><td>Alaska refund</td><td style="color:var(--green)">-$10,875</td><td style="color:var(--green)">-$10,875</td><td style="color:var(--green)">-$10,875</td></tr>
+  <tr><td>Fosshotel Glacier Lagoon</td><td>$1,690</td><td>$1,690</td><td>$1,690</td></tr>
+  <tr><td>Hotel Kea (Akureyri)</td><td>+~$250 (book 1 night)</td><td>—</td><td>—</td></tr>
+  <tr><td>Kirkjubaejarklaustur hotel</td><td>—</td><td>+~$200</td><td>+~$200</td></tr>
+  <tr><td>Reykjavik hotel (1 night)</td><td>—</td><td>+~$250</td><td>— (stay at Retreat)</td></tr>
+  <tr><td>Reykjavik whale watching</td><td>—</td><td>+~$180</td><td>— (optional)</td></tr>
+  <tr><td>Skaftafell glacier hike</td><td>—</td><td>—</td><td>+~$200</td></tr>
+  <tr><td>Lotus Car Rental extension</td><td>+$710</td><td>+$710</td><td>+$710</td></tr>
+  <tr><td>WallyPark (rebooked 10 days)</td><td>+$69</td><td>+$69</td><td>+$69</td></tr>
+  <tr><td>Jokulsarlon boat tour</td><td>+$150</td><td>+$150</td><td>+$150</td></tr>
+  <tr style="font-weight:700;border-top:2px solid var(--border)"><td>Net new spend</td><td style="color:var(--amber)">~$1,465</td><td style="color:var(--amber)">~$1,645</td><td style="color:var(--amber)">~$1,330</td></tr>
+
+</table>
+
+ 
+
+<div class="callout callout-info">
+
+  <div class="callout-title">Cost difference is minimal</div>
+
+  All three plans land within ~$300 of each other. <strong>Plan C is actually the cheapest</strong> (~$1,330) — the glacier hike + Klaustur hotel cost less than Plan A's Hotel Kea or Plan B's Reykjavik hotel + whale watching, because Plan C stays 2 nights at the Retreat. The real difference is comfort and what you see, not cost.
+
+</div>
+
+ 
+
+<!-- ============ CONTACTS ============ -->
+
+ 
+
+<h2>Key Contacts</h2>
+
+<table>
+
+  <tr><th>Who</th><th>Phone</th><th>Website</th><th>Notes</th></tr>
+
+  <tr><td>Fosshotel Glacier Lagoon</td><td>+354 514 8300</td><td><a href="https://fosshotelglacierlagoon.com/" target="_blank">fosshotelglacierlagoon.com</a></td><td>Booking confirmation on file</td></tr>
+  <tr><td>Hotel Kea</td><td>+354 460 2000</td><td><a href="https://www.keahotels.is/en/hotel-kea" target="_blank">keahotels.is</a></td><td>Reduce/cancel nights</td></tr>
+  <tr><td>Lotus Car Rental</td><td>—</td><td><a href="https://www.lotuscarrental.is/" target="_blank">lotuscarrental.is</a></td><td>Conf #161121. Extend to 9 days</td></tr>
+  <tr><td>Blue Lagoon Retreat</td><td>+354 420 8800</td><td><a href="https://www.bluelagoon.com/accommodation/retreat-hotel" target="_blank">bluelagoon.com/retreat</a></td><td>Moss dinner reservation</td></tr>
+  <tr><td>WallyPark SEA</td><td>206-455-9611</td><td><a href="https://www.wallypark.com/seattle-airport-parking" target="_blank">wallypark.com</a></td><td>Ticket #8610984 · 10 days · $353.11</td></tr>
+  <tr><td>Jokulsarlon Boat Tours</td><td>+354 478 2222</td><td><a href="https://icelagoon.is/" target="_blank">icelagoon.is</a> · <a href=mailto:booking@jokulsarlon.is>booking@jokulsarlon.is</a></td><td>Conf: JOK-00026489 · Both dates booked (cancel one later)</td></tr>
+  <tr><td>Whale Watch (Akureyri)</td><td>—</td><td><a href="https://www.whalewatchingakureyri.is/" target="_blank">whalewatchingakureyri.is</a></td><td>Conf: AKS-93513317 · Plan A only. Cancel if Plan B</td></tr>
+  <tr><td>Whale Watch (Reykjavik)</td><td>—</td><td><a href="https://elding.is/" target="_blank">elding.is</a> or <a href=https://www.specialtours.is/ target="_blank">specialtours.is</a></td><td>Plan B only. Book for Aug 19</td></tr>
+
+</table>
+
+ 
+
+<!-- ============ INTERACTIVE MAP ============ -->
+
+ 
+
+<h2>Interactive Route Map</h2>
+
+<p style="font-size:13px;color:var(--muted);margin-bottom:8px">Click any day in the legend to zoom in. Toggle between Plan A and Plan B. Click map markers for details.</p>
+
+ 
+
+<div class="map-wrapper">
+
+  <div id="trip-map"></div>
+
+  <div class="map-panel">
+
+    <h3>Route Map</h3>
+
+    <div class="map-panel-sub">Click day to zoom · Toggle plans</div>
+
+    <div class="map-toggle">
+
+      <div class="map-toggle-btn active-a" id="mbtn-a" onclick="switchMapPlan('a')">Plan A</div>
+
+      <div class="map-toggle-btn" id="mbtn-b" onclick="switchMapPlan('b')">Plan B</div>
+
+      <div class="map-toggle-btn" id="mbtn-c" onclick="switchMapPlan('c')">Plan C</div>
+
+    </div>
+
+    <div id="map-legend"></div>
+
+  </div>
+
+</div>
+
+ 
+
+<p style="margin-top: 40px; color: var(--muted); font-size: 12px; text-align: center;">Plan prepared by Cursor AI — June 4, 2026</p>
+
+ 
+
+<script>
+
+function showPlan(plan) {
+
+  ['a','b','c'].forEach(function(p){
+
+    document.getElementById('plan-'+p).classList.remove('active');
+
+    document.getElementById('tab-'+p).classList.remove('active','active-'+p);
+
+  });
+
+  document.getElementById('plan-'+plan).classList.add('active');
+
+  document.getElementById('tab-'+plan).classList.add('active','active-'+plan);
+
+}
+
+</script>
+
+ 
+
+<script>
+
+(function(){
+
+const tripMap = L.map('trip-map', { center: [64.8, -18.5], zoom: 6 });
+
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+
+  attribution: '&copy; OSM &copy; CARTO', subdomains: 'abcd', maxZoom: 19
+
+}).addTo(tripMap);
+
+ 
+
+const mc = {"1": "#60a5fa", "2": "#34d399", "3": "#818cf8", "4": "#fbbf24", "5": "#a78bfa", "6": "#f87171", "7": "#fb923c", "8": "#4ade80", "9": "#c084fc", "10": "#38bdf8"};
+
+ 
+
+const cDays = [{"day": 1, "title": "Portland \u2192 Fly", "dist": "280 km / 3h", "stops": [], "route": []}, {"day": 2, "title": "KEF \u2192 Snaefellsnes", "dist": "207 km / 3h", "stops": [{"name": "KEF Airport", "lat": 63.985, "lng": -22.606, "detail": "Arrive 6:35 AM. Pick up car"}, {"name": "Borgarnes", "lat": 64.537, "lng": -21.921, "detail": "Coffee + bakery"}, {"name": "Gerduberg Cliffs", "lat": 64.754, "lng": -22.348, "detail": "Basalt columns"}, {"name": "Ytri Tunga", "lat": 64.77, "lng": -23.24, "detail": "Seal colony!"}, {"name": "Hotel Budir", "lat": 64.82, "lng": -23.38, "detail": "Check in. Black Church", "hotel": true}], "route": [[63.985, -22.606], [64.537, -21.921], [64.754, -22.348], [64.77, -23.24], [64.82, -23.38]]}, {"day": 3, "title": "SOLAR ECLIPSE", "dist": "137 km / 2.5h", "stops": [{"name": "Arnarstapi", "lat": 64.767, "lng": -23.628, "detail": "Coastal cliffs"}, {"name": "Raudfeldsgja", "lat": 64.761, "lng": -23.599, "detail": "Canyon"}, {"name": "Saxholl Crater", "lat": 64.84, "lng": -23.8, "detail": "Panoramic views"}, {"name": "Djupalonssandur", "lat": 64.75, "lng": -23.9, "detail": "Black beach"}, {"name": "Kirkjufell", "lat": 64.943, "lng": -23.306, "detail": "Most photographed mountain"}, {"name": "Hotel Budir \u2014 ECLIPSE", "lat": 64.822, "lng": -23.385, "detail": "Totality 5:46 PM!", "hotel": true}], "route": [[64.82, -23.38], [64.767, -23.628], [64.84, -23.8], [64.75, -23.9], [64.895, -23.71], [64.943, -23.306], [64.822, -23.385]]}, {"day": 4, "title": "Golden Circle \u2192 Ranga", "dist": "365 km / 5h", "stops": [{"name": "Fridheimar", "lat": 64.31, "lng": -20.3, "detail": "Tomato greenhouse lunch"}, {"name": "Strokkur Geysir", "lat": 64.313, "lng": -20.302, "detail": "Erupts every 6-10 min"}, {"name": "Gullfoss", "lat": 64.327, "lng": -20.123, "detail": "\"Golden Falls\""}, {"name": "Kerid Crater", "lat": 64.041, "lng": -20.885, "detail": "Blue lake in red crater"}, {"name": "Hotel Ranga", "lat": 63.83, "lng": -20.52, "detail": "Stargazing observatory", "hotel": true}], "route": [[64.82, -23.38], [64.537, -21.921], [64.31, -20.3], [64.327, -20.123], [64.041, -20.885], [63.83, -20.52]]}, {"day": 5, "title": "Thorsmork + Katla", "dist": "0 km (guided)", "stops": [{"name": "Thorsmork Valley", "lat": 63.68, "lng": -19.51, "detail": "6h superjeep"}, {"name": "Katla Ice Cave", "lat": 63.625, "lng": -19.1, "detail": "3h guided"}], "route": [[63.83, -20.52], [63.68, -19.51], [63.625, -19.1], [63.83, -20.52]]}];
+
+const aDays = [{"day": 6, "title": "Waterfalls \u2192 Akureyri \u2192 Whales", "dist": "470 km / 5.5h", "diff": true, "stops": [{"name": "Seljalandsfoss", "lat": 63.616, "lng": -19.993, "detail": "Walk behind the falls!"}, {"name": "Skogafoss", "lat": 63.532, "lng": -19.511, "detail": "370 steps to top"}, {"name": "Blonduos", "lat": 65.66, "lng": -20.29, "detail": "Lunch"}, {"name": "Hotel Kea, Akureyri", "lat": 65.684, "lng": -18.088, "detail": "Whale watching 4 PM", "hotel": true}], "route": [[63.83, -20.52], [63.616, -19.993], [63.532, -19.511], [63.75, -19.2], [64.2, -19.8], [64.8, -19.8], [65.66, -20.29], [65.684, -18.088]]}, {"day": 7, "title": "Myvatn + Dettifoss \u2192 Fosshotel", "dist": "542 km / 6h", "diff": true, "stops": [{"name": "Godafoss", "lat": 65.683, "lng": -17.55, "detail": "\"Waterfall of the Gods\""}, {"name": "Dimmuborgir", "lat": 65.59, "lng": -16.91, "detail": "\"Dark Castles\" lava"}, {"name": "Grjotagja Cave", "lat": 65.627, "lng": -16.883, "detail": "GoT hot spring"}, {"name": "Dettifoss", "lat": 65.815, "lng": -16.384, "detail": "Europe's most powerful waterfall!"}, {"name": "Egilsstadir", "lat": 65.253, "lng": -14.395, "detail": "Lunch stop"}, {"name": "Fosshotel Glacier Lagoon", "lat": 63.955, "lng": -16.752, "detail": "Executive Suite. Hot tub!", "hotel": true}], "route": [[65.684, -18.088], [65.683, -17.55], [65.59, -16.91], [65.815, -16.384], [65.253, -14.395], [64.5, -15.2], [63.955, -16.752]]}, {"day": 8, "title": "Jokulsarlon \u2192 Retreat", "dist": "466 km / 5.5h", "diff": true, "stops": [{"name": "Jokulsarlon", "lat": 64.078, "lng": -16.231, "detail": "Zodiac boat tour!"}, {"name": "Diamond Beach", "lat": 64.044, "lng": -16.178, "detail": "Ice on black sand"}, {"name": "Reynisfjara", "lat": 63.405, "lng": -19.065, "detail": "Black sand beach"}, {"name": "Vik", "lat": 63.419, "lng": -19.006, "detail": "Lunch"}, {"name": "Blue Lagoon Retreat", "lat": 63.88, "lng": -22.449, "detail": "Spa. Moss dinner!", "hotel": true}], "route": [[63.955, -16.752], [64.078, -16.231], [63.6, -17.5], [63.405, -19.065], [63.7, -19.8], [63.88, -22.449]]}, {"day": 9, "title": "Full Spa Day", "dist": "0 km", "stops": [{"name": "The Retreat \u2014 Spa", "lat": 63.882, "lng": -22.445, "detail": "All-day spa. Lava lunch", "hotel": true}], "route": []}, {"day": 10, "title": "Thingvellir \u2192 Reykjavik \u2192 Fly", "dist": "175 km / 2.5h", "stops": [{"name": "Thingvellir", "lat": 64.256, "lng": -21.129, "detail": "Tectonic rift. Parliament"}, {"name": "Reykjavik", "lat": 64.147, "lng": -21.943, "detail": "Hallgrimskirkja, Harpa"}, {"name": "KEF Airport", "lat": 63.985, "lng": -22.606, "detail": "Fly 7:45 PM \u2192 Seattle"}], "route": [[63.88, -22.449], [64.256, -21.129], [64.147, -21.943], [63.985, -22.606]]}];
+
+const bDays = [{"day": 6, "title": "Waterfalls \u2192 Reynisfjara \u2192 Vik", "dist": "195 km / 3h", "diff": true, "stops": [{"name": "Seljalandsfoss", "lat": 63.616, "lng": -19.993, "detail": "Walk behind the falls!"}, {"name": "Skogafoss", "lat": 63.532, "lng": -19.511, "detail": "370 steps to top"}, {"name": "Reynisfjara", "lat": 63.405, "lng": -19.065, "detail": "Black sand, basalt columns (1h!)"}, {"name": "Vik", "lat": 63.419, "lng": -19.006, "detail": "Lunch in Vik"}, {"name": "Fjadrargljufur Canyon", "lat": 63.771, "lng": -18.172, "detail": "Moss-covered gorge (45 min)"}, {"name": "Kirkjubaejarklaustur", "lat": 63.787, "lng": -18.001, "detail": "Hotel overnight", "hotel": true}], "route": [[63.83, -20.52], [63.616, -19.993], [63.532, -19.511], [63.405, -19.065], [63.419, -19.006], [63.771, -18.172], [63.787, -18.001]]}, {"day": 7, "title": "Skaftafell \u2192 Jokulsarlon", "dist": "180 km / 2.5h", "diff": true, "stops": [{"name": "Skaftafell / Svartifoss", "lat": 64.014, "lng": -16.975, "detail": "Basalt column waterfall (1.5h hike)"}, {"name": "Fosshotel Glacier Lagoon", "lat": 63.955, "lng": -16.752, "detail": "Drop bags. Lunch", "hotel": true}, {"name": "Jokulsarlon", "lat": 64.078, "lng": -16.231, "detail": "Zodiac tour! 3.5h at lagoon!"}, {"name": "Diamond Beach", "lat": 64.044, "lng": -16.178, "detail": "Ice on black sand. Golden hour"}], "route": [[63.787, -18.001], [64.014, -16.975], [63.955, -16.752], [64.078, -16.231], [64.044, -16.178], [63.955, -16.752]]}, {"day": 8, "title": "Morning Jokulsarlon \u2192 Retreat", "dist": "380 km / 4.5h", "diff": true, "stops": [{"name": "Jokulsarlon Morning", "lat": 64.08, "lng": -16.235, "detail": "Quiet morning light (1h)"}, {"name": "Vik", "lat": 63.419, "lng": -19.006, "detail": "Lunch stop"}, {"name": "Blue Lagoon Retreat", "lat": 63.88, "lng": -22.449, "detail": "Spa. Moss dinner!", "hotel": true}], "route": [[63.955, -16.752], [64.08, -16.235], [63.6, -17.5], [63.419, -19.006], [63.7, -19.8], [63.88, -22.449]]}, {"day": 9, "title": "Spa + Thingvellir + Reykjavik", "dist": "125 km / 2h", "diff": true, "stops": [{"name": "The Retreat \u2014 Spa", "lat": 63.882, "lng": -22.445, "detail": "Morning spa. Lava brunch"}, {"name": "Thingvellir", "lat": 64.256, "lng": -21.129, "detail": "Tectonic rift. Parliament"}, {"name": "Reykjavik", "lat": 64.147, "lng": -21.943, "detail": "Hallgrimskirkja, Harpa, Laugavegur", "hotel": true}], "route": [[63.88, -22.449], [64.256, -21.129], [64.147, -21.943]]}, {"day": 10, "title": "Whale Watch \u2192 Fly Home", "dist": "50 km / 45m", "diff": true, "stops": [{"name": "Whale Watching", "lat": 64.152, "lng": -21.955, "detail": "3h tour from Old Harbor"}, {"name": "Reykjavik", "lat": 64.147, "lng": -21.943, "detail": "Grandi food hall, Sun Voyager"}, {"name": "KEF Airport", "lat": 63.985, "lng": -22.606, "detail": "Fly 7:45 PM \u2192 Seattle"}], "route": [[64.147, -21.943], [63.985, -22.606]]}];
+
+const cpDays = [{"day": 6, "title": "Waterfalls \u2192 Reynisfjara \u2192 Klaustur", "dist": "210 km / 3h", "diff": true, "stops": [{"name": "Seljalandsfoss", "lat": 63.616, "lng": -19.993, "detail": "Walk behind + hidden Gljufrabui"}, {"name": "Skogafoss", "lat": 63.532, "lng": -19.511, "detail": "370 steps to top"}, {"name": "Dyrholaey", "lat": 63.401, "lng": -19.128, "detail": "Sea arch, puffins, viewpoint"}, {"name": "Reynisfjara", "lat": 63.405, "lng": -19.065, "detail": "Black sand, basalt columns"}, {"name": "Vik", "lat": 63.419, "lng": -19.006, "detail": "Lunch in Vik"}, {"name": "Fjadrargljufur Canyon", "lat": 63.771, "lng": -18.172, "detail": "Moss-covered gorge (45 min)"}, {"name": "Kirkjubaejarklaustur", "lat": 63.787, "lng": -18.001, "detail": "Hotel overnight", "hotel": true}], "route": [[63.83, -20.52], [63.616, -19.993], [63.532, -19.511], [63.401, -19.128], [63.405, -19.065], [63.419, -19.006], [63.771, -18.172], [63.787, -18.001]]}, {"day": 7, "title": "Glacier Hike \u2192 Jokulsarlon", "dist": "200 km / 3h", "diff": true, "stops": [{"name": "Skaftafell \u2014 Glacier Hike", "lat": 64.016, "lng": -16.966, "detail": "Crampons on Vatnajokull (3.5h)"}, {"name": "Svinafellsjokull", "lat": 64.0, "lng": -16.88, "detail": "Crevassed glacier tongue viewpoint"}, {"name": "Fosshotel Glacier Lagoon", "lat": 63.955, "lng": -16.752, "detail": "Hot tub. Glacier views", "hotel": true}, {"name": "Fjallsarlon", "lat": 64.012, "lng": -16.385, "detail": "Quieter glacier lagoon"}, {"name": "Jokulsarlon", "lat": 64.078, "lng": -16.231, "detail": "Zodiac boat tour!"}, {"name": "Diamond Beach", "lat": 64.044, "lng": -16.178, "detail": "Ice on black sand, golden hour"}], "route": [[63.787, -18.001], [64.016, -16.966], [64.0, -16.88], [63.955, -16.752], [64.012, -16.385], [64.078, -16.231], [64.044, -16.178], [63.955, -16.752]]}, {"day": 8, "title": "Stokksnes \u2192 Blue Lagoon Retreat", "dist": "450 km / 5.5h", "diff": true, "stops": [{"name": "Stokksnes / Vestrahorn", "lat": 64.247, "lng": -14.967, "detail": "Iceland's iconic photo spot"}, {"name": "Hofn", "lat": 64.254, "lng": -15.207, "detail": "Langoustine lunch"}, {"name": "Blue Lagoon Retreat", "lat": 63.88, "lng": -22.449, "detail": "Spa. Moss dinner!", "hotel": true}], "route": [[63.955, -16.752], [64.247, -14.967], [64.254, -15.207], [63.6, -17.5], [63.419, -19.006], [63.7, -19.8], [63.88, -22.449]]}, {"day": 9, "title": "Spa \u2192 Thingvellir \u2192 Reykjavik", "dist": "185 km / 3h", "diff": true, "stops": [{"name": "The Retreat \u2014 Spa", "lat": 63.882, "lng": -22.445, "detail": "Morning spa + Lava brunch"}, {"name": "Thingvellir", "lat": 64.256, "lng": -21.129, "detail": "Walk between tectonic plates"}, {"name": "Reykjavik", "lat": 64.147, "lng": -21.943, "detail": "Hallgrimskirkja, Harpa, Laugavegur"}, {"name": "Blue Lagoon Retreat", "lat": 63.88, "lng": -22.449, "detail": "Return for the night", "hotel": true}], "route": [[63.88, -22.449], [64.256, -21.129], [64.147, -21.943], [63.88, -22.449]]}, {"day": 10, "title": "Reykjanes Peninsula \u2192 Fly", "dist": "80 km / 1.5h", "diff": true, "stops": [{"name": "Bridge Between Continents", "lat": 63.868, "lng": -22.677, "detail": "Two tectonic plates"}, {"name": "Gunnuhver", "lat": 63.819, "lng": -22.685, "detail": "Geothermal field + lighthouse"}, {"name": "Brimketill", "lat": 63.834, "lng": -22.638, "detail": "Lava rock pool by the sea"}, {"name": "KEF Airport", "lat": 63.985, "lng": -22.606, "detail": "Fly 7:45 PM \u2192 Seattle"}], "route": [[63.88, -22.449], [63.868, -22.677], [63.819, -22.685], [63.834, -22.638], [63.985, -22.606]]}];
+
+
+
+let mPlan = 'a';
+
+const mLG = {common:L.layerGroup(),planA:L.layerGroup(),planB:L.layerGroup(),planC:L.layerGroup()};
+
+ 
+
+function mBuild(days, group) {
+
+  days.forEach(d => {
+
+    const col = mc[d.day];
+
+    if (d.route.length > 1) L.polyline(d.route,{color:col,weight:3,opacity:0.8,dashArray:d.day===5?'8,8':null}).addTo(group);
+
+    d.stops.forEach(s => {
+
+      const sz = s.hotel?14:10;
+
+      L.marker([s.lat,s.lng],{icon:L.divIcon({html:'<div style="width:'+sz+'px;height:'+sz+'px;background:'+col+';border:2px solid rgba(255,255,255,0.7);border-radius:50%;box-shadow:0 0 6px '+col+'88"></div>',className:'',iconSize:[sz,sz],iconAnchor:[sz/2,sz/2]})}).addTo(group)
+
+        .bindPopup('<div class="mp-day">Day '+d.day+'</div><div class="mp-title">'+s.name+'</div><div class="mp-detail">'+s.detail+'</div>',{className:'map-popup',maxWidth:250});
+
+      if (s.hotel) L.marker([s.lat,s.lng],{icon:L.divIcon({html:'<span style="color:'+col+';font-size:10px;font-weight:700;text-shadow:0 0 4px rgba(0,0,0,0.9),0 0 8px rgba(0,0,0,0.7);white-space:nowrap">'+s.name+'</span>',className:'',iconSize:[150,14],iconAnchor:[-10,7]})}).addTo(group);
+
+    });
+
+  });
+
+}
+
+ 
+
+mBuild(cDays,mLG.common); mBuild(aDays,mLG.planA); mBuild(bDays,mLG.planB); mBuild(cpDays,mLG.planC);
+
+mLG.common.addTo(tripMap); mLG.planA.addTo(tripMap);
+
+ 
+
+function mLegend(plan) {
+
+  const el = document.getElementById('map-legend');
+
+  el.innerHTML = '';
+
+  const all = plan==='a' ? [...cDays,...aDays] : plan==='b' ? [...cDays,...bDays] : [...cDays,...cpDays];
+
+  const tot = plan==='a' ? '~2,360 km / 30h' : plan==='b' ? '~1,550 km / 21h' : '~1,830 km / 27h';
+
+  let sec = false;
+
+  all.forEach(d => {
+
+    if (d.day===6 && !sec) {
+
+      const s = document.createElement('div');
+
+      s.className='mleg-section';
+
+      s.textContent = plan==='a' ? 'PLAN A — Ring Road + North' : plan==='b' ? 'PLAN B — South Coast' : 'PLAN C — Glacier + Lower Loop';
+
+      s.style.color = plan==='a' ? '#fb923c' : plan==='b' ? '#4ade80' : '#38bdf8';
+
+      s.style.marginTop = '6px';
+
+      el.appendChild(s); sec=true;
+
+    }
+
+    const r = document.createElement('div');
+
+    r.className = 'mleg-row'+(d.diff?' diff':'');
+
+    if (d.diff) r.style.borderLeftColor = mc[d.day];
+
+    r.innerHTML = '<div class="mleg-dot" style="background:'+mc[d.day]+'"></div><div class="mleg-label"><strong>'+d.day+'</strong> '+d.title+'</div><div class="mleg-dist">'+d.dist.split('/')[0]+'</div>';
+
+    r.onclick = function(){ if(d.route.length>1) tripMap.fitBounds(L.polyline(d.route).getBounds().pad(0.3)); else if(d.stops.length) tripMap.setView([d.stops[0].lat,d.stops[0].lng],10); };
+
+    el.appendChild(r);
+
+    if (d.day===5) { const dv=document.createElement('div'); dv.className='mleg-divider'; el.appendChild(dv); }
+
+  });
+
+  const t = document.createElement('div');
+
+  t.className='mleg-total';
+
+  t.innerHTML = '<strong style="color:#e2e8f0">Total:</strong> '+tot;
+
+  el.appendChild(t);
+
+}
+
+ 
+
+window.switchMapPlan = function(plan) {
+
+  mPlan = plan;
+
+  tripMap.removeLayer(mLG.planA); tripMap.removeLayer(mLG.planB); tripMap.removeLayer(mLG.planC);
+
+  document.getElementById('mbtn-a').className='map-toggle-btn';
+
+  document.getElementById('mbtn-b').className='map-toggle-btn';
+
+  document.getElementById('mbtn-c').className='map-toggle-btn';
+
+  if (plan==='a') { mLG.planA.addTo(tripMap); document.getElementById('mbtn-a').className='map-toggle-btn active-a'; }
+
+  else if (plan==='b') { mLG.planB.addTo(tripMap); document.getElementById('mbtn-b').className='map-toggle-btn active-b'; }
+
+  else { mLG.planC.addTo(tripMap); document.getElementById('mbtn-c').className='map-toggle-btn active-c'; }
+
+  mLegend(plan);
+
+};
+
+ 
+
+mLegend('a');
+
+tripMap.fitBounds([[63.3,-24.5],[66.2,-13.5]]);
+
+})();
+
+</script>
+
+ 
+
+</body>
+
+</html>
