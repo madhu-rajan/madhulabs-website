@@ -81,7 +81,7 @@
     <div class="container">
       <h1>Acura MDX Type S <span style="color:var(--amber)">w/Advance</span></h1>
       <p class="lede">Live inventory within 100 miles of 97229, model years 2024,2025,2026,2027.</p>
-      <p class="updated">Data as of Jul 28, 2026 at 1:10 AM PDT · <span id="hb">checked every 6 hours</span></p>
+      <p class="updated">Data as of Jul 28, 2026 at 1:24 PM PDT · <span id="hb">checked every 6 hours</span></p>
 
       <div class="stats"><div class="stat"><div class="stat-label">Listings</div><div class="stat-value">17</div></div><div class="stat"><div class="stat-label">Median</div><div class="stat-value">$77,900</div></div><div class="stat"><div class="stat-label">Average</div><div class="stat-value">$75,925</div></div><div class="stat"><div class="stat-label">Lowest</div><div class="stat-value">$52,556</div></div><div class="stat"><div class="stat-label">Great deals</div><div class="stat-value">2</div></div></div>
 
@@ -308,8 +308,8 @@
       </p>
 
       <div class="quota">
-        <div class="quota-head"><span>API quota</span><span>479 / 500 left</span></div>
-        <div class="quota-bar"><div class="quota-fill" style="width:95.8%"></div></div>
+        <div class="quota-head"><span>API quota</span><span>478 / 500 left</span></div>
+        <div class="quota-bar"><div class="quota-fill" style="width:95.6%"></div></div>
       </div>
     </div>
   </section>
@@ -340,9 +340,14 @@
       var when = new Date(hb.checked_at);
       var elapsed = Date.now() - when.getTime();
       var stale = elapsed > STALE_HOURS * 3600 * 1000;
-      el.textContent = (stale ? '\u26A0 last checked ' : 'checked ') + ago(elapsed);
-      el.className = stale ? 'hb-stale' : 'hb-ok';
-      el.title = when.toLocaleString();
+      var failed = hb.status && hb.status !== 'ok';
+      if (failed) {
+        el.textContent = '\u26A0 last check failed ' + ago(elapsed);
+      } else {
+        el.textContent = (stale ? '\u26A0 last checked ' : 'checked ') + ago(elapsed);
+      }
+      el.className = (failed || stale) ? 'hb-stale' : 'hb-ok';
+      el.title = when.toLocaleString() + (hb.detail ? ' \u2014 ' + hb.detail : '');
     })
     .catch(function () {
       el.textContent = 'checked every 6 hours';
