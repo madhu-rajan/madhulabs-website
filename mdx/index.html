@@ -47,6 +47,14 @@
     .empty { text-align:center; color:var(--gray-400); padding:40px; }
     .filters { margin-top:24px; font-size:.8rem; color:var(--gray-400); }
 
+    .quota { margin-top:24px; max-width:320px; }
+    .quota-head { display:flex; justify-content:space-between; font-size:.72rem; font-weight:600;
+                   text-transform:uppercase; letter-spacing:.06em; color:var(--gray-500); margin-bottom:6px; }
+    .quota-bar { height:6px; background:var(--gray-200); border-radius:3px; overflow:hidden; }
+    .quota-fill { height:100%; background:var(--green); border-radius:3px; }
+    .quota-fill.low { background:#C2410C; }
+    .quota.low .quota-head { color:#C2410C; }
+
     @media (max-width:640px) { .page { padding:32px 0 60px; } }
   </style>
 </head>
@@ -70,7 +78,7 @@
     <div class="container">
       <h1>Acura MDX Type S <span style="color:var(--amber)">w/Advance</span></h1>
       <p class="lede">Live inventory within 100 miles of 97229, model years 2024,2025,2026,2027.</p>
-      <p class="updated">Updated Jul 27, 2026 at 10:04 PM PDT</p>
+      <p class="updated">Updated Jul 27, 2026 at 10:11 PM PDT</p>
 
       <div class="stats"><div class="stat"><div class="stat-label">Listings</div><div class="stat-value">17</div></div><div class="stat"><div class="stat-label">Median</div><div class="stat-value">$77,900</div></div><div class="stat"><div class="stat-label">Average</div><div class="stat-value">$75,878</div></div><div class="stat"><div class="stat-label">Lowest</div><div class="stat-value">$52,556</div></div><div class="stat"><div class="stat-label">Great deals</div><div class="stat-value">2</div></div></div>
 
@@ -295,6 +303,11 @@
         Deal scores compare each listing to the median of this result set, not a national average.
         Price deltas are movement since tracking began.
       </p>
+
+      <div class="quota">
+        <div class="quota-head"><span>API quota</span><span>483 / 500 left</span></div>
+        <div class="quota-bar"><div class="quota-fill" style="width:96.6%"></div></div>
+      </div>
     </div>
   </section>
 
