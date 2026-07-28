@@ -47,6 +47,9 @@
     .empty { text-align:center; color:var(--gray-400); padding:40px; }
     .filters { margin-top:24px; font-size:.8rem; color:var(--gray-400); }
 
+    .hb-ok { color:var(--green); }
+    .hb-stale { color:#C2410C; font-weight:600; }
+
     .quota { margin-top:24px; max-width:320px; }
     .quota-head { display:flex; justify-content:space-between; font-size:.72rem; font-weight:600;
                    text-transform:uppercase; letter-spacing:.06em; color:var(--gray-500); margin-bottom:6px; }
@@ -78,7 +81,7 @@
     <div class="container">
       <h1>Acura MDX Type S <span style="color:var(--amber)">w/Advance</span></h1>
       <p class="lede">Live inventory within 100 miles of 97229, model years 2024,2025,2026,2027.</p>
-      <p class="updated">Data as of Jul 27, 2026 at 10:20 PM PDT · checked every 6 hours</p>
+      <p class="updated">Data as of Jul 27, 2026 at 10:34 PM PDT · <span id="hb">checked every 6 hours</span></p>
 
       <div class="stats"><div class="stat"><div class="stat-label">Listings</div><div class="stat-value">17</div></div><div class="stat"><div class="stat-label">Median</div><div class="stat-value">$77,900</div></div><div class="stat"><div class="stat-label">Average</div><div class="stat-value">$75,878</div></div><div class="stat"><div class="stat-label">Lowest</div><div class="stat-value">$52,556</div></div><div class="stat"><div class="stat-label">Great deals</div><div class="stat-value">2</div></div></div>
 
@@ -305,8 +308,8 @@
       </p>
 
       <div class="quota">
-        <div class="quota-head"><span>API quota</span><span>482 / 500 left</span></div>
-        <div class="quota-bar"><div class="quota-fill" style="width:96.4%"></div></div>
+        <div class="quota-head"><span>API quota</span><span>481 / 500 left</span></div>
+        <div class="quota-bar"><div class="quota-fill" style="width:96.2%"></div></div>
       </div>
     </div>
   </section>
@@ -314,6 +317,38 @@
   <footer class="footer">
     <div class="container footer-inner"><span>&copy; 2026 MadhuLabs</span></div>
   </footer>
+
+<script>
+(function () {
+  var el = document.getElementById('hb');
+  if (!el) return;
+  var STALE_HOURS = 8;  // schedule is 6h; allow slack for sleep/wake
+
+  function ago(ms) {
+    var m = Math.round(ms / 60000);
+    if (m < 2) return 'just now';
+    if (m < 60) return m + ' minutes ago';
+    var h = Math.round(m / 60);
+    if (h < 24) return h + (h === 1 ? ' hour ago' : ' hours ago');
+    var d = Math.round(h / 24);
+    return d + (d === 1 ? ' day ago' : ' days ago');
+  }
+
+  fetch('https://raw.githubusercontent.com/madhu-rajan/madhulabs-website/heartbeat/heartbeat.json', { cache: 'no-store' })
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (hb) {
+      var when = new Date(hb.checked_at);
+      var elapsed = Date.now() - when.getTime();
+      var stale = elapsed > STALE_HOURS * 3600 * 1000;
+      el.textContent = (stale ? '\u26A0 last checked ' : 'checked ') + ago(elapsed);
+      el.className = stale ? 'hb-stale' : 'hb-ok';
+      el.title = when.toLocaleString();
+    })
+    .catch(function () {
+      el.textContent = 'checked every 6 hours';
+    });
+})();
+</script>
 
 </body>
 </html>
