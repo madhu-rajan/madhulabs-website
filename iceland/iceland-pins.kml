@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2"><Document>
+<name>Iceland Trip — Aug 10-19 2026 (Plan D)</name>
+<description>Hotels, sights and stops for the trip. Import into Google My Maps.</description>
+<Folder><name>Day 2 — KEF → Snaefellsnes</name>
+<Placemark><name>KEF Airport</name><description>Day 2: Arrive 6:35 AM. Pick up car</description><Point><coordinates>-22.606,63.985,0</coordinates></Point></Placemark>
+<Placemark><name>Borgarnes</name><description>Day 2: Coffee + bakery</description><Point><coordinates>-21.921,64.537,0</coordinates></Point></Placemark>
+<Placemark><name>Gerduberg Cliffs</name><description>Day 2: Basalt columns</description><Point><coordinates>-22.348,64.754,0</coordinates></Point></Placemark>
+<Placemark><name>Ytri Tunga</name><description>Day 2: Seal colony!</description><Point><coordinates>-23.24,64.77,0</coordinates></Point></Placemark>
+<Placemark><name>Hotel Budir</name><description>Day 2: Check in. Black Church</description><Point><coordinates>-23.38,64.82,0</coordinates></Point></Placemark>
+</Folder>
+<Folder><name>Day 3 — SOLAR ECLIPSE</name>
+<Placemark><name>Arnarstapi</name><description>Day 3: Coastal cliffs</description><Point><coordinates>-23.628,64.767,0</coordinates></Point></Placemark>
+<Placemark><name>Raudfeldsgja</name><description>Day 3: Canyon</description><Point><coordinates>-23.599,64.761,0</coordinates></Point></Placemark>
+<Placemark><name>Saxholl Crater</name><description>Day 3: Panoramic views</description><Point><coordinates>-23.8,64.84,0</coordinates></Point></Placemark>
+<Placemark><name>Djupalonssandur</name><description>Day 3: Black beach</description><Point><coordinates>-23.9,64.75,0</coordinates></Point></Placemark>
+</Folder>
+<Folder><name>Day 4 — Búðir → Golden Circle → Ranga</name>
+<Placemark><name>Mika Restaurant</name><description>Day 4: Lunch 12:30 · Conf #8934174</description><Point><coordinates>-20.3,64.31,0</coordinates></Point></Placemark>
+<Placemark><name>Strokkur Geysir</name><description>Day 4: Erupts every 6-10 min</description><Point><coordinates>-20.302,64.313,0</coordinates></Point></Placemark>
+<Placemark><name>Gullfoss</name><description>Day 4: "Golden Falls"</description><Point><coordinates>-20.123,64.327,0</coordinates></Point></Placemark>
+<Placemark><name>Hotel Ranga</name><description>Day 4: Relaxed afternoon · observatory</description><Point><coordinates>-20.52,63.83,0</coordinates></Point></Placemark>
+</Folder>
+<Folder><name>Day 5 — Thorsmork + Katla</name>
+<Placemark><name>Thorsmork Valley</name><description>Day 5: 6h superjeep</description><Point><coordinates>-19.51,63.68,0</coordinates></Point></Placemark>
+<Placemark><name>Katla Ice Cave</name><description>Day 5: 3h guided</description><Point><coordinates>-19.1,63.625,0</coordinates></Point></Placemark>
+</Folder>
+<Folder><name>Day 6 — Waterfalls → Reynisfjara → Klaustur</name>
+<Placemark><name>Seljalandsfoss</name><description>Day 6: Walk behind + hidden Gljufrabui</description><Point><coordinates>-19.993,63.616,0</coordinates></Point></Placemark>
+<Placemark><name>Skogafoss</name><description>Day 6: 370 steps to top</description><Point><coordinates>-19.511,63.532,0</coordinates></Point></Placemark>
+<Placemark><name>Dyrholaey</name><description>Day 6: Sea arch, puffins, viewpoint</description><Point><coordinates>-19.128,63.401,0</coordinates></Point></Placemark>
+<Placemark><name>Reynisfjara</name><description>Day 6: Black sand, basalt columns</description><Point><coordinates>-19.065,63.405,0</coordinates></Point></Placemark>
+<Placemark><name>Vik</name><description>Day 6: Lunch in Vik</description><Point><coordinates>-19.006,63.419,0</coordinates></Point></Placemark>
+<Placemark><name>Fjadrargljufur Canyon</name><description>Day 6: Moss-covered gorge (45 min)</description><Point><coordinates>-18.172,63.771,0</coordinates></Point></Placemark>
+<Placemark><name>Kirkjubaejarklaustur</name><description>Day 6: Hotel overnight</description><Point><coordinates>-18.001,63.787,0</coordinates></Point></Placemark>
+</Folder>
+<Folder><name>Day 7 — Glacier Hike → Jokulsarlon</name>
+<Placemark><name>Skaftafell — Glacier Hike</name><description>Day 7: Crampons on Vatnajokull (3.5h)</description><Point><coordinates>-16.966,64.016,0</coordinates></Point></Placemark>
+<Placemark><name>Svinafellsjokull</name><description>Day 7: Crevassed glacier tongue viewpoint</description><Point><coordinates>-16.88,64.0,0</coordinates></Point></Placemark>
+<Placemark><name>Fosshotel Glacier Lagoon</name><description>Day 7: Hot tub. Glacier views</description><Point><coordinates>-16.752,63.955,0</coordinates></Point></Placemark>
+<Placemark><name>Fjallsarlon</name><description>Day 7: Quieter glacier lagoon</description><Point><coordinates>-16.385,64.012,0</coordinates></Point></Placemark>
+<Placemark><name>Jokulsarlon</name><description>Day 7: Zodiac boat tour!</description><Point><coordinates>-16.231,64.078,0</coordinates></Point></Placemark>
+<Placemark><name>Diamond Beach</name><description>Day 7: Ice on black sand, golden hour</description><Point><coordinates>-16.178,64.044,0</coordinates></Point></Placemark>
+</Folder>
+<Folder><name>Day 8 — Jokulsarlon Zodiac → Retreat</name>
+<Placemark><name>Stokksnes / Vestrahorn (optional)</name><description>Day 8: Iconic photo spot — adds ~3h</description><Point><coordinates>-14.967,64.247,0</coordinates></Point></Placemark>
+<Placemark><name>Hofn (optional)</name><description>Day 8: Langoustine lunch</description><Point><coordinates>-15.207,64.254,0</coordinates></Point></Placemark>
+<Placemark><name>Blue Lagoon Retreat</name><description>Day 8: Spa. Lava dinner!</description><Point><coordinates>-22.449,63.88,0</coordinates></Point></Placemark>
+</Folder>
+<Folder><name>Day 9 — Spa → Thingvellir → Reykjavik</name>
+<Placemark><name>The Retreat — Spa</name><description>Day 9: Long spa + breakfast until 11:00</description><Point><coordinates>-22.445,63.882,0</coordinates></Point></Placemark>
+<Placemark><name>Thingvellir</name><description>Day 9: Walk between tectonic plates</description><Point><coordinates>-21.129,64.256,0</coordinates></Point></Placemark>
+<Placemark><name>Reykjavik</name><description>Day 9: Hallgrimskirkja, Harpa, Laugavegur</description><Point><coordinates>-21.943,64.147,0</coordinates></Point></Placemark>
+</Folder>
+<Folder><name>Day 10 — Reykjanes Peninsula → Fly</name>
+<Placemark><name>Bridge Between Continents</name><description>Day 10: Two tectonic plates</description><Point><coordinates>-22.677,63.868,0</coordinates></Point></Placemark>
+<Placemark><name>Gunnuhver</name><description>Day 10: Geothermal field + lighthouse</description><Point><coordinates>-22.685,63.819,0</coordinates></Point></Placemark>
+<Placemark><name>Brimketill</name><description>Day 10: Lava rock pool by the sea</description><Point><coordinates>-22.638,63.834,0</coordinates></Point></Placemark>
+</Folder>
+</Document></kml>
