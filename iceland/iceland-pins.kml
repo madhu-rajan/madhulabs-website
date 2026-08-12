@@ -19,16 +19,16 @@
 <Placemark><name>Hotel Búðir</name><description>Day 2: Check in. Black Church</description><styleUrl>#day2</styleUrl><Point><coordinates>-23.38,64.82,0</coordinates></Point></Placemark>
 </Folder>
 <Folder><name>Day 3 — SOLAR ECLIPSE</name>
-<Placemark><name>Arnarstapi</name><description>Day 3: Coastal cliffs</description><styleUrl>#day3</styleUrl><Point><coordinates>-23.628,64.767,0</coordinates></Point></Placemark>
-<Placemark><name>Rauðfeldsgjá Gorge</name><description>Day 3: Canyon — Wade a shallow stream deep into the gorge — waterproof boots or bare feet</description><styleUrl>#day3</styleUrl><Point><coordinates>-23.599,64.761,0</coordinates></Point></Placemark>
-<Placemark><name>Saxhóll Crater</name><description>Day 3: Panoramic views — Steel steps up the crater — sturdy shoes</description><styleUrl>#day3</styleUrl><Point><coordinates>-23.8,64.84,0</coordinates></Point></Placemark>
-<Placemark><name>Djúpalónssandur Beach</name><description>Day 3: Black beach — Rocky descent to the beach — sturdy shoes</description><styleUrl>#day3</styleUrl><Point><coordinates>-23.9,64.75,0</coordinates></Point></Placemark>
 </Folder>
-<Folder><name>Day 4 — Búðir → Golden Circle → Ranga</name>
-<Placemark><name>Mika Restaurant</name><description>Day 4: Lunch 12:30 · Conf #8934174</description><styleUrl>#day4</styleUrl><Point><coordinates>-20.3,64.31,0</coordinates></Point></Placemark>
+<Folder><name>Day 4 — Arnarstapi/Gorge → Golden Circle → Ranga</name>
+<Placemark><name>Arnarstapi</name><description>Day 4: Cliffs + Gatklettur arch (makeup ~35 min)</description><styleUrl>#day4</styleUrl><Point><coordinates>-23.628,64.767,0</coordinates></Point></Placemark>
+<Placemark><name>Raudfeldsgja Gorge</name><description>Day 4: Quick peek into the canyon (~30 min) — Wade a shallow stream deep into the gorge — waterproof boots or bare feet</description><styleUrl>#day4</styleUrl><Point><coordinates>-23.599,64.761,0</coordinates></Point></Placemark>
+<Placemark><name>Deildartunguhver</name><description>Day 4: Europe's most powerful hot spring (~20 min)</description><styleUrl>#day4</styleUrl><Point><coordinates>-21.411,64.663,0</coordinates></Point></Placemark>
+<Placemark><name>Hraunfossar &amp; Barnafoss (optional)</name><description>Day 4: Lava-field waterfalls — optional +1h detour</description><styleUrl>#day4</styleUrl><Point><coordinates>-20.978,64.702,0</coordinates></Point></Placemark>
+<Placemark><name>Mika Restaurant</name><description>Day 4: Lunch 15:00 · Conf #8934174</description><styleUrl>#day4</styleUrl><Point><coordinates>-20.3,64.31,0</coordinates></Point></Placemark>
 <Placemark><name>Strokkur Geysir</name><description>Day 4: Erupts every 6-10 min</description><styleUrl>#day4</styleUrl><Point><coordinates>-20.302,64.313,0</coordinates></Point></Placemark>
 <Placemark><name>Gullfoss</name><description>Day 4: "Golden Falls"</description><styleUrl>#day4</styleUrl><Point><coordinates>-20.123,64.327,0</coordinates></Point></Placemark>
-<Placemark><name>Hotel Ranga</name><description>Day 4: Relaxed afternoon · observatory</description><styleUrl>#day4</styleUrl><Point><coordinates>-20.52,63.83,0</coordinates></Point></Placemark>
+<Placemark><name>Hotel Ranga</name><description>Day 4: Relaxed evening · observatory</description><styleUrl>#day4</styleUrl><Point><coordinates>-20.52,63.83,0</coordinates></Point></Placemark>
 </Folder>
 <Folder><name>Day 5 — Thorsmork + Katla</name>
 <Placemark><name>Þórsmörk Valley</name><description>Day 5: 6h superjeep — Waterproof hiking boots — trail walking, damp ground; guide fords the rivers</description><styleUrl>#day5</styleUrl><Point><coordinates>-19.51,63.68,0</coordinates></Point></Placemark>
