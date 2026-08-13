@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2"><Document>
+<name>Day 4B — Hraunfossar (paved) + casual food</name>
+<Style id="p"><IconStyle><color>ff008cfb</color><scale>1.1</scale><Icon><href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href></Icon></IconStyle></Style>
+<Style id="ln"><LineStyle><color>ff008cfb</color><width>4</width></LineStyle></Style>
+<Placemark><name>Búðir — depart 9:30 AM</name><description>Start</description><styleUrl>#p</styleUrl><Point><coordinates>-23.38,64.82,0</coordinates></Point></Placemark>
+<Placemark><name>Borgarnes — pit stop + food</name><description>Bathroom + grab food (~10:45)</description><styleUrl>#p</styleUrl><Point><coordinates>-21.921,64.537,0</coordinates></Point></Placemark>
+<Placemark><name>Deildartunguhver</name><description>Hot spring (~11:30, 20 min)</description><styleUrl>#p</styleUrl><Point><coordinates>-21.411,64.663,0</coordinates></Point></Placemark>
+<Placemark><name>Hraunfossar &amp; Barnafoss</name><description>Lava waterfalls + picnic (~12:15, 1h)</description><styleUrl>#p</styleUrl><Point><coordinates>-20.978,64.702,0</coordinates></Point></Placemark>
+<Placemark><name>Strokkur Geysir</name><description>~4:00, 30 min</description><styleUrl>#p</styleUrl><Point><coordinates>-20.302,64.313,0</coordinates></Point></Placemark>
+<Placemark><name>Gullfoss</name><description>Golden Falls (~4:45, 45 min)</description><styleUrl>#p</styleUrl><Point><coordinates>-20.123,64.327,0</coordinates></Point></Placemark>
+<Placemark><name>Hotel Ranga</name><description>Arrive ~6:45 PM</description><styleUrl>#p</styleUrl><Point><coordinates>-20.52,63.83,0</coordinates></Point></Placemark>
+<Placemark><name>Route</name><styleUrl>#ln</styleUrl><LineString><tessellate>1</tessellate><coordinates>-23.38,64.82,0 -21.921,64.537,0 -21.411,64.663,0 -20.978,64.702,0 -21.921,64.537,0 -21.129,64.256,0 -20.302,64.313,0 -20.123,64.327,0 -20.52,63.83,0</coordinates></LineString></Placemark>
+</Document></kml>
