@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2"><Document>
-<name>Day 4C — Hraunfossar (gravel Kaldidalur) + casual food</name>
+<name>Day 4C — Hraunfossar (gravel Kaldidalur) — NOT RECOMMENDED</name>
 <Style id="p"><IconStyle><color>ff3539e5</color><scale>1.1</scale><Icon><href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href></Icon></IconStyle></Style>
 <Style id="ln"><LineStyle><color>ff3539e5</color><width>4</width></LineStyle></Style>
 <Placemark><name>Búðir — depart 9:30 AM</name><description>Start</description><styleUrl>#p</styleUrl><Point><coordinates>-23.38,64.82,0</coordinates></Point></Placemark>
