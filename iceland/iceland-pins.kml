@@ -20,10 +20,8 @@
 </Folder>
 <Folder><name>Day 3 — SOLAR ECLIPSE</name>
 </Folder>
-<Folder><name>Day 4 — Arnarstapi/Gorge → Golden Circle → Ranga</name>
-<Placemark><name>Arnarstapi</name><description>Day 4: Gatklettur arch + Bárður statue (quick ~15-20 min)</description><styleUrl>#day4</styleUrl><Point><coordinates>-23.628,64.767,0</coordinates></Point></Placemark>
-<Placemark><name>Raudfeldsgja Gorge</name><description>Day 4: Quick peek into the canyon (~30 min) — Wade a shallow stream deep into the gorge — waterproof boots or bare feet</description><styleUrl>#day4</styleUrl><Point><coordinates>-23.599,64.761,0</coordinates></Point></Placemark>
-<Placemark><name>Deildartunguhver</name><description>Day 4: Europe's most powerful hot spring (~20 min)</description><styleUrl>#day4</styleUrl><Point><coordinates>-21.411,64.663,0</coordinates></Point></Placemark>
+<Folder><name>Day 4 — Búðir → Deildartunguhver → Golden Circle → Ranga</name>
+<Placemark><name>Deildartunguhver</name><description>Day 4: Europe's most powerful hot spring (~25 min, viewing only)</description><styleUrl>#day4</styleUrl><Point><coordinates>-21.411,64.663,0</coordinates></Point></Placemark>
 <Placemark><name>Hraunfossar &amp; Barnafoss (optional)</name><description>Day 4: Lava-field waterfalls — optional +1h detour</description><styleUrl>#day4</styleUrl><Point><coordinates>-20.978,64.702,0</coordinates></Point></Placemark>
 <Placemark><name>Mika Restaurant</name><description>Day 4: Lunch 15:00 · Conf #8934174</description><styleUrl>#day4</styleUrl><Point><coordinates>-20.3,64.31,0</coordinates></Point></Placemark>
 <Placemark><name>Strokkur Geysir</name><description>Day 4: Erupts every 6-10 min</description><styleUrl>#day4</styleUrl><Point><coordinates>-20.302,64.313,0</coordinates></Point></Placemark>
