@@ -41,15 +41,14 @@
 <Placemark><name>Fjaðrárgljúfur Canyon</name><description>Day 6: Moss-covered gorge (45 min) — Rim trail, can be muddy — sturdy shoes</description><styleUrl>#day6</styleUrl><Point><coordinates>-18.172,63.771,0</coordinates></Point></Placemark>
 <Placemark><name>Magma Hotel (Kirkjubæjarklaustur)</name><description>Day 6: Aug 15-16 · Conf EW78CP66MN</description><styleUrl>#day6</styleUrl><Point><coordinates>-18.085,63.772,0</coordinates></Point></Placemark>
 </Folder>
-<Folder><name>Day 7 — Glacier Hike → Jokulsarlon</name>
+<Folder><name>Day 7 — Glacier Hike → Fosshotel (relax)</name>
 <Placemark><name>Skaftafell — Glacier Hike</name><description>Day 7: Crampons on Vatnajokull (3.5h) — Stiff hiking boots REQUIRED — crampons strap on. Warm + waterproof. Rentals if needed</description><styleUrl>#day7</styleUrl><Point><coordinates>-16.966,64.016,0</coordinates></Point></Placemark>
 <Placemark><name>Svínafellsjökull</name><description>Day 7: Crevassed glacier tongue viewpoint — Uneven glacier-tongue viewpoint — sturdy shoes</description><styleUrl>#day7</styleUrl><Point><coordinates>-16.88,64.0,0</coordinates></Point></Placemark>
-<Placemark><name>Fosshotel Glacier Lagoon</name><description>Day 7: Hot tub. Glacier views</description><styleUrl>#day7</styleUrl><Point><coordinates>-16.752,63.955,0</coordinates></Point></Placemark>
-<Placemark><name>Fjallsárlón</name><description>Day 7: Quieter glacier lagoon</description><styleUrl>#day7</styleUrl><Point><coordinates>-16.385,64.012,0</coordinates></Point></Placemark>
-<Placemark><name>Jökulsárlón</name><description>Day 7: Zodiac boat tour!</description><styleUrl>#day7</styleUrl><Point><coordinates>-16.231,64.078,0</coordinates></Point></Placemark>
-<Placemark><name>Diamond Beach</name><description>Day 7: Ice on black sand, golden hour</description><styleUrl>#day7</styleUrl><Point><coordinates>-16.178,64.044,0</coordinates></Point></Placemark>
+<Placemark><name>Fosshotel Glacier Lagoon</name><description>Day 7: Hot tub + rest. Glacier views</description><styleUrl>#day7</styleUrl><Point><coordinates>-16.752,63.955,0</coordinates></Point></Placemark>
 </Folder>
 <Folder><name>Day 8 — Jokulsarlon Zodiac → Retreat</name>
+<Placemark><name>Jökulsárlón — Zodiac 9:20 AM</name><description>Day 8: Morning boat among the icebergs — Boat gives you a warm flotation suit — dress warm underneath; expect splashes</description><styleUrl>#day8</styleUrl><Point><coordinates>-16.231,64.078,0</coordinates></Point></Placemark>
+<Placemark><name>Diamond Beach</name><description>Day 8: Ice on black sand — morning walk (or golden hour Day 7 eve)</description><styleUrl>#day8</styleUrl><Point><coordinates>-16.178,64.044,0</coordinates></Point></Placemark>
 <Placemark><name>Stokksnes / Vestrahorn (optional)</name><description>Day 8: Iconic photo spot — adds ~3h</description><styleUrl>#day8</styleUrl><Point><coordinates>-14.967,64.247,0</coordinates></Point></Placemark>
 <Placemark><name>Höfn (optional)</name><description>Day 8: Langoustine lunch</description><styleUrl>#day8</styleUrl><Point><coordinates>-15.207,64.254,0</coordinates></Point></Placemark>
 <Placemark><name>Blue Lagoon Retreat</name><description>Day 8: Spa. Lava dinner!</description><styleUrl>#day8</styleUrl><Point><coordinates>-22.449,63.88,0</coordinates></Point></Placemark>
