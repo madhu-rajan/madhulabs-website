@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Christmas Trip — Price Board</title>
+<meta name="description" content="Christmas 2026 all-inclusive options: Riviera Maya, Cozumel, Puerto Vallarta and Costa Rica. Resorts and flights priced separately." />
+<meta name="robots" content="noindex" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<style>
+  :root { --bg:#0f172a; --surface:#1e293b; --line:#334155; --ink:#e2e8f0; --muted:#94a3b8; --tint:#16213a; --accent:#38bdf8; --good:#4ade80; --warn:#fbbf24; --bad:#f87171; color-scheme: dark; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:var(--bg); color:var(--ink); line-height:1.6; padding:24px 16px 64px; }
+  main { max-width:1060px; margin:0 auto; display:flex; flex-direction:column; gap:32px; }
+  h1 { font-size:28px; color:#fff; margin-bottom:4px; }
+  h2 { font-size:20px; color:var(--accent); border-bottom:1px solid var(--line); padding-bottom:6px; }
+  h3 { font-size:16px; color:#fff; }
+  p { font-size:14px; }
+  .label { font-size:12px; letter-spacing:.5px; text-transform:uppercase; color:var(--muted); font-weight:600; }
+  .lede { color:var(--muted); max-width:70ch; margin-top:8px; }
+  .caveat { border-left:3px solid var(--warn); padding:10px 14px; background:var(--surface); border-radius:0 6px 6px 0; }
+  section { display:flex; flex-direction:column; gap:12px; }
+  .tablewrap { overflow-x:auto; border:1px solid var(--line); border-radius:8px; background:var(--surface); }
+  table { border-collapse:collapse; width:100%; min-width:760px; font-size:13px; }
+  th,td { text-align:left; padding:8px 12px; border-bottom:1px solid var(--line); vertical-align:top; }
+  tr:last-child td { border-bottom:0; }
+  th { color:var(--muted); font-weight:600; text-transform:uppercase; font-size:11px; letter-spacing:.5px; background:var(--tint); border-bottom:2px solid var(--line); }
+  tr.grp td { background:var(--tint); color:var(--accent); font-weight:600; }
+  tr:hover td { background:rgba(56,189,248,0.04); }
+  td.num, th.num { text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .pill { display:inline-block; font-size:11px; font-weight:600; padding:2px 8px; border-radius:4px; white-space:nowrap; }
+  .pill.good { background:rgba(74,222,128,.15); } .pill.warn { background:rgba(251,191,36,.15); } .pill.bad { background:rgba(248,113,113,.15); }
+  .good { color:var(--good); } .warn { color:var(--warn); } .bad { color:var(--bad); } .muted { color:var(--muted); }
+  .small { font-size:12px; }
+  input[type=number] { width:96px; font:inherit; padding:4px 6px; border:1px solid var(--line); border-radius:4px; background:var(--bg); color:var(--ink); }
+  select { font:inherit; padding:6px 8px; border:1px solid var(--line); border-radius:4px; background:var(--bg); color:var(--ink); max-width:100%; }
+  input:focus-visible, select:focus-visible { outline:2px solid var(--accent); outline-offset:1px; }
+  .builder { background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:20px; display:flex; flex-direction:column; gap:16px; }
+  .pickers { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; }
+  .pickers label { display:flex; flex-direction:column; gap:4px; font-size:12px; color:var(--muted); font-weight:600; }
+  .total { display:flex; flex-wrap:wrap; gap:8px 28px; align-items:baseline; }
+  .total b { font-size:30px; color:#fff; font-variant-numeric:tabular-nums; }
+  .meter { height:12px; border-radius:6px; background:var(--tint); position:relative; overflow:hidden; }
+  .meter i { position:absolute; top:0; bottom:0; background:var(--accent); }
+  .meter u { position:absolute; top:0; bottom:0; width:2px; background:#fff; }
+  a { color:var(--accent); } .src { font-size:12px; color:var(--muted); } .src a { color:var(--muted); }
+</style>
+</head>
+<body>
+<main>
+<header>
+  <div class="label">Dec 21 – 28, 2026 · 4 adults · Portland</div>
+  <h1>Christmas Price Board</h1>
+  <p class="lede">Resorts and flights priced separately for Riviera Maya, Cozumel, Puerto Vallarta and Costa Rica. Type real quotes into the "Your quote" boxes and the trip builder at the bottom adds them up against $12,000.</p>
+</header>
+
+<p class="caveat"><b>These are estimates, not availability.</b> I can't see live room inventory or fares for Dec 21–28. Each "listed" price is a rate I found online for other dates, and each Christmas estimate is my markup on it (roughly 1.5 to 2 times for resorts, and higher fares for flights). Treat them as a way to rank options, then confirm on the resort or airline site.</p>
+
+<section>
+  <h2>By destination</h2>
+  <div class="tablewrap"><table id="summary"></table></div>
+  <p class="small muted">Each row pairs the cheapest well-rated resort in that destination with that destination's flight estimate. Resort = 2 rooms for 7 nights, plus 15% for taxes and fees. Flights = 4 round trips.</p>
+</section>
+
+<section>
+  <h2>Resorts</h2>
+  <p class="muted">Per room means a double-occupancy room. Four adults need 2 rooms, which is how every total here is built. A 2-bedroom suite usually costs about the same as two rooms or a bit less, so ask for both quotes. Adults-only resorts are fine for your group.</p>
+  <div class="tablewrap"><table id="resorts"></table></div>
+</section>
+
+<section>
+  <h2>Flights from Portland</h2>
+  <div class="tablewrap"><table id="flights"></table></div>
+</section>
+
+<section>
+  <h2>Trip builder</h2>
+  <div class="builder">
+    <div class="pickers">
+      <label for="pickResort">Resort<select id="pickResort"></select></label>
+      <label for="pickFlight">Flight<select id="pickFlight"></select></label>
+    </div>
+    <label class="small"><input type="checkbox" id="tax" checked> Add 15% taxes and fees to resort estimates (not applied to quotes you type in)</label>
+    <div class="total"><span class="label">Estimated total</span><b id="totalText">–</b><span id="fitText"></span></div>
+    <div class="meter" aria-hidden="true"><i id="rangeBar"></i><u id="budgetLine"></u></div>
+    <p class="small muted" id="budgetNote"></p>
+  </div>
+</section>
+
+<p class="src">Sources, Oct 21 2026 searches: <a href="https://www.tripadvisor.com/HotelsList-Riviera_Maya-Family_friendly-All_Inclusive-Resort-zfp13205608.html">Tripadvisor Riviera Maya</a>, <a href="https://www.orbitz.com/lp/theme-vacations/all-inclusive-vacations/602901/Riviera-Maya">Orbitz Riviera Maya</a>, <a href="https://cozumel.palaceresorts.com/offers/holiday-vacations">Cozumel Palace</a>, <a href="https://www.vacationpro.co/blog/cozumel-all-inclusive-resorts">Cozumel guide</a>, <a href="https://all-inclusive-guide.com/guides/best-all-inclusive-resorts-puerto-vallarta/">Puerto Vallarta guide</a>, <a href="https://www.tripadvisor.com/HotelsList-Puerto_Vallarta-All-Inclusive-Resorts-zfp41325.html">Tripadvisor Puerto Vallarta</a>, <a href="https://www.vacationscostarica.com/all-inclusive/resorts-for-families/">Costa Rica families</a>, <a href="https://all-inclusive-guide.com/resorts/riu-guanacaste-costa-rica/">Riu Guanacaste</a>, <a href="https://www.alaskaair.com/en/flights-from-portland-to-puerto-vallarta">Alaska PDX–PVR</a>, <a href="https://www.farecompare.com/flights/Portland-PDX/Liberia-LIR/market.html">FareCompare PDX–LIR</a>, <a href="https://www.google.com/travel/flights/flights-from-portland-to-cozumel.html?gl=US&hl=en-US">Google Flights PDX–CZM</a>, <a href="https://www.momondo.com/flights/portland/cancun">Momondo PDX–CUN</a>.</p>
+</main>
+
+<script>
+(function(){
+  var NIGHTS=7, ROOMS=2, PAX=4, BUDGET=12000, TAX=0.15;
+  // listed = rate found online (per room per night, other dates); est = my Christmas-week range per room per night
+  var R=[
+    {g:'Riviera Maya'},
+    {id:'r1',n:'Hyatt Vivid Playa del Carmen',listed:'$290–579',lo:450,hi:700,c:'Rate found'},
+    {id:'r2',n:'Hilton Cancun All-Inclusive (Puerto Morelos)',listed:'$385–611',lo:550,hi:850,c:'Rate found',note:'Family 2-bedroom suite available'},
+    {id:'r3',n:'Excellence Riviera Cancun (adults-only)',listed:'$432–592',lo:650,hi:900,c:'Rate found'},
+    {id:'r4',n:'Secrets Maroma Beach (adults-only)',listed:'$495–510',lo:750,hi:1000,c:'Rate found'},
+    {id:'r5',n:'Grand Velas Riviera Maya',listed:'$724+ (up to $1,400 peak)',lo:1000,hi:1500,c:'Rate found'},
+    {g:'Cozumel'},
+    {id:'c1',n:'Iberostar Waves Cozumel',listed:'$216–234',lo:350,hi:500,c:'Rate found',note:'Rated 4.3, about 9,000 reviews'},
+    {id:'c2',n:'Fiesta Americana Cozumel',listed:'none found',lo:400,hi:600,c:'Estimate only',note:'Rated 4.5'},
+    {id:'c3',n:'Cozumel Palace',listed:'about $507 start',lo:500,hi:800,c:'Rate found',note:'Rated 4.7. Holiday promo up to 40% off if booked by Oct 31'},
+    {id:'c4',n:'Explorean Cozumel',listed:'none found',lo:600,hi:900,c:'Estimate only',note:'Rated 4.7'},
+    {g:'Puerto Vallarta'},
+    {id:'p1',n:'Villa del Palmar Flamingo Beach',listed:'$180–210 (budget tier)',lo:300,hi:450,c:'Rate found'},
+    {id:'p2',n:'Hilton Puerto Vallarta Resort',listed:'$240–300 (mid tier)',lo:380,hi:550,c:'Rate found',note:'Rated 4.5, about 9,800 reviews'},
+    {id:'p3',n:'Hyatt Ziva Puerto Vallarta',listed:'none found',lo:450,hi:650,c:'Estimate only',note:'Best family-focused pick in town'},
+    {id:'p4',n:'Grand Velas Riviera Nayarit',listed:'$620+',lo:900,hi:1300,c:'Rate found'},
+    {g:'Costa Rica (Guanacaste)'},
+    {id:'k1',n:'Hotel Riu Guanacaste',listed:'$183–400',lo:300,hi:500,c:'Rate found',note:'Water park, 6 pools'},
+    {id:'k2',n:'Margaritaville Beach Resort Playa Flamingo',listed:'none found',lo:350,hi:550,c:'Estimate only'},
+    {id:'k3',n:'Dreams Las Mareas',listed:'none found',lo:450,hi:700,c:'Estimate only'},
+    {id:'k4',n:'Westin Reserva Conchal',listed:'$400–480+',lo:600,hi:900,c:'Rate found'}
+  ];
+  // listed = fares found for other dates; lo/hi = my Christmas-week estimate per person, round trip
+  var F=[
+    {id:'fCUN',n:'Cancun (CUN)',route:'Riviera Maya',listed:'$350 (1 stop), $520 Delta, $691 Alaska nonstop',lo:650,hi:1000,note:'Alaska nonstop, about 6 hours'},
+    {id:'fCZM',n:'Cozumel (CZM)',route:'Cozumel',listed:'$635 American; usual $610–860',lo:700,hi:1000,note:'1 stop, about 12 hours. Or fly to Cancun and take the ferry'},
+    {id:'fPVR',n:'Puerto Vallarta (PVR)',route:'Puerto Vallarta',listed:'Nonstop one-way from $239; round trips $418–516',lo:550,hi:850,note:'Alaska nonstop'},
+    {id:'fLIR',n:'Liberia (LIR)',route:'Costa Rica',listed:'$422–489 (1–2 stops)',lo:650,hi:1000,note:'No nonstop from Portland. San José (SJO) is the alternative'}
+  ];
+  var DEST=[
+    {d:'Riviera Maya',r:'r1',f:'fCUN'},{d:'Cozumel',r:'c1',f:'fCZM'},{d:'Puerto Vallarta',r:'p2',f:'fPVR'},{d:'Costa Rica',r:'k1',f:'fLIR'}
+  ];
+  var store={};
+  try{store=JSON.parse(localStorage.getItem('xmasQuotes')||'{}')||{};}catch(e){store={};}
+  function save(){try{localStorage.setItem('xmasQuotes',JSON.stringify(store));}catch(e){}}
+  function $(id){return document.getElementById(id);}
+  function money(n){return '$'+Math.round(n).toLocaleString('en-US');}
+  function rng(a,b){return money(a)+'–'+money(b);}
+  function byId(list,id){for(var i=0;i<list.length;i++){if(list[i].id===id)return list[i];}return null;}
+  function rEst(r,tax){var m=NIGHTS*ROOMS*(tax?1+TAX:1);return [r.lo*m,r.hi*m];}
+  function fEst(f){return [f.lo*PAX,f.hi*PAX];}
+  function status(lo,hi){
+    if(hi<=BUDGET)return '<span class="pill good">Fits</span>';
+    if(lo<=BUDGET)return '<span class="pill warn">Tight</span>';
+    return '<span class="pill bad">Over</span>';
+  }
+
+  function drawSummary(){
+    var h='<thead><tr><th>Destination</th><th>Resort (cheapest good pick)</th><th class="num">Resort est.</th><th class="num">Flights est.</th><th class="num">Total est.</th><th>vs $12K</th></tr></thead><tbody>';
+    DEST.forEach(function(x){
+      var r=byId(R,x.r),f=byId(F,x.f),re=rEst(r,true),fe=fEst(f);
+      var lo=re[0]+fe[0],hi=re[1]+fe[1];
+      h+='<tr><td><b>'+x.d+'</b></td><td>'+r.n+'</td><td class="num">'+rng(re[0],re[1])+'</td><td class="num">'+rng(fe[0],fe[1])+'</td><td class="num"><b>'+rng(lo,hi)+'</b></td><td>'+status(lo,hi)+'</td></tr>';
+    });
+    $('summary').innerHTML=h+'</tbody>';
+  }
+
+  function drawResorts(){
+    var h='<thead><tr><th>Resort</th><th>Listed rate / room / night</th><th class="num">Xmas est. / room / night</th><th class="num">7 nights, 2 rooms</th><th>Basis</th><th>Your quote (total)</th></tr></thead><tbody>';
+    R.forEach(function(r){
+      if(r.g){h+='<tr class="grp"><td colspan="6">'+r.g+'</td></tr>';return;}
+      var e=rEst(r,false);
+      var cl=r.c==='Rate found'?'good':'warn';
+      h+='<tr><td><b>'+r.n+'</b>'+(r.note?'<br><span class="small muted">'+r.note+'</span>':'')+'</td><td>'+r.listed+'</td><td class="num">'+rng(r.lo,r.hi)+'</td><td class="num">'+rng(e[0],e[1])+'</td><td><span class="pill '+cl+'">'+r.c+'</span></td><td><input type="number" min="0" step="50" inputmode="numeric" id="q_'+r.id+'" aria-label="Your quote for '+r.n+'" value="'+(store[r.id]||'')+'"></td></tr>';
+    });
+    $('resorts').innerHTML=h+'</tbody>';
+  }
+
+  function drawFlights(){
+    var h='<thead><tr><th>Fly into</th><th>Fares found (other dates)</th><th class="num">Xmas est. / person</th><th class="num">4 travelers</th><th>Notes</th><th>Your quote (total for 4)</th></tr></thead><tbody>';
+    F.forEach(function(f){
+      var e=fEst(f);
+      h+='<tr><td><b>'+f.n+'</b><br><span class="small muted">'+f.route+'</span></td><td>'+f.listed+'</td><td class="num">'+rng(f.lo,f.hi)+'</td><td class="num">'+rng(e[0],e[1])+'</td><td class="small">'+f.note+'</td><td><input type="number" min="0" step="50" inputmode="numeric" id="q_'+f.id+'" aria-label="Your flight quote for '+f.n+'" value="'+(store[f.id]||'')+'"></td></tr>';
+    });
+    $('flights').innerHTML=h+'</tbody>';
+  }
+
+  function fillPickers(){
+    var o='';
+    R.forEach(function(r){if(!r.g)o+='<option value="'+r.id+'">'+r.n+'</option>';});
+    $('pickResort').innerHTML=o;
+    var p='';
+    F.forEach(function(f){p+='<option value="'+f.id+'">'+f.n+'</option>';});
+    $('pickFlight').innerHTML=p;
+    $('pickResort').value=store.pr||'p2';
+    $('pickFlight').value=store.pf||'fPVR';
+  }
+
+  function calc(){
+    var r=byId(R,$('pickResort').value),f=byId(F,$('pickFlight').value);
+    if(!r||!f)return;
+    var tax=$('tax').checked;
+    var rq=parseFloat(store[r.id]),fq=parseFloat(store[f.id]);
+    var re=rq>0?[rq,rq]:rEst(r,tax), fe=fq>0?[fq,fq]:fEst(f);
+    var lo=re[0]+fe[0],hi=re[1]+fe[1];
+    $('totalText').textContent=lo===hi?money(lo):rng(lo,hi);
+    $('fitText').innerHTML=status(lo,hi);
+    var max=Math.max(hi,BUDGET)*1.1;
+    var bar=$('rangeBar');
+    bar.style.left=(lo/max*100)+'%';
+    bar.style.width=Math.max((hi-lo)/max*100,1)+'%';
+    $('budgetLine').style.left=(BUDGET/max*100)+'%';
+    var parts=[];
+    parts.push('Resort '+(rq>0?'quote '+money(rq):'estimate '+rng(re[0],re[1])));
+    parts.push('Flights '+(fq>0?'quote '+money(fq):'estimate '+rng(fe[0],fe[1])));
+    $('budgetNote').textContent=parts.join(' · ')+'. The vertical line marks $12,000.';
+  }
+
+  document.addEventListener('input',function(e){
+    var t=e.target;
+    if(t.id&&t.id.indexOf('q_')===0){
+      var k=t.id.slice(2);
+      if(t.value==='')delete store[k];else store[k]=t.value;
+      save();calc();
+    }
+  });
+  $('pickResort').addEventListener('change',function(){store.pr=this.value;save();calc();});
+  $('pickFlight').addEventListener('change',function(){store.pf=this.value;save();calc();});
+  $('tax').addEventListener('change',calc);
+
+  drawSummary();drawResorts();drawFlights();fillPickers();calc();
+})();
+</script>
+
+</body>
+</html>
